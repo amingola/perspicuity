@@ -59,7 +59,8 @@ public class JsonController {
                 String titleCaseType = sanitizeType(cName);
                 String fullTypeName = clarityPackageRoot + "." + cName;
 
-                System.out.printf(template, fullTypeName, titleCaseType);
+                System.out.println(fullTypeName);
+//                System.out.printf(template, fullTypeName, titleCaseType);
 
             }
 

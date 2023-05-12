@@ -92,20 +92,36 @@ public class EndpointGenerator {
     private static void extractClassName(File file) throws IOException {
 
         String text = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-        Pattern p = Pattern.compile("(public class )([a-zA-Z]+)");
-        Matcher m = p.matcher(text);
 
-        if (m.find()) {
+        //Regex pattern for all instantiable classes;
+        //guaranteed 1-class per file + INSTANTIABLE inner classes ONLY (no abstract, interface, enum, non-public)
+        Pattern p = Pattern.compile("(public (static )*class )([a-zA-Z]+)");
+        Matcher m = p.matcher(text);
+        String path = file.getPath();
+
+        while (m.find()) {
 
             String match = m.group();
-            String path = file.getPath();
 
-            //Cut the path down to the relative path and replace backslashes with dots
-            String fullTypeName = path.substring(path.indexOf("com")).replaceAll("\\\\", ".");
-            fullTypeName = fullTypeName.substring(0, fullTypeName.lastIndexOf("."));
+            //Cut the path down to the relative path, replace backslashes with dots, and drop ".java" extension
+            String fullTypeName =
+                    path.substring(path.indexOf("com"))
+                            .replaceAll("\\\\", ".")
+                            .replaceAll("\\.java", "");
+
+            String[] classRelativePath = fullTypeName.split("\\.");
+
+            //Remove filename from the end of the path and add the name of the class matched with the regex pattern
+            if(match.contains("static")){
+                match = match.substring(match.lastIndexOf(" ") + 1);
+                classRelativePath[classRelativePath.length - 1] = classRelativePath[classRelativePath.length - 1] + "." + match;
+            }
+
+            fullTypeName = String.join(".", classRelativePath);
 
             String titleCaseType = sanitizeType(fullTypeName);
 
+//            System.out.println(fullTypeName);
             System.out.printf(endpointTemplate, fullTypeName, titleCaseType);
 
         }
