@@ -14,9 +14,7 @@ import java.util.stream.Collectors;
 public class EndpointGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(EndpointGenerator.class);
-
     private static final String clarityPackageRoot = "com.genologics.ri";
-
     private static final String fileBeginning =
             "package com.perspicuity;\n" +
                     "\n" +
@@ -30,31 +28,44 @@ public class EndpointGenerator {
                     "import javax.xml.bind.JAXBException;\n" +
                     "\n" +
                     "@Controller\n" +
-                    "@RequestMapping(\"/xml\")\n" +
-                    "public class XmlController {\n" +
+                    "@RequestMapping(\"/xml2\")\n" +
+                    "public class XmlControllerGenerated {\n" +
                     "\n" +
-                    "    private static final Logger logger = LoggerFactory.getLogger(XmlController.class);\n" +
+                    "    private static final Logger logger = LoggerFactory.getLogger(XmlControllerGenerated.class);\n" +
                     "\n" +
                     "    final MarshallingService marshallingService;\n" +
                     "\n" +
-                    "    public XmlController(MarshallingService marshallingService) {\n" +
+                    "    public XmlControllerGenerated(MarshallingService marshallingService) {\n" +
                     "        this.marshallingService = marshallingService;\n" +
                     "    }";
-
-    private static final String fileEnd = "\n}";
 
     private static final String endpointTemplate =
             "\n    @GetMapping(\"/%1$s\")\n" +
             "    ResponseEntity<String> get%2$s() throws JAXBException, ClassNotFoundException {\n" +
-            "        System.out.println(\"commence /xml/%1$s\");\n" +
+            "        logger.info(\"commence /xml/%1$s\");\n" +
             "        return ResponseEntity.ok(marshallingService.marshal(%1$s.class, new %1$s()));\n" +
             "    }\n";
 
-    public static void main(String[] args){
+    private static final String fileEnd = "\n}";
+    private static final String controllerName = "/XmlControllerGenerated";
+    private static final String controllerPath = "src/main/java/com/perspicuity/" + controllerName + ".java"; //TODO replace w/ project root
+
+    public static void main(String[] args) throws IOException {
 
         logger.info("Generating endpoints for all instantiable JAXB classes");
 
-        System.out.println(fileBeginning);
+
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(controllerPath));
+        bufferedWriter.write(fileBeginning);
+
+        extractAllInstantiableJaxbClassesFromGeneratedSources(bufferedWriter);
+
+        bufferedWriter.write(fileEnd);
+        bufferedWriter.close();
+
+    }
+
+    private static void extractAllInstantiableJaxbClassesFromGeneratedSources(BufferedWriter bufferedWriter) {
 
         //Read all the .xsds
         File schemaFolder = new File("target/generated-sources/jaxb/com/genologics/ri");
@@ -65,19 +76,19 @@ public class EndpointGenerator {
                     Arrays.stream(file.listFiles()).forEach(f -> {
                         if(!f.getName().contains("ObjectFactory")) {
                             try {
-                                extractClassName(f);
+                                extractClassName(bufferedWriter, f);
                             } catch (IOException e) {
                                 logger.error("Error extracting class name from " + f.getPath(), e);
                             }
                         }else{
-//                            logger.info("Skipping " + f.getPath());
+                            logger.info("Skipping ObjectFactory class " + f.getPath());
                         }
                     });
                 }else{
                     if(!file.getName().contains("ObjectFactory")){
-                        extractClassName(file);
+                        extractClassName(bufferedWriter, file);
                     }else{
-//                        logger.info("Skipping " + file.getPath());
+                        logger.info("Skipping ObjectFactory class " + file.getPath());
                     }
                 }
             } catch (IOException e) {
@@ -85,11 +96,9 @@ public class EndpointGenerator {
             }
         });
 
-        System.out.println(fileEnd);
-
     }
 
-    private static void extractClassName(File file) throws IOException {
+    private static void extractClassName(BufferedWriter bufferedWriter, File file) throws IOException {
 
         String text = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
 
@@ -122,7 +131,10 @@ public class EndpointGenerator {
             String titleCaseType = sanitizeType(fullTypeName);
 
 //            System.out.println(fullTypeName);
-            System.out.printf(endpointTemplate, fullTypeName, titleCaseType);
+
+            String endpoint = String.format(endpointTemplate, fullTypeName, titleCaseType);
+//            System.out.printf(endpoint);
+            bufferedWriter.write(endpoint);
 
         }
 
