@@ -60,33 +60,29 @@ public class EndpointGenerator {
         File schemaFolder = new File("target/generated-sources/jaxb/com/genologics/ri");
 
         Arrays.stream(schemaFolder.listFiles()).forEach(file -> {
-
             try {
-
                 if(file.isDirectory()){
-
                     Arrays.stream(file.listFiles()).forEach(f -> {
-
-                        if(f.getName().contains("ObjectFactory")){
-                            System.err.println("Skipping " + f.getPath());
+                        if(!f.getName().contains("ObjectFactory")) {
+                            try {
+                                extractClassName(f);
+                            } catch (IOException e) {
+                                logger.error("Error extracting class name from " + f.getPath(), e);
+                            }
+                        }else{
+//                            logger.info("Skipping " + f.getPath());
                         }
-
-                        try {
-                            extractClassName(f);
-                        } catch (IOException e) {
-                            logger.error("Error extracting class name from " + f.getPath(), e);
-                        }
-
                     });
-
                 }else{
-                    extractClassName(file);
+                    if(!file.getName().contains("ObjectFactory")){
+                        extractClassName(file);
+                    }else{
+//                        logger.info("Skipping " + file.getPath());
+                    }
                 }
-
             } catch (IOException e) {
                 logger.error("Error extracting class name from " + file.getPath(), e);
             }
-
         });
 
         System.out.println(fileEnd);
@@ -102,20 +98,14 @@ public class EndpointGenerator {
         if (m.find()) {
 
             String match = m.group();
-
             String path = file.getPath();
 
+            //Cut the path down to the relative path and replace backslashes with dots
             String fullTypeName = path.substring(path.indexOf("com")).replaceAll("\\\\", ".");
-            //fullTypeName = fullTypeName.replace(clarityPackageRoot + ".", "");
-            //fullTypeName = fullTypeName.replaceAll("\\.java", "");
             fullTypeName = fullTypeName.substring(0, fullTypeName.lastIndexOf("."));
 
-            String type = match.split(" ")[2];
-
             String titleCaseType = sanitizeType(fullTypeName);
-//            String fullTypeName = typePrefix + "." + match.split(" ")[2];
 
-//            System.out.println(fullTypeName);
             System.out.printf(endpointTemplate, fullTypeName, titleCaseType);
 
         }

@@ -99,12 +99,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.Details.class, new com.genologics.ri.artifact.Details()));
     }
 
-    @GetMapping("/com.genologics.ri.artifact.ObjectFactory")
-    ResponseEntity<String> getArtifactObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.artifact.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.ObjectFactory.class, new com.genologics.ri.artifact.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.artifact.ParentProcess")
     ResponseEntity<String> getArtifactParentProcess() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.artifact.ParentProcess");
@@ -159,12 +153,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifactgroup.Artifacts.class, new com.genologics.ri.artifactgroup.Artifacts()));
     }
 
-    @GetMapping("/com.genologics.ri.artifactgroup.ObjectFactory")
-    ResponseEntity<String> getArtifactgroupObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.artifactgroup.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifactgroup.ObjectFactory.class, new com.genologics.ri.artifactgroup.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.automation.Automation")
     ResponseEntity<String> getAutomationAutomation() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.automation.Automation");
@@ -183,12 +171,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.automation.Automations.class, new com.genologics.ri.automation.Automations()));
     }
 
-    @GetMapping("/com.genologics.ri.automation.ObjectFactory")
-    ResponseEntity<String> getAutomationObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.automation.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.automation.ObjectFactory.class, new com.genologics.ri.automation.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.automation.ProcessType")
     ResponseEntity<String> getAutomationProcessType() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.automation.ProcessType");
@@ -205,12 +187,6 @@ public class XmlController {
     ResponseEntity<String> getConfigurationFieldLink() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.configuration.FieldLink");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.configuration.FieldLink.class, new com.genologics.ri.configuration.FieldLink()));
-    }
-
-    @GetMapping("/com.genologics.ri.configuration.ObjectFactory")
-    ResponseEntity<String> getConfigurationObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.configuration.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.configuration.ObjectFactory.class, new com.genologics.ri.configuration.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.configuration.Type")
@@ -279,12 +255,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.container.Details.class, new com.genologics.ri.container.Details()));
     }
 
-    @GetMapping("/com.genologics.ri.container.ObjectFactory")
-    ResponseEntity<String> getContainerObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.container.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.container.ObjectFactory.class, new com.genologics.ri.container.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.container.Placement")
     ResponseEntity<String> getContainerPlacement() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.container.Placement");
@@ -327,12 +297,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.containertype.Dimension.class, new com.genologics.ri.containertype.Dimension()));
     }
 
-    @GetMapping("/com.genologics.ri.containertype.ObjectFactory")
-    ResponseEntity<String> getContainertypeObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.containertype.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.containertype.ObjectFactory.class, new com.genologics.ri.containertype.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.controltype.ControlType")
     ResponseEntity<String> getControltypeControlType() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.controltype.ControlType");
@@ -351,22 +315,10 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.controltype.ControlTypes.class, new com.genologics.ri.controltype.ControlTypes()));
     }
 
-    @GetMapping("/com.genologics.ri.controltype.ObjectFactory")
-    ResponseEntity<String> getControltypeObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.controltype.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.controltype.ObjectFactory.class, new com.genologics.ri.controltype.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.exception.Exception")
     ResponseEntity<String> getExceptionException() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.exception.Exception");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.exception.Exception.class, new com.genologics.ri.exception.Exception()));
-    }
-
-    @GetMapping("/com.genologics.ri.exception.ObjectFactory")
-    ResponseEntity<String> getExceptionObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.exception.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.exception.ObjectFactory.class, new com.genologics.ri.exception.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.Externalid")
@@ -399,12 +351,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.file.Files.class, new com.genologics.ri.file.Files()));
     }
 
-    @GetMapping("/com.genologics.ri.file.ObjectFactory")
-    ResponseEntity<String> getFileObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.file.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.file.ObjectFactory.class, new com.genologics.ri.file.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.Index")
     ResponseEntity<String> getIndex() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.Index");
@@ -427,12 +373,6 @@ public class XmlController {
     ResponseEntity<String> getInstrumentInstruments() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.instrument.Instruments");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrument.Instruments.class, new com.genologics.ri.instrument.Instruments()));
-    }
-
-    @GetMapping("/com.genologics.ri.instrument.ObjectFactory")
-    ResponseEntity<String> getInstrumentObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.instrument.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrument.ObjectFactory.class, new com.genologics.ri.instrument.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.instrumenttype.InstrumentType")
@@ -459,12 +399,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrumenttype.InstrumentTypes.class, new com.genologics.ri.instrumenttype.InstrumentTypes()));
     }
 
-    @GetMapping("/com.genologics.ri.instrumenttype.ObjectFactory")
-    ResponseEntity<String> getInstrumenttypeObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.instrumenttype.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrumenttype.ObjectFactory.class, new com.genologics.ri.instrumenttype.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.lab.Lab")
     ResponseEntity<String> getLabLab() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.lab.Lab");
@@ -481,12 +415,6 @@ public class XmlController {
     ResponseEntity<String> getLabLabs() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.lab.Labs");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.lab.Labs.class, new com.genologics.ri.lab.Labs()));
-    }
-
-    @GetMapping("/com.genologics.ri.lab.ObjectFactory")
-    ResponseEntity<String> getLabObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.lab.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.lab.ObjectFactory.class, new com.genologics.ri.lab.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.Link")
@@ -507,22 +435,10 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.Location.class, new com.genologics.ri.Location()));
     }
 
-    @GetMapping("/com.genologics.ri.ObjectFactory")
-    ResponseEntity<String> getObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.ObjectFactory.class, new com.genologics.ri.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.Page")
     ResponseEntity<String> getPage() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.Page");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.Page.class, new com.genologics.ri.Page()));
-    }
-
-    @GetMapping("/com.genologics.ri.permission.ObjectFactory")
-    ResponseEntity<String> getPermissionObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.permission.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.permission.ObjectFactory.class, new com.genologics.ri.permission.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.permission.Permission")
@@ -559,12 +475,6 @@ public class XmlController {
     ResponseEntity<String> getProcessInstrument() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.process.Instrument");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.Instrument.class, new com.genologics.ri.process.Instrument()));
-    }
-
-    @GetMapping("/com.genologics.ri.process.ObjectFactory")
-    ResponseEntity<String> getProcessObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.process.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.ObjectFactory.class, new com.genologics.ri.process.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.process.Parameter")
@@ -627,12 +537,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processexecution.Instrument.class, new com.genologics.ri.processexecution.Instrument()));
     }
 
-    @GetMapping("/com.genologics.ri.processexecution.ObjectFactory")
-    ResponseEntity<String> getProcessexecutionObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.processexecution.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processexecution.ObjectFactory.class, new com.genologics.ri.processexecution.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.processexecution.Output")
     ResponseEntity<String> getProcessexecutionOutput() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.processexecution.Output");
@@ -661,12 +565,6 @@ public class XmlController {
     ResponseEntity<String> getProcesstemplateInstrument() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.processtemplate.Instrument");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtemplate.Instrument.class, new com.genologics.ri.processtemplate.Instrument()));
-    }
-
-    @GetMapping("/com.genologics.ri.processtemplate.ObjectFactory")
-    ResponseEntity<String> getProcesstemplateObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.processtemplate.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtemplate.ObjectFactory.class, new com.genologics.ri.processtemplate.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.processtemplate.Parameter")
@@ -741,12 +639,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.Icebucketfield.class, new com.genologics.ri.processtype.Icebucketfield()));
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ObjectFactory")
-    ResponseEntity<String> getProcesstypeObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.processtype.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ObjectFactory.class, new com.genologics.ri.processtype.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.processtype.Parameter")
     ResponseEntity<String> getProcesstypeParameter() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.processtype.Parameter");
@@ -819,12 +711,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.TypeDefinition.class, new com.genologics.ri.processtype.TypeDefinition()));
     }
 
-    @GetMapping("/com.genologics.ri.project.ObjectFactory")
-    ResponseEntity<String> getProjectObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.project.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.project.ObjectFactory.class, new com.genologics.ri.project.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.project.Project")
     ResponseEntity<String> getProjectProject() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.project.Project");
@@ -849,12 +735,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.project.Researcher.class, new com.genologics.ri.project.Researcher()));
     }
 
-    @GetMapping("/com.genologics.ri.property.ObjectFactory")
-    ResponseEntity<String> getPropertyObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.property.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.property.ObjectFactory.class, new com.genologics.ri.property.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.property.Properties")
     ResponseEntity<String> getPropertyProperties() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.property.Properties");
@@ -865,12 +745,6 @@ public class XmlController {
     ResponseEntity<String> getPropertyPropertyLink() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.property.PropertyLink");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.property.PropertyLink.class, new com.genologics.ri.property.PropertyLink()));
-    }
-
-    @GetMapping("/com.genologics.ri.protocolconfiguration.ObjectFactory")
-    ResponseEntity<String> getProtocolconfigurationObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.protocolconfiguration.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.protocolconfiguration.ObjectFactory.class, new com.genologics.ri.protocolconfiguration.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.protocolconfiguration.Protocol")
@@ -903,22 +777,10 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.queue.ArtifactLink.class, new com.genologics.ri.queue.ArtifactLink()));
     }
 
-    @GetMapping("/com.genologics.ri.queue.ObjectFactory")
-    ResponseEntity<String> getQueueObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.queue.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.queue.ObjectFactory.class, new com.genologics.ri.queue.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.queue.Queue")
     ResponseEntity<String> getQueueQueue() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.queue.Queue");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.queue.Queue.class, new com.genologics.ri.queue.Queue()));
-    }
-
-    @GetMapping("/com.genologics.ri.reagentkit.ObjectFactory")
-    ResponseEntity<String> getReagentkitObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.reagentkit.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentkit.ObjectFactory.class, new com.genologics.ri.reagentkit.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.reagentkit.ReagentKit")
@@ -937,12 +799,6 @@ public class XmlController {
     ResponseEntity<String> getReagentkitReagentKits() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.reagentkit.ReagentKits");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentkit.ReagentKits.class, new com.genologics.ri.reagentkit.ReagentKits()));
-    }
-
-    @GetMapping("/com.genologics.ri.reagentlot.ObjectFactory")
-    ResponseEntity<String> getReagentlotObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.reagentlot.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentlot.ObjectFactory.class, new com.genologics.ri.reagentlot.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.reagentlot.ReagentKitLink")
@@ -981,12 +837,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagenttype.Attribute.class, new com.genologics.ri.reagenttype.Attribute()));
     }
 
-    @GetMapping("/com.genologics.ri.reagenttype.ObjectFactory")
-    ResponseEntity<String> getReagenttypeObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.reagenttype.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagenttype.ObjectFactory.class, new com.genologics.ri.reagenttype.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.reagenttype.ReagentType")
     ResponseEntity<String> getReagenttypeReagentType() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.reagenttype.ReagentType");
@@ -1023,12 +873,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.researcher.Lab.class, new com.genologics.ri.researcher.Lab()));
     }
 
-    @GetMapping("/com.genologics.ri.researcher.ObjectFactory")
-    ResponseEntity<String> getResearcherObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.researcher.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.researcher.ObjectFactory.class, new com.genologics.ri.researcher.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.researcher.Researcher")
     ResponseEntity<String> getResearcherResearcher() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.researcher.Researcher");
@@ -1051,12 +895,6 @@ public class XmlController {
     ResponseEntity<String> getResearcherRole() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.researcher.Role");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.researcher.Role.class, new com.genologics.ri.researcher.Role()));
-    }
-
-    @GetMapping("/com.genologics.ri.role.ObjectFactory")
-    ResponseEntity<String> getRoleObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.role.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.role.ObjectFactory.class, new com.genologics.ri.role.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.role.PermissionLink")
@@ -1101,12 +939,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.routing.ExtArtifactAssignments.class, new com.genologics.ri.routing.ExtArtifactAssignments()));
     }
 
-    @GetMapping("/com.genologics.ri.routing.ObjectFactory")
-    ResponseEntity<String> getRoutingObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.routing.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.routing.ObjectFactory.class, new com.genologics.ri.routing.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.routing.Routing")
     ResponseEntity<String> getRoutingRouting() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.routing.Routing");
@@ -1141,12 +973,6 @@ public class XmlController {
     ResponseEntity<String> getSampleDetails() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.sample.Details");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Details.class, new com.genologics.ri.sample.Details()));
-    }
-
-    @GetMapping("/com.genologics.ri.sample.ObjectFactory")
-    ResponseEntity<String> getSampleObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.sample.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.ObjectFactory.class, new com.genologics.ri.sample.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.sample.Project")
@@ -1189,12 +1015,6 @@ public class XmlController {
     ResponseEntity<String> getSampleSubmitter() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.sample.Submitter");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Submitter.class, new com.genologics.ri.sample.Submitter()));
-    }
-
-    @GetMapping("/com.genologics.ri.stage.ObjectFactory")
-    ResponseEntity<String> getStageObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.stage.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stage.ObjectFactory.class, new com.genologics.ri.stage.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.stage.Protocol")
@@ -1327,12 +1147,6 @@ public class XmlController {
     ResponseEntity<String> getStepNextAction() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.step.NextAction");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.NextAction.class, new com.genologics.ri.step.NextAction()));
-    }
-
-    @GetMapping("/com.genologics.ri.step.ObjectFactory")
-    ResponseEntity<String> getStepObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.step.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ObjectFactory.class, new com.genologics.ri.step.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.step.Output")
@@ -1509,12 +1323,6 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.NextStep.class, new com.genologics.ri.stepconfiguration.NextStep()));
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.ObjectFactory")
-    ResponseEntity<String> getStepconfigurationObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.stepconfiguration.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.ObjectFactory.class, new com.genologics.ri.stepconfiguration.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.stepconfiguration.ProcessType")
     ResponseEntity<String> getStepconfigurationProcessType() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.stepconfiguration.ProcessType");
@@ -1557,22 +1365,10 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.userdefined.Field.class, new com.genologics.ri.userdefined.Field()));
     }
 
-    @GetMapping("/com.genologics.ri.userdefined.ObjectFactory")
-    ResponseEntity<String> getUserdefinedObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.userdefined.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.userdefined.ObjectFactory.class, new com.genologics.ri.userdefined.ObjectFactory()));
-    }
-
     @GetMapping("/com.genologics.ri.userdefined.Type")
     ResponseEntity<String> getUserdefinedType() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.userdefined.Type");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.userdefined.Type.class, new com.genologics.ri.userdefined.Type()));
-    }
-
-    @GetMapping("/com.genologics.ri.version.ObjectFactory")
-    ResponseEntity<String> getVersionObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.version.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.version.ObjectFactory.class, new com.genologics.ri.version.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.version.Version")
@@ -1585,12 +1381,6 @@ public class XmlController {
     ResponseEntity<String> getVersionVersions() throws JAXBException, ClassNotFoundException {
         System.out.println("commence /xml/com.genologics.ri.version.Versions");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.version.Versions.class, new com.genologics.ri.version.Versions()));
-    }
-
-    @GetMapping("/com.genologics.ri.workflowconfiguration.ObjectFactory")
-    ResponseEntity<String> getWorkflowconfigurationObjectFactory() throws JAXBException, ClassNotFoundException {
-        System.out.println("commence /xml/com.genologics.ri.workflowconfiguration.ObjectFactory");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.workflowconfiguration.ObjectFactory.class, new com.genologics.ri.workflowconfiguration.ObjectFactory()));
     }
 
     @GetMapping("/com.genologics.ri.workflowconfiguration.ProtocolLink")
