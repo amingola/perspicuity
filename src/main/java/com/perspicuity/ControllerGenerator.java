@@ -15,41 +15,83 @@ public class ControllerGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(ControllerGenerator.class);
     private static final String clarityPackageRoot = "com.genologics.ri";
-    private static final String controllerName = "XmlController";
-    private static final String controllerPath = "src/main/java/com/perspicuity/controller/" + controllerName + ".java";
-    private static final String fileBeginning =
-                    "package com.perspicuity.controller;\n" +
-                    "\n" +
+
+    private static final String jsonControllerName = "JsonController";
+    private static final String jsonEndpointPathPrefix = "json";
+    private static final String jsonControllerPath = "src/main/java/com/perspicuity/controller/" + jsonControllerName + ".java";
+    private static final String jsonFileBeginning =
+            "package com.perspicuity.controller;\n\n" +
+            "import com.perspicuity.service.MarshallingService;\n" +
+            "import com.perspicuity.service.UnmarshallingService;\n" +
+            "import org.slf4j.Logger;\n" +
+            "import org.slf4j.LoggerFactory;\n" +
+            "import org.springframework.http.HttpStatus;\n" +
+            "import org.springframework.http.ResponseEntity;\n" +
+            "import org.springframework.stereotype.Controller;\n" +
+            "import org.springframework.web.bind.annotation.PostMapping;\n" +
+            "import org.springframework.web.bind.annotation.RequestBody;\n" +
+            "import org.springframework.web.bind.annotation.RequestMapping;\n\n" +
+            "import javax.xml.bind.JAXBException;\n\n" +
+            "@Controller\n" +
+            "@RequestMapping(\"/%2$s\")\n" +
+            "public class JsonController {\n\n" +
+            "    private static final Logger logger = LoggerFactory.getLogger(JsonController.class);\n\n" +
+            "    final MarshallingService marshallingService;\n\n" +
+            "    public JsonController(MarshallingService marshallingService) {\n" +
+            "        this.marshallingService = marshallingService;\n" +
+            "    }\n\n";
+    private static final String jsonEndpointTemplate =
+                    "\n    @PostMapping(\"/%1$s\")\n" +
+                    "    ResponseEntity<Object> get%2$s(@RequestBody String xmlPayload) {\n" +
+                    "        logger.info(\"hit /%3$s/%1$s\");\n" +
+                    "        %1$s jsonPayload = (%1$s) xmlToJson(%1$s.class, xmlPayload);\n" +
+                            "        return buildResponse(jsonPayload);\n" +
+                    "    }\n";
+    private static final String jsonFileEnd =
+            "    private ResponseEntity<Object> buildResponse(Object jsonPayload) {\n" +
+                    "        return (jsonPayload != null)\n" +
+                    "                ? ResponseEntity.ok(jsonPayload)\n" +
+                    "                : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();\n" +
+                    "    }\n\n" +
+                    "    private Object xmlToJson(Class<?> payloadClass, String xmlPayload){\n\n" +
+                    "        logger.info(\"\\n\" + xmlPayload);\n\n" +
+                    "        try {\n" +
+                    "            return UnmarshallingService.unmarshal(payloadClass, xmlPayload).getValue();\n" +
+                    "        } catch (JAXBException | ClassNotFoundException e) {\n" +
+                    "            logger.error(\"xmlToJson didn't work for payload: \" + xmlPayload, e);\n" +
+                    "        }\n\n" +
+                    "        return null;\n\n" +
+                    "    }\n\n" +
+                    "}\n";
+
+    private static final String xmlControllerName = "XmlController";
+    private static final String xmlEndpointPathPrefix = "xml";
+    private static final String xmlControllerPath = "src/main/java/com/perspicuity/controller/" + xmlControllerName + ".java";
+    private static final String xmlFileBeginning =
+                    "package com.perspicuity.controller;\n\n" +
                     "import com.perspicuity.service.MarshallingService;\n" +
                     "import org.slf4j.Logger;\n" +
                     "import org.slf4j.LoggerFactory;\n" +
                     "import org.springframework.http.ResponseEntity;\n" +
                     "import org.springframework.stereotype.Controller;\n" +
                     "import org.springframework.web.bind.annotation.GetMapping;\n" +
-                    "import org.springframework.web.bind.annotation.RequestMapping;\n" +
-                    "\n" +
-                    "import javax.xml.bind.JAXBException;\n" +
-                    "\n" +
+                    "import org.springframework.web.bind.annotation.RequestMapping;\n\n" +
+                    "import javax.xml.bind.JAXBException;\n\n" +
                     "@Controller\n" +
-                    "@RequestMapping(\"/xml2\")\n" +
-                    "public class " + controllerName + " {\n" +
-                    "\n" +
-                    "    private static final Logger logger = LoggerFactory.getLogger(" + controllerName + ".class);\n" +
-                    "\n" +
-                    "    final MarshallingService marshallingService;\n" +
-                    "\n" +
-                    "    public " + controllerName + "(MarshallingService marshallingService) {\n" +
+                    "@RequestMapping(\"/%2$s\")\n" +
+                    "public class %1$s {\n\n" +
+                    "    private static final Logger logger = LoggerFactory.getLogger(%1$s.class);\n\n" +
+                    "    final MarshallingService marshallingService;\n\n" +
+                    "    public %1$s(MarshallingService marshallingService) {\n" +
                     "        this.marshallingService = marshallingService;\n" +
                     "    }";
-
-    private static final String endpointTemplate =
+    private static final String xmlEndpointTemplate =
             "\n    @GetMapping(\"/%1$s\")\n" +
-            "    ResponseEntity<String> get%2$s() throws JAXBException, ClassNotFoundException {\n" +
-            "        logger.info(\"commence /xml/%1$s\");\n" +
-            "        return ResponseEntity.ok(marshallingService.marshal(%1$s.class, new %1$s()));\n" +
-            "    }\n";
-
-    private static final String fileEnd = "\n}";
+                    "    ResponseEntity<String> get%2$s() throws JAXBException, ClassNotFoundException {\n" +
+                    "        logger.info(\"hit /%3$s/%1$s\");\n" +
+                    "        return ResponseEntity.ok(marshallingService.marshal(%1$s.class, new %1$s()));\n" +
+                    "    }\n";
+    private static final String xmlFileEnd = "\n}";
 
     private static final ArrayList<String> jaxbClasses = new ArrayList<>();
 
@@ -57,28 +99,62 @@ public class ControllerGenerator {
 
         logger.info("Generating endpoints for all instantiable JAXB classes");
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(controllerPath));
-        bufferedWriter.write(fileBeginning);
+        extractAllInstantiableJaxbClassesFromGeneratedSources();
+        generateJsonController();
+        generateXmlController();
 
-        extractAllInstantiableJaxbClassesFromGeneratedSources(bufferedWriter);
+    }
 
-        bufferedWriter.write(fileEnd);
+    private static void generateJsonController() throws IOException {
+
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(jsonControllerPath));
+        bufferedWriter.write(String.format(jsonFileBeginning, jsonControllerName, jsonEndpointPathPrefix));
+
+        jaxbClasses.forEach(fullTypeName -> {
+            try {
+                String endpoint = String.format(jsonEndpointTemplate, fullTypeName, setToTitleCase(fullTypeName), jsonEndpointPathPrefix);
+                bufferedWriter.write(endpoint);
+            } catch (IOException e) {
+                logger.error("Failed to create JSON endpoint for class \"" + fullTypeName, e);
+            }
+        });
+
+        bufferedWriter.write(jsonFileEnd);
         bufferedWriter.close();
 
     }
 
-    private static void extractAllInstantiableJaxbClassesFromGeneratedSources(BufferedWriter bufferedWriter) {
+    private static void generateXmlController() throws IOException {
+
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(xmlControllerPath));
+        bufferedWriter.write(String.format(xmlFileBeginning, xmlControllerName, xmlEndpointPathPrefix));
+
+        jaxbClasses.forEach(fullTypeName -> {
+            try {
+                String endpoint = String.format(xmlEndpointTemplate, fullTypeName, setToTitleCase(fullTypeName), xmlEndpointPathPrefix);
+                bufferedWriter.write(endpoint);
+            } catch (IOException e) {
+                logger.error("Failed to create XML endpoint for class \"" + fullTypeName, e);
+            }
+        });
+
+        bufferedWriter.write(xmlFileEnd);
+        bufferedWriter.close();
+
+    }
+
+    private static void extractAllInstantiableJaxbClassesFromGeneratedSources() {
 
         //Read all the .xsds
         File schemaFolder = new File("target/generated-sources/jaxb/com/genologics/ri");
 
-        Arrays.stream(schemaFolder.listFiles()).forEach(file -> {
+        Arrays.stream(Objects.requireNonNull(schemaFolder.listFiles())).forEach(file -> {
             try {
                 if(file.isDirectory()){
-                    Arrays.stream(file.listFiles()).forEach(f -> {
+                    Arrays.stream(Objects.requireNonNull(file.listFiles())).forEach(f -> {
                         if(!f.getName().contains("ObjectFactory")) {
                             try {
-                                extractClassName(bufferedWriter, f);
+                                extractClassName(f);
                             } catch (IOException e) {
                                 logger.error("Error extracting class name from " + f.getPath(), e);
                             }
@@ -88,7 +164,7 @@ public class ControllerGenerator {
                     });
                 }else{
                     if(!file.getName().contains("ObjectFactory")){
-                        extractClassName(bufferedWriter, file);
+                        extractClassName(file);
                     }else{
                         logger.info("Skipping ObjectFactory class " + file.getPath());
                     }
@@ -98,9 +174,11 @@ public class ControllerGenerator {
             }
         });
 
+        Collections.sort(jaxbClasses); //should be sorted already due to reading from filesystem, but enforce sorting
+
     }
 
-    private static void extractClassName(BufferedWriter bufferedWriter, File file) throws IOException {
+    private static void extractClassName(File file) throws IOException {
 
         String text = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
 
@@ -129,20 +207,13 @@ public class ControllerGenerator {
             }
 
             fullTypeName = String.join(".", classRelativePath);
-
-            String titleCaseType = sanitizeType(fullTypeName);
-
-//            System.out.println(fullTypeName);
-
-            String endpoint = String.format(endpointTemplate, fullTypeName, titleCaseType);
-//            System.out.printf(endpoint);
-            bufferedWriter.write(endpoint);
+            jaxbClasses.add(fullTypeName);
 
         }
 
     }
 
-    private static String sanitizeType(String type){
+    private static String setToTitleCase(String type){
 
         String str = type.replace(clarityPackageRoot + ".", "");
 

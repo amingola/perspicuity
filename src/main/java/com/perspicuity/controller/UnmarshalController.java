@@ -51,7 +51,6 @@ public class UnmarshalController {
                 : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    //@PostMapping("/**")
     private Object xmlToJson(Class<?> payloadClass, String xmlPayload){
 
         logger.info("\n" + xmlPayload);
@@ -59,13 +58,12 @@ public class UnmarshalController {
         try {
             return UnmarshallingService.unmarshal(payloadClass, xmlPayload).getValue();
         } catch (JAXBException | ClassNotFoundException e) {
-            logger.error("xmlToJson didn't work"); //TODO better handling
+            logger.error("xmlToJson didn't work for payload: " + xmlPayload, e);
         }
 
         return null;
 
     }
-
 
 }
 
