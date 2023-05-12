@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Scope;
 @SpringBootApplication
 public class PerspicuityDemoApplication {
 
+    //TODO AOP logging
+
     public static void main(String[] args) {
         SpringApplication.run(PerspicuityDemoApplication.class, args);
     }

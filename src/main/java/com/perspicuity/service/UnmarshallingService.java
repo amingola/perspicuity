@@ -1,4 +1,4 @@
-package com.perspicuity;
+package com.perspicuity.service;
 
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;

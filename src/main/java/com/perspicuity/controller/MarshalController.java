@@ -1,7 +1,8 @@
-package com.perspicuity;
+package com.perspicuity.controller;
 
 import com.genologics.ri.project.Project;
 import com.genologics.ri.sample.Sample;
+import com.perspicuity.service.MarshallingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

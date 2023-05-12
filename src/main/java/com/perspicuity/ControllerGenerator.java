@@ -11,13 +11,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class EndpointGenerator {
+public class ControllerGenerator {
 
-    private static final Logger logger = LoggerFactory.getLogger(EndpointGenerator.class);
+    private static final Logger logger = LoggerFactory.getLogger(ControllerGenerator.class);
     private static final String clarityPackageRoot = "com.genologics.ri";
+    private static final String controllerName = "XmlController";
+    private static final String controllerPath = "src/main/java/com/perspicuity/controller/" + controllerName + ".java";
     private static final String fileBeginning =
-            "package com.perspicuity;\n" +
+                    "package com.perspicuity.controller;\n" +
                     "\n" +
+                    "import com.perspicuity.service.MarshallingService;\n" +
                     "import org.slf4j.Logger;\n" +
                     "import org.slf4j.LoggerFactory;\n" +
                     "import org.springframework.http.ResponseEntity;\n" +
@@ -29,13 +32,13 @@ public class EndpointGenerator {
                     "\n" +
                     "@Controller\n" +
                     "@RequestMapping(\"/xml2\")\n" +
-                    "public class XmlControllerGenerated {\n" +
+                    "public class " + controllerName + " {\n" +
                     "\n" +
-                    "    private static final Logger logger = LoggerFactory.getLogger(XmlControllerGenerated.class);\n" +
+                    "    private static final Logger logger = LoggerFactory.getLogger(" + controllerName + ".class);\n" +
                     "\n" +
                     "    final MarshallingService marshallingService;\n" +
                     "\n" +
-                    "    public XmlControllerGenerated(MarshallingService marshallingService) {\n" +
+                    "    public " + controllerName + "(MarshallingService marshallingService) {\n" +
                     "        this.marshallingService = marshallingService;\n" +
                     "    }";
 
@@ -47,13 +50,12 @@ public class EndpointGenerator {
             "    }\n";
 
     private static final String fileEnd = "\n}";
-    private static final String controllerName = "/XmlControllerGenerated";
-    private static final String controllerPath = "src/main/java/com/perspicuity/" + controllerName + ".java"; //TODO replace w/ project root
+
+    private static final ArrayList<String> jaxbClasses = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
 
         logger.info("Generating endpoints for all instantiable JAXB classes");
-
 
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(controllerPath));
         bufferedWriter.write(fileBeginning);

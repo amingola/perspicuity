@@ -1,5 +1,6 @@
-package com.perspicuity;
+package com.perspicuity.controller;
 
+import com.perspicuity.service.MarshallingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.xml.bind.JAXBException;
 
 @Controller
-@RequestMapping("/xml")
+@RequestMapping("/xml2")
 public class XmlController {
 
     private static final Logger logger = LoggerFactory.getLogger(XmlController.class);
@@ -20,7 +21,6 @@ public class XmlController {
     public XmlController(MarshallingService marshallingService) {
         this.marshallingService = marshallingService;
     }
-
     @GetMapping("/com.genologics.ri.Address")
     ResponseEntity<String> getAddress() throws JAXBException, ClassNotFoundException {
         logger.info("commence /xml/com.genologics.ri.Address");

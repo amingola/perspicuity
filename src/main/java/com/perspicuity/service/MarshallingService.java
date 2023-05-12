@@ -1,5 +1,6 @@
-package com.perspicuity;
+package com.perspicuity.service;
 
+import com.perspicuity.NamespaceMapper;
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

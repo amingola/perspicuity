@@ -1,8 +1,9 @@
-package com.perspicuity;
+package com.perspicuity.controller;
 
 import com.genologics.ri.container.Container;
 import com.genologics.ri.project.Project;
 import com.genologics.ri.sample.Sample;
+import com.perspicuity.service.UnmarshallingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,6 @@ import javax.xml.bind.JAXBException;
 @Controller
 @RequestMapping("/unmarshal")
 public class UnmarshalController {
-
-    //TODO AOP logging
 
     private static final Logger logger = LoggerFactory.getLogger(UnmarshalController.class);
 
