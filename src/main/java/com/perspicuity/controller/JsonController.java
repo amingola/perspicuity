@@ -25,7 +25,6 @@ public class JsonController {
         this.marshallingService = marshallingService;
     }
 
-
     @PostMapping("/com.genologics.ri.Address")
     ResponseEntity<Object> getAddress(@RequestBody String xmlPayload) {
         logger.info("hit /json/com.genologics.ri.Address");

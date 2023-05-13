@@ -84,7 +84,7 @@ public class MarshallingService{
         }while(!done);
 
         String xml = sw.toString();
-        logger.debug(xml);
+        //logger.debug(xml);
 
         return xml;
 
@@ -105,10 +105,7 @@ public class MarshallingService{
 
         }
 
-        String classNeededName = m.group();
-        logger.debug(classNeededName + " is needed");
-
-        return classNeededName;
+        return m.group();
 
     }
 

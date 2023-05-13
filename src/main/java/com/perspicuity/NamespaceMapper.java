@@ -26,7 +26,7 @@ public class NamespaceMapper extends NamespacePrefixMapper{
     private final HashMap<String, String> namespaces = new HashMap<>();
 
     @Autowired
-    NamespaceMapper(@Value("${packageRoot}") String clarityPackageRoot){
+    public NamespaceMapper(@Value("${packageRoot}") String clarityPackageRoot){
         this.clarityPackageRoot = clarityPackageRoot;
         initNamespaceMapFromSchemaDirectory();
         findAllClassesUsingClassLoader(clarityPackageRoot);
@@ -120,7 +120,7 @@ public class NamespaceMapper extends NamespacePrefixMapper{
                     try{
                         c.newInstance();
                     } catch(InstantiationException e){
-                        logger.info("Skipping " + c + " as it can not be instantiated (abstract, interface, enum, etc.)");
+                        logger.debug("Skipping " + c + " as it can not be instantiated (abstract, interface, enum, etc.)");
                         continue;
                     } catch(IllegalAccessException e){
                         logger.error("IllegalAccessException trying to register class:  " + c, e);
@@ -128,7 +128,7 @@ public class NamespaceMapper extends NamespacePrefixMapper{
                     }
 
                     String sanitizedClassName = sanitizeClassName(c);
-                    System.out.println("adding " + sanitizedClassName);
+                    logger.debug("adding " + sanitizedClassName);
                     classes.put(sanitizedClassName, c);
 
                 }

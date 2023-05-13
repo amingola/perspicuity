@@ -39,7 +39,7 @@ public class ControllerGenerator {
             "    final MarshallingService marshallingService;\n\n" +
             "    public JsonController(MarshallingService marshallingService) {\n" +
             "        this.marshallingService = marshallingService;\n" +
-            "    }\n\n";
+            "    }\n";
     private static final String jsonEndpointTemplate =
                     "\n    @PostMapping(\"/%1$s\")\n" +
                     "    ResponseEntity<Object> get%2$s(@RequestBody String xmlPayload) {\n" +
