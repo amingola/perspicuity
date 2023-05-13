@@ -2,6 +2,7 @@ package com.perspicuity.service;
 
 import com.perspicuity.NamespaceMapper;
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
+import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -51,13 +52,14 @@ public class MarshallingService{
         StringWriter sw = new StringWriter();
         sw.write(PAYLOAD_HEADER);
 
+        Marshaller marshaller = null;
         boolean done = false;
 
         do{
 
-            Marshaller marshaller = getBasicMarshaller(JAXBContext.newInstance(classesForJAXBContext));
-
             try{
+
+                marshaller = getBasicMarshaller(JAXBContext.newInstance(classesForJAXBContext));
 
                 QName qName = getQNameForClass(payloadClass);
                 JAXBElement<?> projectElement = new JAXBElement(qName, payloadClass, payload);
@@ -70,30 +72,33 @@ public class MarshallingService{
             }catch(MarshalException e){
 
                 //Grab the name of the Clarity datatype mentioned in the exception
-                String missingClass = getNextClassMissingFromJAXBContext(payload, e);
+                String missingClass = getClassMissingFromJAXBContext(payload, e);
                 logger.info("Need " +  missingClass);
 
                 //Update Class[] with the missing Clarity datatype
-                Class<?> classNeeded;
-                classNeeded = Class.forName(missingClass);
-                classesForJAXBContext = Arrays.copyOf(classesForJAXBContext, classesForJAXBContext.length + 1);
-                classesForJAXBContext[classesForJAXBContext.length - 1] = classNeeded;
+                classesForJAXBContext = addClassFromNameToArray(missingClass, classesForJAXBContext);
+
+            }catch(IllegalAnnotationsException e2){
+
+                //Grab the name of the Clarity datatype mentioned in the exception
+                String missingObjectFactory = getObjectFactoryMissingFromJAXBContext(payload, e2);
+                logger.info("Need " +  missingObjectFactory);
+
+                //Update Class[] with the missing Clarity datatype
+                classesForJAXBContext = addClassFromNameToArray(missingObjectFactory, classesForJAXBContext);
 
             }
 
         }while(!done);
 
-        String xml = sw.toString();
-        //logger.debug(xml);
-
-        return xml;
+        return sw.toString();
 
     }
 
-    private String getNextClassMissingFromJAXBContext(Object payload, MarshalException e) throws ClassNotFoundException {
+    private String getClassMissingFromJAXBContext(Object payload, MarshalException e) throws ClassNotFoundException {
 
         //Pull any mention of a Clarity datatype from the exception message
-        Pattern p = Pattern.compile("(com.genologics.ri)(([a-z.$]+)\\w+)");
+        Pattern p = Pattern.compile("(com.genologics.ri)(([a-z.$]+)\\w+)"); //TODO replace with property
         Matcher m = p.matcher(e.toString());
 
         if(!m.find()) {
@@ -109,13 +114,39 @@ public class MarshallingService{
 
     }
 
+    private String getObjectFactoryMissingFromJAXBContext(Object payload, IllegalAnnotationsException e) throws ClassNotFoundException {
+
+        //Pull any mention of a Clarity datatype from the exception message
+        Pattern p = Pattern.compile("(?!http://genologics.com)[a-z]*(?=})"); //TODO replace with property
+        Matcher m = p.matcher(e.toString());
+
+        if(!m.find()) {
+
+            //Without a class in the exception message this loop can not be exited
+            throw new ClassNotFoundException("An exception was reported that made no mention of a " +
+                    "Clarity datatype. Unable to marshal the payload " + payload +
+                    "\nThe exception was:\n\n" + e);
+
+        }
+
+        return "com.genologics.ri." + m.group() + ".ObjectFactory"; //TODO replace with property
+
+    }
+
+    private Class<?>[] addClassFromNameToArray(String missingClass, Class<?>[] classesForJAXBContext) throws ClassNotFoundException {
+        Class<?> classNeeded = Class.forName(missingClass);
+        classesForJAXBContext = Arrays.copyOf(classesForJAXBContext, classesForJAXBContext.length + 1);
+        classesForJAXBContext[classesForJAXBContext.length - 1] = classNeeded;
+        return classesForJAXBContext;
+    }
+
     /**
      * Converts the Class name of the XML object to the QName for the JAXBElement
      */
     private QName getQNameForClass(Class<?> payloadClass) {
 
         String packageName = payloadClass.getPackage().getName();
-        String namespaceUri =  "http://genologics.com" +
+        String namespaceUri =  "http://genologics.com" + //TODO replace with property
                 packageName.replace("com.genologics", "").replaceAll("\\.", "/");
 
         String localPart = payloadClass.getSimpleName().toLowerCase();
