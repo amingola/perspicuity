@@ -1,5 +1,6 @@
 import com.perspicuity.NamespaceMapper;
 import com.perspicuity.service.MarshallingService;
+import com.perspicuity.service.UnmarshallingService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -17,8 +18,8 @@ public class JsonEndpointDynamicTests {
         marshallingService = new MarshallingService(namespaceMapper);
     }
 
-    @TestFactory
-    Stream<DynamicTest> dynamicTestsFromStreamInJava8() {
+    /*@TestFactory
+    Stream<DynamicTest> marshalEveryType() {
         return namespaceMapper.getClarityClasses().values().stream()
                 .map(c -> DynamicTest.dynamicTest("Marshalling: " + c, () -> {
 
@@ -27,8 +28,46 @@ public class JsonEndpointDynamicTests {
 
                     Object obj = TestUtils.fillAllFields(c.newInstance());
 
-                    marshallingService.marshal(obj.getClass(), obj);
-                    System.out.println("Marshalled object: " + obj);
+                    String xml = marshallingService.marshal(obj.getClass(), obj);
+                    System.out.println("Marshalled object: " + xml);
+
+                }));
+    }*/
+
+    /*@TestFactory
+    Stream<DynamicTest> marshalAndUnmarshalEveryType() {
+        return namespaceMapper.getClarityClasses().values().stream()
+                .map(c -> DynamicTest.dynamicTest("Marshalling: " + c, () -> {
+
+                    //Skip ObjectFactory classes
+                    if(c.getName().contains("ObjectFactory")) return;
+
+                    Object obj = TestUtils.fillAllFields(c.newInstance());
+
+                    String xml = marshallingService.marshal(obj.getClass(), obj);
+                    System.out.println("Marshalled object: " + xml);
+
+                    Object pojo = UnmarshallingService.unmarshal(c, xml).getDeclaredType().newInstance();
+                    System.out.println("Unmarshalled object: " + pojo);
+
+                }));
+    }*/
+
+    @TestFactory
+    Stream<DynamicTest> marshalAndUnmarshalEndpointTypes() {
+        return namespaceMapper.getClarityClasses().values().stream()
+                .map(c -> DynamicTest.dynamicTest("Marshalling: " + c, () -> {
+
+                    //Skip ObjectFactory classes
+                    if(c.getName().contains("ObjectFactory")) return;
+
+                    Object obj = TestUtils.fillAllFields(c.newInstance());
+
+                    String xml = marshallingService.marshal(obj.getClass(), obj);
+                    System.out.println("Marshalled object: " + xml);
+
+                    Object pojo = UnmarshallingService.unmarshal(c, xml).getDeclaredType().newInstance();
+                    System.out.println("Unmarshalled object: " + pojo);
 
                 }));
     }

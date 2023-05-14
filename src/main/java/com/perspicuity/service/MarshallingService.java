@@ -11,6 +11,8 @@ import javax.xml.bind.*;
 import javax.xml.namespace.QName;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,18 +50,21 @@ public class MarshallingService{
      */
     public String marshal(Class<?> payloadClass, Object payload) throws JAXBException, ClassNotFoundException {
 
-        Class<?>[] classesForJAXBContext = new Class[0];
+//        Class<?>[] classesForJAXBContext = new Class[0];
+        Set<Class<?>> classesForJAXBContext = new HashSet<>();
         StringWriter sw = new StringWriter();
         sw.write(PAYLOAD_HEADER);
 
-        Marshaller marshaller = null;
+        Marshaller marshaller;
         boolean done = false;
 
         do{
 
+            Class<?>[] classes = classesForJAXBContext.toArray(new Class<?>[0]);
+
             try{
 
-                marshaller = getBasicMarshaller(JAXBContext.newInstance(classesForJAXBContext));
+                marshaller = getBasicMarshaller(JAXBContext.newInstance(classes));
 
                 QName qName = getQNameForClass(payloadClass);
                 JAXBElement<?> projectElement = new JAXBElement(qName, payloadClass, payload);
@@ -76,7 +81,7 @@ public class MarshallingService{
                 logger.info("Need " +  missingClass);
 
                 //Update Class[] with the missing Clarity datatype
-                classesForJAXBContext = addClassFromNameToArray(missingClass, classesForJAXBContext);
+                addClassFromNameToArray(missingClass, classesForJAXBContext);
 
             }catch(IllegalAnnotationsException e2){
 
@@ -85,7 +90,7 @@ public class MarshallingService{
                 logger.info("Need " +  missingObjectFactory);
 
                 //Update Class[] with the missing Clarity datatype
-                classesForJAXBContext = addClassFromNameToArray(missingObjectFactory, classesForJAXBContext);
+                addClassFromNameToArray(missingObjectFactory, classesForJAXBContext);
 
             }
 
@@ -133,11 +138,14 @@ public class MarshallingService{
 
     }
 
-    private Class<?>[] addClassFromNameToArray(String missingClass, Class<?>[] classesForJAXBContext) throws ClassNotFoundException {
+    private void addClassFromNameToArray(String missingClass, Set<Class<?>> classesForJAXBContext) throws ClassNotFoundException {
         Class<?> classNeeded = Class.forName(missingClass);
-        classesForJAXBContext = Arrays.copyOf(classesForJAXBContext, classesForJAXBContext.length + 1);
-        classesForJAXBContext[classesForJAXBContext.length - 1] = classNeeded;
-        return classesForJAXBContext;
+        if(classesForJAXBContext.contains(classNeeded)){
+            String msg = "The class " + missingClass + " is already in the JAXBContext and it didn't fix the problem." +
+                    " Throwing this exception to avoid an infinite loop. Game over.";
+            throw new RuntimeException(msg);
+        }
+        classesForJAXBContext.add(classNeeded);
     }
 
     /**

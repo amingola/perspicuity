@@ -3,6 +3,8 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TestUtils {
 
@@ -94,8 +96,14 @@ public class TestUtils {
                             field.setAccessible(true);
 
                             List list = new ArrayList();
-                            Class<?> fieldClass =
-                                    (Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
+                            /*Class<?> fieldClass =
+                                    (Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];*/
+                            /*Class<?> fieldClass = (Class<?>)((ParameterizedTypeImpl) field.getGenericType()).getActualTypeArguments()[0];
+                            Type ass = ((ParameterizedTypeImpl) field.getGenericType()).getActualTypeArguments()[0];*/
+                            /*Type ass = (((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0]).getActualTypeArguments();
+                            Class.forName(ass[0].getFactory().getScope().getRecvr().getName()).newInstance();*/
+
+                            Class<?> fieldClass = getActualRawType(field);
 
                             Object listObj = fillAllFields(fieldClass.newInstance());
                             Object listObj2 = fillAllFields(fieldClass.newInstance());
@@ -107,6 +115,8 @@ public class TestUtils {
 
                             field.set(obj, list);
                         } catch (IllegalAccessException | InstantiationException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                         break;
@@ -139,6 +149,19 @@ public class TestUtils {
 
     private static String getStringValue(Field field) {
         return field.getDeclaringClass().getSimpleName() + "." + field.getName() + " sample value";
+    }
+
+    private static Class<?> getActualRawType(Field field) throws ClassNotFoundException {
+
+        String actualRawTypeString =
+                (((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0]).getTypeName();
+
+        Pattern pattern = Pattern.compile("(?!extends )[A-Za-z.]*(?=>)");
+        Matcher matcher = pattern.matcher(actualRawTypeString);
+
+        //Return the matched class; if there's no match, the raw type itself is the class name
+        return matcher.find() ? Class.forName(matcher.group()) : Class.forName(actualRawTypeString);
+
     }
 
 }
