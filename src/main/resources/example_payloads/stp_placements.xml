@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stp:placements xmlns:stp="http://genologics.com/ri/step" uri="...">
+  <step rel="..." uri="...">
+    <!--content of type 'link'-->
+  </step>
+  <configuration uri="...">...</configuration>
+  <selected-containers>
+    <container uri="...">
+      <!--content of type 'container'-->
+    </container>
+    <container>
+      <!--(another 'container' type)-->
+    </container>
+    <!--...more "container" elements...-->
+  </selected-containers>
+  <output-placements>
+    <output-placement uri="...">
+      <!--content of type 'output-placement'-->
+      <location>
+        <!--content of type 'location'-->
+        <container limsid="..." uri="...">
+          <!--content of type 'container'-->
+        </container>
+        <value>
+          <!--content of type 'string'-->
+          ...
+        </value>
+      </location>
+    </output-placement>
+    <output-placement>
+      <!--(another 'output-placement' type)-->
+    </output-placement>
+    <!--...more "output-placement" elements...-->
+  </output-placements>
+</stp:placements>

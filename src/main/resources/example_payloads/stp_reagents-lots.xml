@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stp:lots xmlns:stp="http://genologics.com/ri/step" uri="...">
+    <step rel="..." uri="...">
+        <!--content of type 'link'-->
+    </step>
+    <configuration uri="...">...</configuration>
+    <reagent-lots>
+        <reagent-lot uri="..." limsid="...">
+            <!--content of type 'reagent-lot-link'-->
+        </reagent-lot>
+        <reagent-lot>
+            <!--(another 'reagent-lot-link' type)-->
+        </reagent-lot>
+        <!--...more "reagent-lot" elements...-->
+    </reagent-lots>
+</stp:lots>

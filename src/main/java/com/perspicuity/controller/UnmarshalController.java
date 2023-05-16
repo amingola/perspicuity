@@ -1,5 +1,7 @@
 package com.perspicuity.controller;
 
+import com.genologics.ri.Links;
+import com.genologics.ri.artifact.Details;
 import com.genologics.ri.container.Container;
 import com.genologics.ri.project.Project;
 import com.genologics.ri.sample.Sample;
@@ -42,6 +44,18 @@ public class UnmarshalController {
     @PostMapping("/container")
     ResponseEntity<Object> xmlToJsonContainer(@RequestBody String xmlPayload){
         Container jsonPayload = (Container) xmlToJson(Container.class, xmlPayload);
+        return buildResponse(jsonPayload);
+    }
+
+    @PostMapping("/links")
+    ResponseEntity<Object> xmlToJsonLinks(@RequestBody String xmlPayload){
+        Links jsonPayload = (Links) xmlToJson(Links.class, xmlPayload);
+        return buildResponse(jsonPayload);
+    }
+
+    @PostMapping("/artifacts/batch/retrieve")
+    ResponseEntity<Object> xmlToJsonArtifactDetails(@RequestBody String xmlPayload){
+        Details jsonPayload = (Details) xmlToJson(Details.class, xmlPayload);
         return buildResponse(jsonPayload);
     }
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stp:step-creation xmlns:stp="http://genologics.com/ri/step">
+    <configuration uri="...">...</configuration>
+    <container-type>
+        <!--content of type 'string'-->
+        ...
+    </container-type>
+    <reagent-category>
+        <!--content of type 'string'-->
+        ...
+    </reagent-category>
+    <inputs>
+        <input uri="..." control-type-uri="..." replicates="...">
+            <!--content of type 'creation-input'-->
+        </input>
+        <input>
+            <!--(another 'creation-input' type)-->
+        </input>
+        <!--...more "input" elements...-->
+    </inputs>
+</stp:step-creation>

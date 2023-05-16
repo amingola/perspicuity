@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stp:actions xmlns:stp="http://genologics.com/ri/step" uri="...">
+    <step rel="..." uri="...">
+        <!--content of type 'link'-->
+    </step>
+    <configuration uri="...">...</configuration>
+    <next-actions>
+        <next-action artifact-uri="..." action="..." step-uri="..." rework-step-uri="...">
+            <!--content of type 'next-action'-->
+        </next-action>
+        <next-action>
+            <!--(another 'next-action' type)-->
+        </next-action>
+        <!--...more "next-action" elements...-->
+    </next-actions>
+    <escalation>
+        <!--content of type 'escalation'-->
+        <request>
+            <!--content of type 'escalation-request'-->
+            <author uri="...">
+                <!--content of type 'user'-->
+                <first-name>
+                    <!--content of type 'string'-->
+                    ...
+                </first-name>
+                <last-name>
+                    <!--content of type 'string'-->
+                    ...
+                </last-name>
+            </author>
+            <reviewer uri="...">
+                <!--content of type 'user'-->
+                <first-name>
+                    <!--content of type 'string'-->
+                    ...
+                </first-name>
+                <last-name>
+                    <!--content of type 'string'-->
+                    ...
+                </last-name>
+            </reviewer>
+            <date>
+                <!--content of type 'dateTime'-->
+                ...
+            </date>
+            <comment>
+                <!--content of type 'string'-->
+                ...
+            </comment>
+        </request>
+        <review>
+            <!--content of type 'escalation-review'-->
+            <author uri="...">
+                <!--content of type 'user'-->
+                <first-name>
+                    <!--content of type 'string'-->
+                    ...
+                </first-name>
+                <last-name>
+                    <!--content of type 'string'-->
+                    ...
+                </last-name>
+            </author>
+            <date>
+                <!--content of type 'dateTime'-->
+                ...
+            </date>
+            <comment>
+                <!--content of type 'string'-->
+                ...
+            </comment>
+        </review>
+        <escalated-artifacts>
+            <escalated-artifact uri="...">
+                <!--content of type 'escalated-artifact'-->
+            </escalated-artifact>
+            <escalated-artifact>
+                <!--(another 'escalated-artifact' type)-->
+            </escalated-artifact>
+            <!--...more "escalated-artifact" elements...-->
+        </escalated-artifacts>
+    </escalation>
+</stp:actions>

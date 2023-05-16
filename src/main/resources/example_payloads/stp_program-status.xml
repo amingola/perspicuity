@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stp:program-status xmlns:stp="http://genologics.com/ri/step" uri="...">
+    <step rel="..." uri="...">
+        <!--content of type 'link'-->
+    </step>
+    <configuration uri="...">...</configuration>
+    <status>
+        <!--content of type 'status'-->
+        ...
+    </status>
+    <message>
+        <!--content of type 'string'-->
+        ...
+    </message>
+</stp:program-status>

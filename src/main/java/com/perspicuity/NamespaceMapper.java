@@ -36,17 +36,17 @@ public class NamespaceMapper extends NamespacePrefixMapper{
     public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix) {
 
         if(namespaceUri.isEmpty()){
-            logger.debug("namespace was blank, returning \"\" - suggestion was " + suggestion);
+            logger.debug("namespace was blank, returning \"\" - suggestion was \"" + suggestion + "\"");
             return suggestion;
         }
 
         String preferredPrefix = namespaces.get(namespaceUri);
 
         if(preferredPrefix != null){
-            logger.debug("NM returning \"" + preferredPrefix + "\" - suggestion was " + suggestion);
+            logger.debug("NM returning \"" + preferredPrefix + "\" - suggestion was \"" + suggestion + "\"");
             return preferredPrefix;
         }else{
-            logger.debug("NM returning suggestion: \"" + suggestion + "\" - suggestion was " + suggestion);
+            logger.debug("NM returning suggestion: \"" + suggestion + "\" - suggestion was \"" + suggestion + "\"");
             return suggestion;
         }
 

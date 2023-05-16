@@ -1,8 +1,17 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.genologics.ri.Links;
+import com.genologics.ri.artifact.Artifacts;
+import com.genologics.ri.artifactgroup.Artifactgroup;
+import com.genologics.ri.configuration.Field;
+import com.genologics.ri.configuration.Udfs;
+import com.genologics.ri.configuration.Udts;
 import com.genologics.ri.container.Container;
+import com.genologics.ri.container.Containers;
+import com.genologics.ri.containertype.ContainerType;
+import com.genologics.ri.containertype.ContainerTypes;
 import com.genologics.ri.controltype.ControlType;
+import com.genologics.ri.controltype.ControlTypes;
 import com.genologics.ri.file.File;
 import com.genologics.ri.file.Files;
 import com.genologics.ri.instrument.Instrument;
@@ -14,10 +23,12 @@ import com.genologics.ri.permission.Permissions;
 import com.genologics.ri.process.Processes;
 import com.genologics.ri.processtemplate.ProcessTemplate;
 import com.genologics.ri.processtemplate.ProcessTemplates;
+import com.genologics.ri.processtype.ProcessType;
 import com.genologics.ri.processtype.ProcessTypes;
 import com.genologics.ri.project.Project;
 import com.genologics.ri.project.Projects;
 import com.genologics.ri.protocolconfiguration.Protocol;
+import com.genologics.ri.protocolconfiguration.Protocols;
 import com.genologics.ri.queue.Queue;
 import com.genologics.ri.reagentkit.ReagentKit;
 import com.genologics.ri.reagentkit.ReagentKits;
@@ -29,7 +40,6 @@ import com.genologics.ri.researcher.Researcher;
 import com.genologics.ri.role.Role;
 import com.genologics.ri.role.Roles;
 import com.genologics.ri.routing.Routing;
-import com.genologics.ri.sample.Details;
 import com.genologics.ri.sample.Sample;
 import com.genologics.ri.sample.Samplecreation;
 import com.genologics.ri.sample.Samples;
@@ -45,7 +55,10 @@ import com.perspicuity.service.UnmarshallingService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JsonEndpointSimpleTests {
 
@@ -98,7 +111,7 @@ public class JsonEndpointSimpleTests {
 
         String sampleXml = marshallingService.marshal(Sample.class, sample);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
     }
 
@@ -111,7 +124,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(sample);
         String sampleXml = marshallingService.marshal(Sample.class, sample);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
     }
 
@@ -124,7 +137,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(links);
         String sampleXml = marshallingService.marshal(Links.class, links);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Links.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -148,7 +161,7 @@ public class JsonEndpointSimpleTests {
 //        System.out.println(artifactGroup);
 //        String sampleXml = marshallingService.marshal(Artifactgroup.class, artifactGroup);
 //
-//        System.out.println("Resulting sample: " + sampleXml);
+//        System.out.println("Resulting XML:\n" + sampleXml);
 //
 //        Object obj = UnmarshallingService.unmarshal(Artifactgroup.class, sampleXml);
 //        ObjectMapper objectMapper = new ObjectMapper();
@@ -172,7 +185,7 @@ public class JsonEndpointSimpleTests {
 //        System.out.println(artifact);
 //        String sampleXml = marshallingService.marshal(Artifact.class, artifact);
 //
-//        System.out.println("Resulting sample: " + sampleXml);
+//        System.out.println("Resulting XML:\n" + sampleXml);
 //
 //        Object obj = UnmarshallingService.unmarshal(Artifact.class, sampleXml);
 //        ObjectMapper objectMapper = new ObjectMapper();
@@ -191,7 +204,7 @@ public class JsonEndpointSimpleTests {
 //        System.out.println(artifact);
 //        String sampleXml = marshallingService.marshal(Artifact.class, artifact);
 //
-//        System.out.println("Resulting sample: " + sampleXml);
+//        System.out.println("Resulting XML:\n" + sampleXml);
 //
 //        Object obj = UnmarshallingService.unmarshal(Artifact.class, sampleXml);
 //        ObjectMapper objectMapper = new ObjectMapper();
@@ -210,7 +223,7 @@ public class JsonEndpointSimpleTests {
 //        System.out.println(artifact);
 //        String sampleXml = marshallingService.marshal(Artifact.class, artifact);
 //
-//        System.out.println("Resulting sample: " + sampleXml);
+//        System.out.println("Resulting XML:\n" + sampleXml);
 //
 //        Object obj = UnmarshallingService.unmarshal(Artifact.class, sampleXml);
 //        ObjectMapper objectMapper = new ObjectMapper();
@@ -220,26 +233,496 @@ public class JsonEndpointSimpleTests {
 //
 //    }
 
+    //Endpoint /{version}/artifactgroups | GET artifactgroup
+    //Endpoint /{version}/artifactgroups/{experimentid} | GET artifactgroup
     @Test
-    void _links() throws JAXBException, ClassNotFoundException, JsonProcessingException {
+    void _artifactgroups() throws JAXBException, ClassNotFoundException, JsonProcessingException {
+        //roundTripWithArtifactgroup();
+    }
 
-        Links links = new Links();
-        TestUtils.fillAllFields(links);
+    //Endpoint /{version}/artifacts | GET artifacts
+    @Test
+    void _artifacts() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
-        System.out.println(links);
-        String sampleXml = marshallingService.marshal(Links.class, links);
+        Artifacts artifacts = new Artifacts();
+        TestUtils.fillAllFields(artifacts);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println(artifacts);
+        String sampleXml = marshallingService.marshal(Artifacts.class, artifacts);
 
-        Object obj = UnmarshallingService.unmarshal(Links.class, sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
+
+        JAXBElement<?> unmarshalledArtifacts = UnmarshallingService.unmarshal(Artifacts.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
-        String str = objectMapper.writeValueAsString(obj);
+        String jsonStr = objectMapper.writeValueAsString(unmarshalledArtifacts);
+        System.out.println(jsonStr);
 
-        System.out.println(str);
+        String sampleXml2 = marshallingService.marshal(artifacts.getClass(), unmarshalledArtifacts.getValue());
+        System.out.println("Resulting XML:\n" + sampleXml2);
+
+        assertEquals(sampleXml, sampleXml2);
 
     }
 
+    //Endpoint /{version}/artifacts/{limsid} | GET artifact | PUT artifact returns artifact
     @Test
+    void _artifacts_limsid() throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        com.genologics.ri.artifact.Artifact artifact = new com.genologics.ri.artifact.Artifact();
+        TestUtils.fillAllFields(artifact);
+
+        System.out.println(artifact);
+        String sampleXml = marshallingService.marshal(artifact.getClass(), artifact);
+
+        System.out.println("Resulting XML:\n" + sampleXml);
+
+        JAXBElement<?> unmarshalledArtifact = UnmarshallingService.unmarshal(artifact.getClass(), sampleXml);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonStr = objectMapper.writeValueAsString(unmarshalledArtifact);
+        System.out.println(jsonStr);
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(artifact.getClass(), unmarshalledArtifact.getValue());
+        System.out.println("Resulting XML:\n" + sampleXml2);
+
+        assertEquals(sampleXml, sampleXml2);
+
+
+    }
+
+    //Endpoint /{version}/artifacts/batch/retrieve | POST links returns details
+    //Endpoint /{version}/artifacts/batch/update | POST details returns links
+    //(there's a typo that says it returns details:
+    //https://d10e8rzir0haj8.cloudfront.net/4.2/rest.version.artifacts.batch.update.html)
+    @Test
+    void _artifact_batch_retrieve_artifact_batch_update() throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        /*Create and verify payload for "POST" with a "round-trip"*/
+
+        //Create a mock POJO
+        com.genologics.ri.Links links = new com.genologics.ri.Links();
+        TestUtils.fillAllFields(links);
+        System.out.println("com.genologics.ri.Links json object: " + links);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(links.getClass(), links);
+        System.out.println("Resulting com.genologics.ri.Links XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        JAXBElement<?> unmarshalledLinks = UnmarshallingService.unmarshal(links.getClass(), sampleXml);
+        ObjectMapper objectMapper = new ObjectMapper();
+        System.out.println(objectMapper.writeValueAsString(unmarshalledLinks));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(links.getClass(), unmarshalledLinks.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+        /*Create and verify response from "POST" with a "round-trip"*/
+
+        //Create a mock POJO
+        com.genologics.ri.artifact.Details details = new com.genologics.ri.artifact.Details();
+        TestUtils.fillAllFields(details);
+        System.out.println("com.genologics.ri.artifact.Details json object: " + details);
+
+        //Create the XML payload for the "POST"
+        String sampleXml3 = marshallingService.marshal(details.getClass(), details);
+        System.out.println("Resulting com.genologics.ri.artifact.Details XML:\n" + sampleXml3);
+
+        //Verify the XML payload was valid by unmarshalling it
+        JAXBElement<?> unmarshalledDetails = UnmarshallingService.unmarshal(details.getClass(), sampleXml3);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledDetails));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml4 = marshallingService.marshal(details.getClass(), unmarshalledDetails.getValue());
+        assertEquals(sampleXml3, sampleXml4);
+
+    }
+
+    //This test is covered by the test above
+    /*@Test
+    void _artifact_batch_update() throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        Create and verify response from "POST" with a "round-trip"
+
+        //Create a mock POJO
+        com.genologics.ri.artifact.Details details = new com.genologics.ri.artifact.Details();
+        TestUtils.fillAllFields(details);
+        System.out.println("com.genologics.ri.artifact.Details json object: " + details);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(details.getClass(), details);
+        System.out.println("Resulting com.genologics.ri.artifact.Details XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        Object obj = UnmarshallingService.unmarshal(details.getClass(), sampleXml);
+        System.out.println(objectMapper.writeValueAsString(obj));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(details.getClass(), details);
+        assertEquals(sampleXml, sampleXml2);
+
+    }*/
+
+    //Endpoint /{version}/configuration/protocols | GET protocols
+    @Test
+    void _configuration_protocols() throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.protocolconfiguration.Protocols.class;
+        com.genologics.ri.protocolconfiguration.Protocols protocols = new com.genologics.ri.protocolconfiguration.Protocols();
+        TestUtils.fillAllFields(protocols);
+        System.out.println("com.genologics.ri.protocolconfiguration.Protocols json object: " + protocols);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, protocols);
+        System.out.println("Resulting com.genologics.ri.protocolconfiguration.Protocols XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledProtocols = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledProtocols));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledProtocols.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+    }
+
+    //Endpoint /{version}/configuration/protocols/{protocolid} | GET protocol
+    @Test
+    void _configuration_protocols_protocolid() throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.protocolconfiguration.Protocol.class;
+        com.genologics.ri.protocolconfiguration.Protocol protocol = new com.genologics.ri.protocolconfiguration.Protocol();
+        TestUtils.fillAllFields(protocol);
+        System.out.println("com.genologics.ri.protocolconfiguration.Protocol json object: " + protocol);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, protocol);
+        System.out.println("Resulting com.genologics.ri.protocolconfiguration.Protocol XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledProtocol = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledProtocol));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledProtocol.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+    }
+
+    //Endpoint /{version}/configuration/protocols/{protocolid}/steps/{stepId} | GET step
+    @Test
+    void _configuration_protocols_protocolid_steps_stepId()
+            throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.stepconfiguration.Step.class;
+        com.genologics.ri.stepconfiguration.Step step = new com.genologics.ri.stepconfiguration.Step();
+        TestUtils.fillAllFields(step);
+        System.out.println("com.genologics.ri.stepconfiguration.Step json object: " + step);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, step);
+        System.out.println("Resulting com.genologics.ri.stepconfiguration.Step XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledStep = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledStep));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledStep.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+    }
+
+    //Endpoint /{version}/configuration/udfs | GET udfs
+    @Test
+    void _configuration_udfs()
+            throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.configuration.Udfs.class;
+        com.genologics.ri.configuration.Udfs udfs = new com.genologics.ri.configuration.Udfs();
+        TestUtils.fillAllFields(udfs);
+        System.out.println("com.genologics.ri.configuration.Udfs json object: " + udfs);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, udfs);
+        System.out.println("Resulting com.genologics.ri.configuration.Udfs XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledUdfs = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledUdfs));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledUdfs.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+    }
+
+    //Endpoint /{version}/configuration/udfs/{udfid} | GET field | PUT field returns field
+    @Test
+    void _configuration_udfs_udfid()
+            throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.configuration.Field.class;
+        com.genologics.ri.configuration.Field field = new com.genologics.ri.configuration.Field();
+        TestUtils.fillAllFields(field);
+        System.out.println("com.genologics.ri.configuration.Field json object: " + field);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, field);
+        System.out.println("Resulting com.genologics.ri.configuration.Field XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledStep = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledStep));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledStep.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+    }
+
+    //Endpoint /{version}/configuration/udts GET udts
+    @Test
+    void _configuration_udts()
+            throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.configuration.Udts.class;
+        com.genologics.ri.configuration.Udts udts = new com.genologics.ri.configuration.Udts();
+        TestUtils.fillAllFields(udts);
+        System.out.println("com.genologics.ri.configuration.Udts json object: " + udts);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, udts);
+        System.out.println("Resulting com.genologics.ri.configuration.Udts XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledUdts = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledUdts));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledUdts.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+    }
+
+    //Endpoint /{version}/configuration/udts/{udtid} | GET type
+    @Test
+    void _configuration_udts_udtid()
+            throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.configuration.Type.class;
+        com.genologics.ri.configuration.Type type = new com.genologics.ri.configuration.Type();
+        TestUtils.fillAllFields(type);
+        System.out.println("com.genologics.ri.configuration.Type json object: " + type);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, type);
+        System.out.println("Resulting com.genologics.ri.configuration.Type XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledType = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledType));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledType.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+    }
+
+    //Endpoint /{version}/configuration/workflows | GET workflows
+    @Test
+    void _configuration_workflows()
+            throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.workflowconfiguration.Workflows.class;
+        com.genologics.ri.workflowconfiguration.Workflows workflows = new com.genologics.ri.workflowconfiguration.Workflows();
+        TestUtils.fillAllFields(workflows);
+        System.out.println("com.genologics.ri.workflowconfiguration.Workflows json object: " + workflows);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, workflows);
+        System.out.println("Resulting com.genologics.ri.workflowconfiguration.Workflows XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledWorkflows = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledWorkflows));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledWorkflows.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+    }
+
+    //Endpoint /{version}/configuration/workflows/{workflowid} | GET workflow
+    @Test
+    void _configuration_workflows_workflowid()
+            throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.workflowconfiguration.Workflow.class;
+        com.genologics.ri.workflowconfiguration.Workflow workflow = new com.genologics.ri.workflowconfiguration.Workflow();
+        TestUtils.fillAllFields(workflow);
+        System.out.println("com.genologics.ri.workflowconfiguration.Workflow json object: " + workflow);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, workflow);
+        System.out.println("Resulting com.genologics.ri.workflowconfiguration.Workflow XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledWorkflow = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledWorkflow));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledWorkflow.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+    }
+
+    //Endpoint /{version}/configuration/workflows/{workflowid}/stages/{stageid} | GET stage
+    @Test
+    void _configuration_workflows_workflowid_stages_stageid()
+            throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.stage.Stage.class;
+        com.genologics.ri.stage.Stage stage = new com.genologics.ri.stage.Stage();
+        TestUtils.fillAllFields(stage);
+        System.out.println("com.genologics.ri.stage.Stage json object: " + stage);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, stage);
+        System.out.println("Resulting com.genologics.ri.stage.Stage XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledStage = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledStage));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledStage.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+    }
+
+    //Endpoint /{version}/containers | GET containers | POST container returns container
+    //Endpoint /{version}/containers/{limsid} | GET container | PUT container returns container | DELETE container
+    @Test
+    void _containers()
+            throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.container.Containers.class;
+        com.genologics.ri.container.Containers containers = new com.genologics.ri.container.Containers();
+        TestUtils.fillAllFields(containers);
+        System.out.println("com.genologics.ri.container.Containers json object: " + containers);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, containers);
+        System.out.println("Resulting com.genologics.ri.container.Containers XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledContainers = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledContainers));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledContainers.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+        //Create a mock POJO
+        clazz = com.genologics.ri.container.Container.class;
+        com.genologics.ri.container.Container container = new com.genologics.ri.container.Container();
+        TestUtils.fillAllFields(container);
+        System.out.println("com.genologics.ri.container.Container json object: " + container);
+
+        //Create the XML payload for the "POST"
+        String sampleXml3 = marshallingService.marshal(clazz, container);
+        System.out.println("Resulting com.genologics.ri.container.Container XML:\n" + sampleXml3);
+
+        //Verify the XML payload was valid by unmarshalling it
+        objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledContainer = UnmarshallingService.unmarshal(clazz, sampleXml3);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledContainer));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml4 = marshallingService.marshal(clazz, unmarshalledContainer.getValue());
+        assertEquals(sampleXml3, sampleXml4);
+
+    }
+
+
+    //Endpoint /{version}/containers/batch/create | POST details | GET links
+    //Endpoint /{version}/containers/batch/retrieve | POST links | GET details
+    //Endpoint /{version}/containers/batch/update | POST details | GET links
+    @Test
+    void _containers_batch_create()
+            throws JAXBException, ClassNotFoundException, JsonProcessingException {
+
+        //Create a mock POJO
+        Class<?> clazz = com.genologics.ri.container.Details.class;
+        com.genologics.ri.container.Details details = new com.genologics.ri.container.Details();
+        TestUtils.fillAllFields(details);
+        System.out.println("com.genologics.ri.container.Details json object: " + details);
+
+        //Create the XML payload for the "POST"
+        String sampleXml = marshallingService.marshal(clazz, details);
+        System.out.println("Resulting com.genologics.ri.container.Details XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        ObjectMapper objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledDetails = UnmarshallingService.unmarshal(clazz, sampleXml);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledDetails));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml2 = marshallingService.marshal(clazz, unmarshalledDetails.getValue());
+        assertEquals(sampleXml, sampleXml2);
+
+        //Create a mock POJO
+        clazz = com.genologics.ri.Links.class;
+        com.genologics.ri.Links links = new com.genologics.ri.Links();
+        TestUtils.fillAllFields(links);
+        System.out.println("com.genologics.ri.Links json object: " + links);
+
+        //Create the XML payload for the "POST"
+        String sampleXml3 = marshallingService.marshal(clazz, links);
+        System.out.println("Resulting com.genologics.ri.Links XML:\n" + sampleXml);
+
+        //Verify the XML payload was valid by unmarshalling it
+        objectMapper = new ObjectMapper();
+        JAXBElement<?> unmarshalledLinks = UnmarshallingService.unmarshal(clazz, sampleXml3);
+        System.out.println(objectMapper.writeValueAsString(unmarshalledLinks));
+
+        //Complete the "round-trip" and assert equality
+        String sampleXml4 = marshallingService.marshal(clazz, unmarshalledLinks.getValue());
+        assertEquals(sampleXml3, sampleXml4);
+
+    }
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    /*@Test
     void _details() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Details details = new Details();
@@ -248,7 +731,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(details);
         String sampleXml = marshallingService.marshal(Details.class, details);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Details.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -267,7 +750,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(protocols);
         String sampleXml = marshallingService.marshal(Workflow.Protocols.class, protocols);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Workflow.Protocols.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -286,7 +769,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(protocol);
         String sampleXml = marshallingService.marshal(Protocol.class, protocol);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Protocol.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -305,7 +788,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(step);
         String sampleXml = marshallingService.marshal(Step.class, step);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Step.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -324,7 +807,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(stepcreation);
         String sampleXml = marshallingService.marshal(StepCreation.class, stepcreation);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(StepCreation.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -343,7 +826,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(workflows);
         String sampleXml = marshallingService.marshal(Workflows.class, workflows);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Workflows.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -362,7 +845,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(workflow);
         String sampleXml = marshallingService.marshal(Workflow.class, workflow);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Workflow.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -381,7 +864,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(stage);
         String sampleXml = marshallingService.marshal(Stage.class, stage);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Stage.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -400,7 +883,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(container);
         String sampleXml = marshallingService.marshal(Container.class, container);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Container.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -419,7 +902,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(file);
         String sampleXml = marshallingService.marshal(File.class, file);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(File.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -438,7 +921,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(files);
         String sampleXml = marshallingService.marshal(Files.class, files);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Files.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -457,7 +940,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(instruments);
         String sampleXml = marshallingService.marshal(Instruments.class, instruments);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Instruments.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -476,7 +959,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(instrument);
         String sampleXml = marshallingService.marshal(Instrument.class, instrument);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Instrument.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -495,7 +978,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(labs);
         String sampleXml = marshallingService.marshal(Labs.class, labs);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Labs.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -514,7 +997,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(lab);
         String sampleXml = marshallingService.marshal(Lab.class, lab);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Lab.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -533,7 +1016,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(permissions);
         String sampleXml = marshallingService.marshal(Permissions.class, permissions);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Permissions.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -552,7 +1035,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(permission);
         String sampleXml = marshallingService.marshal(Permission.class, permission);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Permission.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -571,7 +1054,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(processes);
         String sampleXml = marshallingService.marshal(Processes.class, processes);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Processes.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -590,7 +1073,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(process);
         String sampleXml = marshallingService.marshal(Process.class, process);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Process.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -609,7 +1092,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(processtemplate);
         String sampleXml = marshallingService.marshal(ProcessTemplate.class, processtemplate);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ProcessTemplate.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -628,7 +1111,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(processtemplates);
         String sampleXml = marshallingService.marshal(ProcessTemplates.class, processtemplates);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ProcessTemplates.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -647,7 +1130,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(processtypes);
         String sampleXml = marshallingService.marshal(ProcessTypes.class, processtypes);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ProcessTypes.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -669,7 +1152,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(str);
         String sampleXml = marshallingService.marshal(com.genologics.ri.process.ProcessType.class, processtype);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(com.genologics.ri.process.ProcessType.class, sampleXml);
         str = objectMapper.writeValueAsString(obj);
@@ -678,7 +1161,7 @@ public class JsonEndpointSimpleTests {
 
     }
 
-    /*@Test
+    @Test
     void _processtype2() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         com.genologics.ri.processtype.ProcessType processtype = new com.genologics.ri.processtype.ProcessType();
@@ -687,7 +1170,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(processtype);
         String sampleXml = marshallingService.marshal(com.genologics.ri.processtype.ProcessType.class, processtype);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(com.genologics.ri.processtype.ProcessType.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -706,7 +1189,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(processtype);
         String sampleXml = marshallingService.marshal(com.genologics.ri.processtemplate.ProcessType.class, processtype);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(com.genologics.ri.processtemplate.ProcessType.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -725,7 +1208,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(processtype);
         String sampleXml = marshallingService.marshal(com.genologics.ri.automation.ProcessType.class, processtype);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(com.genologics.ri.automation.ProcessType.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -744,7 +1227,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(processtype);
         String sampleXml = marshallingService.marshal(com.genologics.ri.stepconfiguration.ProcessType.class, processtype);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(com.genologics.ri.stepconfiguration.ProcessType.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -752,7 +1235,7 @@ public class JsonEndpointSimpleTests {
 
         System.out.println(str);
 
-    }*/
+    }
 
     @Test
     void _project() throws JAXBException, ClassNotFoundException, JsonProcessingException {
@@ -763,7 +1246,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(project);
         String sampleXml = marshallingService.marshal(Project.class, project);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Project.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -782,7 +1265,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(projects);
         String sampleXml = marshallingService.marshal(Projects.class, projects);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Projects.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -801,7 +1284,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(queue);
         String sampleXml = marshallingService.marshal(Queue.class, queue);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Queue.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -820,7 +1303,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(reagentkits);
         String sampleXml = marshallingService.marshal(ReagentKits.class, reagentkits);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ReagentKits.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -839,7 +1322,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(reagentkit);
         String sampleXml = marshallingService.marshal(ReagentKit.class, reagentkit);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ReagentKit.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -858,7 +1341,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(reagentlot);
         String sampleXml = marshallingService.marshal(ReagentLot.class, reagentlot);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ReagentLot.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -877,7 +1360,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(reagentlots);
         String sampleXml = marshallingService.marshal(ReagentLots.class, reagentlots);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ReagentLots.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -896,7 +1379,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(reagenttypes);
         String sampleXml = marshallingService.marshal(ReagentTypes.class, reagenttypes);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ReagentTypes.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -914,7 +1397,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(reagenttype);
         String sampleXml = marshallingService.marshal(ReagentType.class, reagenttype);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ReagentType.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -933,7 +1416,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(researcher);
         String sampleXml = marshallingService.marshal(Researcher.class, researcher);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Researcher.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -952,7 +1435,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(roles);
         String sampleXml = marshallingService.marshal(Roles.class, roles);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Roles.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -971,7 +1454,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(role);
         String sampleXml = marshallingService.marshal(Role.class, role);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Role.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -990,7 +1473,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(routing);
         String sampleXml = marshallingService.marshal(Routing.class, routing);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Routing.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1009,7 +1492,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(samples);
         String sampleXml = marshallingService.marshal(Samples.class, samples);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Samples.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1028,7 +1511,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(sample);
         String sampleXml = marshallingService.marshal(Sample.class, sample);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Sample.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1047,7 +1530,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(samplecreation);
         String sampleXml = marshallingService.marshal(Samplecreation.class, samplecreation);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Samplecreation.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1066,7 +1549,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(actions);
         String sampleXml = marshallingService.marshal(Actions.class, actions);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Actions.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1085,7 +1568,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(placements);
         String sampleXml = marshallingService.marshal(Placements.class, placements);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Placements.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1104,7 +1587,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(pools);
         String sampleXml = marshallingService.marshal(Pools.class, pools);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Pools.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1123,7 +1606,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(programstatus);
         String sampleXml = marshallingService.marshal(ProgramStatus.class, programstatus);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ProgramStatus.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1142,7 +1625,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(lots);
         String sampleXml = marshallingService.marshal(ReagentLots.class, lots);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(ReagentLots.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1161,7 +1644,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(reagents);
         String sampleXml = marshallingService.marshal(Reagents.class, reagents);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Reagents.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1180,7 +1663,7 @@ public class JsonEndpointSimpleTests {
         System.out.println(setup);
         String sampleXml = marshallingService.marshal(Setup.class, setup);
 
-        System.out.println("Resulting sample: " + sampleXml);
+        System.out.println("Resulting XML:\n" + sampleXml);
 
         Object obj = UnmarshallingService.unmarshal(Setup.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1188,8 +1671,9 @@ public class JsonEndpointSimpleTests {
 
         System.out.println(str);
 
-    }
+    }*/
 
+    //////////////////////////////////////////////////////////////////////////////////////////////
     private static ControlType getFullControlType() {
         ControlType controlType = new ControlType();
         controlType.setUri("ControlType URI123");

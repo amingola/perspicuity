@@ -114,25 +114,24 @@ public class TestUtils {
                             list.add(listObj3);
 
                             field.set(obj, list);
-                        } catch (IllegalAccessException | InstantiationException e) {
-                            e.printStackTrace();
-                        } catch (ClassNotFoundException e) {
+                        } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                         break;
                     default:
 //                        System.out.println("Field is " + field.getType().getName() + ", do something about that");
+                        Class<?> fieldType = field.getType();
                         try {
                             field.setAccessible(true);
-
-                            if(field.getType().isEnum()){
-                                field.set(obj, field.getType().getEnumConstants()[0]);
+                            if(fieldType.isEnum()){
+                                field.set(obj, fieldType.getEnumConstants()[0]);
+                            }else if(fieldType.isPrimitive()){
+                                field.set(obj, fillAllFields(field.getClass().newInstance()));
                             }else{
-                                field.set(obj, fillAllFields(field.getType().newInstance()));
+                                field.set(obj, fillAllFields(fieldType.newInstance()));
                             }
-
                         } catch (IllegalAccessException | InstantiationException e) {
-                            e.printStackTrace();
+                            System.err.println("Failed to fill field " + field.getName() + "(" + fieldType + ")");
                         }
                         break;
                 }

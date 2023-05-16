@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stp:pools xmlns:stp="http://genologics.com/ri/step" uri="...">
+    <step rel="..." uri="...">
+        <!--content of type 'link'-->
+    </step>
+    <configuration uri="...">...</configuration>
+    <pooled-inputs>
+        <pool name="..." output-uri="...">
+            <!--content of type 'pooled-inputs'-->
+            <input uri="..." replicates="...">
+                <!--content of type 'input'-->
+            </input>
+            <input>
+                <!--(another 'input' type)-->
+            </input>
+            <!--...more "input" elements...-->
+        </pool>
+        <pool>
+            <!--(another 'pooled-inputs' type)-->
+        </pool>
+        <!--...more "pool" elements...-->
+    </pooled-inputs>
+    <available-inputs>
+        <input uri="..." replicates="...">
+            <!--content of type 'input'-->
+        </input>
+        <input>
+            <!--(another 'input' type)-->
+        </input>
+        <!--...more "input" elements...-->
+    </available-inputs>
+</stp:pools>

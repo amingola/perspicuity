@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ptp:process-types xmlns:ptp="http://genologics.com/ri/processtype">
+    
+    <!--...more "process-type" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</ptp:process-types>

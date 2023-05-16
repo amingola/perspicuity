@@ -1,5 +1,8 @@
 package com.perspicuity.controller;
 
+import com.genologics.ri.Links;
+import com.genologics.ri.artifact.Artifacts;
+import com.genologics.ri.artifact.Details;
 import com.genologics.ri.project.Project;
 import com.genologics.ri.sample.Sample;
 import com.perspicuity.service.MarshallingService;
@@ -43,6 +46,24 @@ public class MarshalController {
     ResponseEntity<String> xmlToJsonSample(@RequestBody Project project){
         logger.info("commence /marshal/project");
         return marshal(project.getClass(), project);
+    }
+
+        @PostMapping("/links")
+        ResponseEntity<String> xmlToJsonSample(@RequestBody Links project){
+            logger.info("commence /marshal/project");
+            return marshal(project.getClass(), project);
+        }
+
+    @PostMapping("/artifacts/batch/retrieve")
+    ResponseEntity<String> artifactsBatchRetrieve(@RequestBody com.genologics.ri.artifact.Details details){
+        logger.info("commence /artifacts/batch/retrieve");
+        return marshal(details.getClass(), details);
+    }
+
+    @PostMapping("/artifactgroup")
+    ResponseEntity<String> artifactgroup(@RequestBody com.genologics.ri.artifact.Artifactgroup artifactgroup){
+        logger.info("commence /artifactgroup");
+        return marshal(artifactgroup.getClass(), artifactgroup);
     }
 
     private ResponseEntity<String> marshal(Class<?> payloadClass, Object payload){

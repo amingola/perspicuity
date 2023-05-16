@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stp:step xmlns:stp="http://genologics.com/ri/step" uri="..." limsid="..." current-state="...">
+  <configuration uri="...">...</configuration>
+  <date-started>
+    <!--content of type 'dateTime'-->
+    ...
+  </date-started>
+  <date-completed>
+    <!--content of type 'dateTime'-->
+    ...
+  </date-completed>
+  <actions uri="...">
+    <!--content of type 'actions-link'-->
+  </actions>
+  <reagents uri="...">
+    <!--content of type 'reagents-link'-->
+  </reagents>
+  <pools uri="...">
+    <!--content of type 'pools-link'-->
+  </pools>
+  <placements uri="...">
+    <!--content of type 'placements-link'-->
+  </placements>
+  <reagent-lots uri="...">
+    <!--content of type 'reagent-lots-link'-->
+  </reagent-lots>
+  <program-status uri="...">
+    <!--content of type 'program-status-link'-->
+  </program-status>
+  <setup uri="...">
+    <!--content of type 'setup-link'-->
+  </setup>
+  <details uri="...">
+    <!--content of type 'details-link'-->
+  </details>
+  <available-programs>
+    <available-program uri="..." name="...">
+      <!--content of type 'available-program'-->
+    </available-program>
+    <available-program>
+      <!--(another 'available-program' type)-->
+    </available-program>
+    <!--...more "available-program" elements...-->
+  </available-programs>
+  <automatic-next-step uri="...">
+    <!--content of type 'automatic-next-step-link'-->
+  </automatic-next-step>
+</stp:step>

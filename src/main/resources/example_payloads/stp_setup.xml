@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stp:setup xmlns:stp="http://genologics.com/ri/step" uri="...">
+    <step rel="..." uri="...">
+        <!--content of type 'link'-->
+    </step>
+    <configuration uri="...">...</configuration>
+    <files>
+        <file shared-result-file-index="..." artifact-uri="..." limsid="..." name="...">
+            <!--content of type 'file'-->
+            <message>
+                <!--content of type 'string'-->
+                ...
+            </message>
+        </file>
+        <file>
+            <!--(another 'file' type)-->
+        </file>
+        <!--...more "file" elements...-->
+    </files>
+</stp:setup>

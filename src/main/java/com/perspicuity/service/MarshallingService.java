@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 import javax.xml.bind.*;
 import javax.xml.namespace.QName;
 import java.io.StringWriter;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -92,6 +96,8 @@ public class MarshallingService{
                 //Update Class[] with the missing Clarity datatype
                 addClassFromNameToArray(missingObjectFactory, classesForJAXBContext);
 
+            } catch (IllegalAccessException e) {
+                logger.error("Could not extract localpart from annotations from " + payloadClass.getName(), e);
             }
 
         }while(!done);
@@ -151,13 +157,17 @@ public class MarshallingService{
     /**
      * Converts the Class name of the XML object to the QName for the JAXBElement
      */
-    private QName getQNameForClass(Class<?> payloadClass) {
+    private QName getQNameForClass(Class<?> payloadClass) throws IllegalAccessException {
 
         String packageName = payloadClass.getPackage().getName();
         String namespaceUri =  "http://genologics.com" + //TODO replace with property
                 packageName.replace("com.genologics", "").replaceAll("\\.", "/");
 
-        String localPart = payloadClass.getSimpleName().toLowerCase();
+//        String localPart = payloadClass.getSimpleName().toLowerCase();
+        Field f = (Proxy.getInvocationHandler(payloadClass.getAnnotations()[1]).getClass().getDeclaredFields()[2]);
+        f.setAccessible(true);
+        LinkedHashMap map = (LinkedHashMap) f.get((Proxy.getInvocationHandler(payloadClass.getAnnotations()[1])));
+        String localPart = (String) map.get("name");
 
         return new QName(namespaceUri, localPart);
 

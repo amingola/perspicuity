@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stp:reagents xmlns:stp="http://genologics.com/ri/step" uri="...">
+    <step rel="..." uri="...">
+        <!--content of type 'link'-->
+    </step>
+    <configuration uri="...">...</configuration>
+    <reagent-category>
+        <!--content of type 'string'-->
+        ...
+    </reagent-category>
+    <output-reagents>
+        <output uri="...">
+            <!--content of type 'output'-->
+            <reagent-label name="...">
+                <!--content of type 'reagent-label'-->
+            </reagent-label>
+            <reagent-label>
+                <!--(another 'reagent-label' type)-->
+            </reagent-label>
+            <!--...more "reagent-label" elements...-->
+        </output>
+        <output>
+            <!--(another 'output' type)-->
+        </output>
+        <!--...more "output" elements...-->
+    </output-reagents>
+</stp:reagents>

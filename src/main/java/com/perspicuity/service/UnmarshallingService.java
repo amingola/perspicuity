@@ -1,5 +1,9 @@
 package com.perspicuity.service;
 
+import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
+import com.sun.xml.bind.v2.util.QNameMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +12,10 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.ByteArrayInputStream;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class provides a single method, unmarshal(), which accepts a Class and a String represented the well-formed XML
@@ -15,6 +23,8 @@ import java.io.ByteArrayInputStream;
  */
 @Service
 public class UnmarshallingService{
+
+    private static final Logger logger = LoggerFactory.getLogger(UnmarshallingService.class);
 
     /**
      * This method takes a Class and a String representing the well-formed XML to be unmarshalled and returns
@@ -33,13 +43,67 @@ public class UnmarshallingService{
         //because the payloadType class should always have its ObjectFactory adjacent to it in the same package
         Class<?> objectFactoryClass = Class.forName(payloadType.getPackage().getName() + ".ObjectFactory");
 
+        Set<Class<?>> classesForJAXBContext = new HashSet<>();
+        classesForJAXBContext.add(objectFactoryClass);
+
         //Use the ObjectFactory class that corresponds to the payload's type for the unmarshaller's context
-        JAXBContext context = JAXBContext.newInstance(objectFactoryClass);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
+        Unmarshaller unmarshaller;
+        boolean done = false;
+        do {
 
-        //Unmarshal - quick hack using an InputStream to eat the String payload
-        return (JAXBElement<?>) unmarshaller.unmarshal(new ByteArrayInputStream(payload.getBytes()));
+            Class<?>[] classes = classesForJAXBContext.toArray(new Class<?>[0]);
 
+            try {
+
+                JAXBContext context = JAXBContext.newInstance(classes);
+                unmarshaller = context.createUnmarshaller();
+                done = true;
+                return (JAXBElement<?>) unmarshaller.unmarshal(new ByteArrayInputStream(payload.getBytes()));
+
+            } catch (IllegalAnnotationsException e2) {
+
+                //Grab the name of the Clarity datatype mentioned in the exception
+                String missingObjectFactory = getObjectFactoryMissingFromJAXBContext(payload, e2);
+                logger.info("Need " + missingObjectFactory);
+
+                //Update Class[] with the missing Clarity datatype
+                addClassFromNameToArray(missingObjectFactory, classesForJAXBContext);
+
+            }
+
+        }while(!done);
+
+        return null;
+
+    }
+
+    private static String getObjectFactoryMissingFromJAXBContext(Object payload, IllegalAnnotationsException e) throws ClassNotFoundException {
+
+        //Pull any mention of a Clarity datatype from the exception message
+        Pattern p = Pattern.compile("(?!http://genologics.com)[a-z]*(?=})"); //TODO replace with property
+        Matcher m = p.matcher(e.toString());
+
+        if(!m.find()) {
+
+            //Without a class in the exception message this loop can not be exited
+            throw new ClassNotFoundException("An exception was reported that made no mention of a " +
+                    "Clarity datatype. Unable to marshal the payload " + payload +
+                    "\nThe exception was:\n\n" + e);
+
+        }
+
+        return "com.genologics.ri." + m.group() + ".ObjectFactory"; //TODO replace with property
+
+    }
+
+    private static void addClassFromNameToArray(String missingClass, Set<Class<?>> classesForJAXBContext) throws ClassNotFoundException {
+        Class<?> classNeeded = Class.forName(missingClass);
+        if(classesForJAXBContext.contains(classNeeded)){
+            String msg = "The class " + missingClass + " is already in the JAXBContext and it didn't fix the problem." +
+                    " Throwing this exception to avoid an infinite loop. Game over.";
+            throw new RuntimeException(msg);
+        }
+        classesForJAXBContext.add(classNeeded);
     }
 
 }
