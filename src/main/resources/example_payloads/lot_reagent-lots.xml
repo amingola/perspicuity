@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lot:reagent-lots xmlns:lot="http://genologics.com/ri/reagentlot" uri="...">
+    <reagent-lot limsid="..." uri="...">
+        <!--content of type 'reagent-lot-link'-->
+    </reagent-lot>
+    <reagent-lot>
+        <!--(another 'reagent-lot-link' type)-->
+    </reagent-lot>
+    <!--...more "reagent-lot" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</lot:reagent-lots>

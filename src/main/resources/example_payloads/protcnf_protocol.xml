@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protcnf:protocol xmlns:protcnf="http://genologics.com/ri/protocolconfiguration" name="...1" index="2" uri="...3">
+    <steps>
+        <step name="...4" uri="...5" protocol-uri="...6">
+            <!--content of type 'step'-->
+            <protocol-step-index>
+                <!--content of type 'int'-->
+                123
+            </protocol-step-index>
+            <process-type uri="...7">...8</process-type>
+            <permitted-containers>
+                <container-type>
+                    <!--content of type 'string'-->
+                    ...9
+                </container-type>
+                <container-type>
+                    <!--(another 'string' type)-->
+                </container-type>
+                <!--...10more "container-type" elements...11-->
+            </permitted-containers>
+            <permitted-reagent-categories>
+                <reagent-category>
+                    <!--content of type 'string'-->
+                    ...12
+                </reagent-category>
+                <reagent-category>
+                    <!--(another 'string' type)-->
+                </reagent-category>
+                <!--...13more "reagent-category" elements...14-->
+            </permitted-reagent-categories>
+            <required-reagent-kits>
+                <reagent-kit name="...15" uri="...16">
+                    <!--content of type 'reagent-kit-link'-->
+                </reagent-kit>
+                <reagent-kit>
+                    <!--(another 'reagent-kit-link' type)-->
+                </reagent-kit>
+                <!--...17more "reagent-kit" elements...18-->
+            </required-reagent-kits>
+            <permitted-control-types>
+                <control-type name="...19" uri="...20">
+                    <!--content of type 'control-type-link'-->
+                </control-type>
+                <control-type>
+                    <!--(another 'control-type-link' type)-->
+                </control-type>
+                <!--...30more "control-type" elements...31-->
+            </permitted-control-types>
+            <transitions>
+                <transition name="20" sequence="21" next-step-uri="...3">
+                    <!--content of type 'next-step'-->
+                </transition>
+                <transition>
+                    <!--(another 'next-step' type)-->
+                </transition>
+                <!--...3more "transition" elements...33-->
+            </transitions>
+            <default-grouping>
+                <!--content of type 'string'-->
+                ...34
+            </default-grouping>
+            <queue-fields>
+                <queue-field detail="...35" name="...36" attach-to="...37" style="...38">
+                    <!--content of type 'queuefield'-->
+                </queue-field>
+                <queue-field>
+                    <!--(another 'queuefield' type)-->
+                </queue-field>
+                <!--...39more "queue-field" elements...40-->
+            </queue-fields>
+            <step-fields>
+                <step-field name="...41" attach-to="...42" style="...4">
+                    <!--content of type 'field'-->
+                </step-field>
+                <step-field>
+                    <!--(another 'field' type)-->
+                </step-field>
+                <!--...4more "step-field" elements...44-->
+            </step-fields>
+            <sample-fields>
+                <sample-field name="...45" attach-to="...46" style="...47">
+                    <!--content of type 'field'-->
+                </sample-field>
+                <sample-field>
+                    <!--(another 'field' type)-->
+                </sample-field>
+                <!--...48more "sample-field" elements...49-->
+            </sample-fields>
+            <step-properties>
+                <step-property name="...50" value="...51">
+                    <!--content of type 'step-property'-->
+                </step-property>
+                <step-property>
+                    <!--(another 'step-property' type)-->
+                </step-property>
+                <!--...52more "step-property" elements...53-->
+            </step-properties>
+            <step-setup>
+                <!--content of type 'step-setup'-->
+                <files>
+                    <file shared-result-file-index="...54">
+                        <!--content of type 'file'-->
+                        <message>
+                            <!--content of type 'string'-->
+                            ...55
+                        </message>
+                    </file>
+                    <file>
+                        <!--(another 'file' type)-->
+                    </file>
+                    <!--...56more "file" elements...57-->
+                </files>
+            </step-setup>
+            <epp-triggers>
+                <epp-trigger name="...58" type="...59" point="...60" status="...61">
+                    <!--content of type 'epp-trigger'-->
+                </epp-trigger>
+                <epp-trigger>
+                    <!--(another 'epp-trigger' type)-->
+                </epp-trigger>
+                <!--...62more "epp-trigger" elements...63-->
+            </epp-triggers>
+        </step>
+        <step>
+            <!--(another 'step' type)-->
+        </step>
+        <!--...64more "step" elements...65-->
+    </steps>
+    <protocol-properties>
+        <protocol-property name="...66" value="...67">
+            <!--content of type 'protocol-property'-->
+        </protocol-property>
+        <protocol-property>
+            <!--(another 'protocol-property' type)-->
+        </protocol-property>
+        <!--...more "protocol-property" elements...-->
+    </protocol-properties>
+</protcnf:protocol>

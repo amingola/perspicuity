@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ctrltp:control-types xmlns:ctrltp="http://genologics.com/ri/controltype" uri="...">
+  <control-type name="..." uri="...">
+    <!--content of type 'control-type-link'-->
+  </control-type>
+  <control-type>
+    <!--(another 'control-type-link' type)-->
+  </control-type>
+  <!--...more "control-type" elements...-->
+</ctrltp:control-types>

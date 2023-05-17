@@ -10,7 +10,7 @@
         ...
     </reagent-category>
     <inputs>
-        <input uri="..." control-type-uri="..." replicates="...">
+        <input uri="..." control-type-uri="..." replicates="123">
             <!--content of type 'creation-input'-->
         </input>
         <input>

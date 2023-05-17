@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab:labs xmlns:lab="http://genologics.com/ri/lab">
+    <lab uri="...">
+        <!--content of type 'lab-link'-->
+        <name>
+            <!--content of type 'string'-->
+            ...
+        </name>
+    </lab>
+    <lab>
+        <!--(another 'lab-link' type)-->
+    </lab>
+    <!--...more "lab" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</lab:labs>

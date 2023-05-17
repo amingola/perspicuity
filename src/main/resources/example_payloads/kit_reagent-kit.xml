@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kit:reagent-kit xmlns:kit="http://genologics.com/ri/reagentkit" uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <supplier>
+        <!--content of type 'string'-->
+        ...
+    </supplier>
+    <catalogue-number>
+        <!--content of type 'string'-->
+        ...
+    </catalogue-number>
+    <website>
+        <!--content of type 'anyURI'-->
+        ...
+    </website>
+    <archived>
+        <!--content of type 'boolean'-->
+        ...
+    </archived>
+</kit:reagent-kit>

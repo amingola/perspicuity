@@ -71,8 +71,9 @@ public class JsonEndpointSimpleTests {
 
     @BeforeAll
     static void init(){
-        namespaceMapper = new NamespaceMapper("com.genologics.ri");
-        marshallingService = new MarshallingService(namespaceMapper);
+        namespaceMapper = new NamespaceMapper("com.genologics");
+        marshallingService =
+                new MarshallingService("com.genologics", "http://genologics.com", namespaceMapper);
     }
 
     /*@Test

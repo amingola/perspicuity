@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ctp:container-type xmlns:ctp="http://genologics.com/ri/containertype" name="..." uri="...">
+    <is-tube>
+        <!--content of type 'boolean'-->
+        ...
+    </is-tube>
+    <calibrant-well name="...">...</calibrant-well>
+    <calibrant-well>
+        <!--(another 'calibrant-well' type)-->
+    </calibrant-well>
+    <!--...more "calibrant-well" elements...-->
+    <unavailable-well>...</unavailable-well>
+    <unavailable-well>
+        <!--(another 'unavailable-well' type)-->
+    </unavailable-well>
+    <!--...more "unavailable-well" elements...-->
+    <x-dimension>
+        <!--content of type 'dimension'-->
+        <is-alpha>
+            <!--content of type 'boolean'-->
+            ...
+        </is-alpha>
+        <offset>
+            <!--content of type 'int'-->
+            ...
+        </offset>
+        <size>
+            <!--content of type 'int'-->
+            ...
+        </size>
+    </x-dimension>
+    <y-dimension>
+        <!--content of type 'dimension'-->
+        <is-alpha>
+            <!--content of type 'boolean'-->
+            ...
+        </is-alpha>
+        <offset>
+            <!--content of type 'int'-->
+            ...
+        </offset>
+        <size>
+            <!--content of type 'int'-->
+            ...
+        </size>
+    </y-dimension>
+</ctp:container-type>

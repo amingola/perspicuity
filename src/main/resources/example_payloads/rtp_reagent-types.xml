@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rtp:reagent-types xmlns:rtp="http://genologics.com/ri/reagenttype">
+    <reagent-type name="..." uri="...">
+        <!--content of type 'reagent-type-link'-->
+    </reagent-type>
+    <reagent-type>
+        <!--(another 'reagent-type-link' type)-->
+    </reagent-type>
+    <!--...more "reagent-type" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</rtp:reagent-types>

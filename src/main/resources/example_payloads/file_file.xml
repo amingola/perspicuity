@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file:file xmlns:file="http://genologics.com/ri/file" limsid="..." uri="...">
+    <attached-to>
+        <!--content of type 'anyURI'-->
+        ...
+    </attached-to>
+    <content-location>
+        <!--content of type 'anyURI'-->
+        ...
+    </content-location>
+    <original-location>
+        <!--content of type 'string'-->
+        ...
+    </original-location>
+    <is-published>
+        <!--content of type 'boolean'-->
+        ...
+    </is-published>
+</file:file>

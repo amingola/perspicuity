@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ptm:process-templates xmlns:ptm="http://genologics.com/ri/processtemplate">
+    <process-template uri="...">
+        <!--content of type 'process-template-link'-->
+        <name>
+            <!--content of type 'string'-->
+            ...
+        </name>
+    </process-template>
+    <process-template>
+        <!--(another 'process-template-link' type)-->
+    </process-template>
+    <!--...more "process-template" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</ptm:process-templates>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stp:details xmlns:stp="http://genologics.com/ri/step" uri="...">
+    <step rel="..." uri="...">
+        <!--content of type 'link'-->
+    </step>
+    <configuration uri="...">...</configuration>
+    <input-output-maps>
+        <input-output-map>
+            <!--content of type 'input-output-map'-->
+            <input limsid="..." type="..." output-generation-type="..." uri="...">
+                <!--content of type 'artifact'-->
+            </input>
+            <output limsid="..." type="..." output-generation-type="..." uri="...">
+                <!--content of type 'artifact'-->
+            </output>
+        </input-output-map>
+        <input-output-map>
+            <!--(another 'input-output-map' type)-->
+        </input-output-map>
+        <!--...more "input-output-map" elements...-->
+    </input-output-maps>
+    <udf:fields xmlns:udf="http://genologics.com/ri/userdefined">
+        <udf:field unit="..." name="..." type="...">...</udf:field>
+        <udf:field>
+            <!--(another 'field' type)-->
+        </udf:field>
+        <!--...more "field" elements...-->
+    </udf:fields>
+    <preset>
+        <!--content of type 'string'-->
+        ...
+    </preset>
+    <instrument uri="...">...</instrument>
+</stp:details>

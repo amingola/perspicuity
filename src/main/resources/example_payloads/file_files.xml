@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file:files xmlns:file="http://genologics.com/ri/file">
+    <file uri="..." limsid="...">
+        <!--content of type 'file-link'-->
+    </file>
+    <file>
+        <!--(another 'file-link' type)-->
+    </file>
+    <!--...more "file" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</file:files>

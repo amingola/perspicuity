@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<que:queue xmlns:que="http://genologics.com/ri/queue" uri="..." protocol-step-uri="..." name="...">
+    <artifacts>
+        <artifact uri="..." limsid="...">
+            <!--content of type 'artifact-link'-->
+            <queue-time>
+                <!--content of type 'dateTime'-->
+                ...
+            </queue-time>
+            <location>
+                <!--content of type 'location'-->
+                <container limsid="..." uri="...">
+                    <!--content of type 'container'-->
+                </container>
+                <value>
+                    <!--content of type 'string'-->
+                    ...
+                </value>
+            </location>
+        </artifact>
+        <artifact>
+            <!--(another 'artifact-link' type)-->
+        </artifact>
+        <!--...more "artifact" elements...-->
+    </artifacts>
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</que:queue>

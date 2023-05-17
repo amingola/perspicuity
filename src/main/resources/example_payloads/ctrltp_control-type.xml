@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ctrltp:control-type xmlns:ctrltp="http://genologics.com/ri/controltype" uri="..." name="...">
+  <supplier>
+    <!--content of type 'string'-->
+    ...
+  </supplier>
+  <catalogue-number>
+    <!--content of type 'string'-->
+    ...
+  </catalogue-number>
+  <website>
+    <!--content of type 'anyURI'-->
+    ...
+  </website>
+  <concentration>
+    <!--content of type 'string'-->
+    ...
+  </concentration>
+  <archived>
+    <!--content of type 'boolean'-->
+    ...
+  </archived>
+  <single-step>
+    <!--content of type 'boolean'-->
+    ...
+  </single-step>
+</ctrltp:control-type>

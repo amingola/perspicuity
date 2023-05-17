@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ptp:process-type xmlns:ptp="http://genologics.com/ri/processtype" name="..." uri="...">
+    <field-definition name="..." uri="...">
+        <!--content of type 'field-link'-->
+    </field-definition>
+    <field-definition>
+        <!--(another 'field-link' type)-->
+    </field-definition>
+    <!--...more "field-definition" elements...-->
+    <parameter name="...">
+        <!--content of type 'parameter'-->
+        <file>
+            <!--content of type 'string'-->
+            ...
+        </file>
+        <string>
+            <!--content of type 'string'-->
+            ...
+        </string>
+        <run-program-per-event>
+            <!--content of type 'boolean'-->
+            ...
+        </run-program-per-event>
+        <channel>
+            <!--content of type 'string'-->
+            ...
+        </channel>
+        <invocation-type>
+            <!--content of type 'invocation-type'-->
+            ...
+        </invocation-type>
+    </parameter>
+    <parameter>
+        <!--(another 'parameter' type)-->
+    </parameter>
+    <!--...more "parameter" elements...-->
+    <type-definition name="..." uri="...">
+        <!--content of type 'type-definition'-->
+    </type-definition>
+    <type-definition>
+        <!--(another 'type-definition' type)-->
+    </type-definition>
+    <!--...more "type-definition" elements...-->
+    <process-input>
+        <!--content of type 'process-input'-->
+        <artifact-type>
+            <!--content of type 'string'-->
+            ...
+        </artifact-type>
+        <display-name>
+            <!--content of type 'string'-->
+            ...
+        </display-name>
+        <remove-working-flag>
+            <!--content of type 'boolean'-->
+            ...
+        </remove-working-flag>
+    </process-input>
+    <process-input>
+        <!--(another 'process-input' type)-->
+    </process-input>
+    <!--...more "process-input" elements...-->
+    <process-output>
+        <!--content of type 'process-output'-->
+        <artifact-type>
+            <!--content of type 'string'-->
+            ...
+        </artifact-type>
+        <display-name>
+            <!--content of type 'string'-->
+            ...
+        </display-name>
+        <output-generation-type>
+            <!--content of type 'output-generation-type'-->
+            ...
+        </output-generation-type>
+        <variability-type>
+            <!--content of type 'variability-type'-->
+            ...
+        </variability-type>
+        <number-of-outputs>
+            <!--content of type 'int'-->
+            ...
+        </number-of-outputs>
+        <output-name>
+            <!--content of type 'string'-->
+            ...
+        </output-name>
+        <field-definition name="..." uri="...">
+            <!--content of type 'field-link'-->
+        </field-definition>
+        <field-definition>
+            <!--(another 'field-link' type)-->
+        </field-definition>
+        <!--...more "field-definition" elements...-->
+        <assign-working-flag>
+            <!--content of type 'boolean'-->
+            ...
+        </assign-working-flag>
+    </process-output>
+    <process-output>
+        <!--(another 'process-output' type)-->
+    </process-output>
+    <!--...more "process-output" elements...-->
+    <process-type-attribute name="...">...</process-type-attribute>
+    <process-type-attribute>
+        <!--(another 'process-type-attribute' type)-->
+    </process-type-attribute>
+    <!--...more "process-type-attribute" elements...-->
+</ptp:process-type>

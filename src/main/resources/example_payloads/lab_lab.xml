@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab:lab xmlns:lab="http://genologics.com/ri/lab" uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <billing-address>
+        <!--content of type 'address'-->
+        <street>
+            <!--content of type 'string'-->
+            ...
+        </street>
+        <city>
+            <!--content of type 'string'-->
+            ...
+        </city>
+        <state>
+            <!--content of type 'string'-->
+            ...
+        </state>
+        <country>
+            <!--content of type 'string'-->
+            ...
+        </country>
+        <postalCode>
+            <!--content of type 'string'-->
+            ...
+        </postalCode>
+        <institution>
+            <!--content of type 'string'-->
+            ...
+        </institution>
+        <department>
+            <!--content of type 'string'-->
+            ...
+        </department>
+    </billing-address>
+    <shipping-address>
+        <!--content of type 'address'-->
+        <street>
+            <!--content of type 'string'-->
+            ...
+        </street>
+        <city>
+            <!--content of type 'string'-->
+            ...
+        </city>
+        <state>
+            <!--content of type 'string'-->
+            ...
+        </state>
+        <country>
+            <!--content of type 'string'-->
+            ...
+        </country>
+        <postalCode>
+            <!--content of type 'string'-->
+            ...
+        </postalCode>
+        <institution>
+            <!--content of type 'string'-->
+            ...
+        </institution>
+        <department>
+            <!--content of type 'string'-->
+            ...
+        </department>
+    </shipping-address>
+    <udf:type xmlns:udf="http://genologics.com/ri/userdefined">...</udf:type>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <!--...more "field" elements...-->
+    <ri:externalid xmlns:ri="http://genologics.com/ri">...</ri:externalid>
+    <ri:externalid xmlns:ri="http://genologics.com/ri">...</ri:externalid>
+    <!--...more "externalid" elements...-->
+    <website>
+        <!--content of type 'string'-->
+        ...
+    </website>
+</lab:lab>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:containers xmlns:con="http://genologics.com/ri/container">
+    <container limsid="..." uri="...">
+        <!--content of type 'container-link'-->
+        <name>
+            <!--content of type 'string'-->
+            ...
+        </name>
+    </container>
+    <container>
+        <!--(another 'container-link' type)-->
+    </container>
+    <!--...more "container" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</con:containers>

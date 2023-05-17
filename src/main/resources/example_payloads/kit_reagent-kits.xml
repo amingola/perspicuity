@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kit:reagent-kits xmlns:kit="http://genologics.com/ri/reagentkit" uri="...">
+    <reagent-kit name="..." uri="...">
+        <!--content of type 'reagent-kit-link'-->
+    </reagent-kit>
+    <reagent-kit>
+        <!--(another 'reagent-kit-link' type)-->
+    </reagent-kit>
+    <!--...more "reagent-kit" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</kit:reagent-kits>

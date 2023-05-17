@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prc:processes xmlns:prc="http://genologics.com/ri/process">
+    <process limsid="..." uri="...">
+        <!--content of type 'process-link'-->
+    </process>
+    <process>
+        <!--(another 'process-link' type)-->
+    </process>
+    <!--...more "process" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</prc:processes>

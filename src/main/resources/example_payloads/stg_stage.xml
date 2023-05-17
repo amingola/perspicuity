@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stg:stage xmlns:stg="http://genologics.com/ri/stage" uri="..." name="..." index="123">
+    <workflow uri="...">
+        <!--content of type 'workflow'-->
+    </workflow>
+    <protocol uri="...">
+        <!--content of type 'protocol'-->
+    </protocol>
+    <step uri="...">
+        <!--content of type 'step'-->
+    </step>
+</stg:stage>

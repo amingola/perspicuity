@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wkfcnf:workflow xmlns:wkfcnf="http://genologics.com/ri/workflowconfiguration" name="..." uri="..." status="...">
+    <protocols>
+        <protocol name="..." uri="...">
+            <!--content of type 'protocol-link'-->
+        </protocol>
+        <protocol>
+            <!--(another 'protocol-link' type)-->
+        </protocol>
+        <!--...more "protocol" elements...-->
+    </protocols>
+    <stages>
+        <stage name="..." uri="...">
+            <!--content of type 'stage-link'-->
+        </stage>
+        <stage>
+            <!--(another 'stage-link' type)-->
+        </stage>
+        <!--...more "stage" elements...-->
+    </stages>
+</wkfcnf:workflow>

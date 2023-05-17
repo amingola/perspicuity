@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cnf:type xmlns:cnf="http://genologics.com/ri/configuration" name="..." uri="...">
+    <field-definition name="..." uri="...">
+        <!--content of type 'field-link'-->
+    </field-definition>
+    <field-definition>
+        <!--(another 'field-link' type)-->
+    </field-definition>
+    <!--...more "field-definition" elements...-->
+    <attach-to-name>
+        <!--content of type 'string'-->
+        ...
+    </attach-to-name>
+    <attach-to-category>
+        <!--content of type 'string'-->
+        ...
+    </attach-to-category>
+</cnf:type>

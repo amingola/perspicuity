@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ver:versions xmlns:ver="http://genologics.com/ri/version">
+    <version uri="..." major="..." minor="...">
+        <!--content of type 'version'-->
+    </version>
+    <version>
+        <!--(another 'version' type)-->
+    </version>
+    <!--...more "version" elements...-->
+</ver:versions>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cnf:udfs xmlns:cnf="http://genologics.com/ri/configuration">
+    <udfconfig uri="..." attach-to-name="..." name="..." attach-to-category="...">
+        <!--content of type 'udfconfig-link'-->
+    </udfconfig>
+    <udfconfig>
+        <!--(another 'udfconfig-link' type)-->
+    </udfconfig>
+    <!--...more "udfconfig" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</cnf:udfs>

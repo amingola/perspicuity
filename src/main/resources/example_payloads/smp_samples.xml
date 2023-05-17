@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smp:samples xmlns:smp="http://genologics.com/ri/sample">
+    <sample limsid="..." uri="...">
+        <!--content of type 'sample-link'-->
+    </sample>
+    <sample>
+        <!--(another 'sample-link' type)-->
+    </sample>
+    <!--...more "sample" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</smp:samples>

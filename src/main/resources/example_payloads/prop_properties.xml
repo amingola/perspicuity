@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prop:properties xmlns:prop="http://genologics.com/ri/property">
+  <property uri="..." name="..." value="...">
+    <!--content of type 'property-link'-->
+  </property>
+  <property>
+    <!--(another 'property-link' type)-->
+  </property>
+  <!--...more "property" elements...-->
+  <previous-page uri="...">
+    <!--content of type 'page'-->
+  </previous-page>
+  <next-page uri="...">
+    <!--content of type 'page'-->
+  </next-page>
+</prop:properties>

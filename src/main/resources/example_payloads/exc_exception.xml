@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exc:exception xmlns:exc="http://genologics.com/ri/exception" category="..." code="...">
+    <message>
+        <!--content of type 'string'-->
+        ...
+    </message>
+    <suggested-actions>
+        <!--content of type 'string'-->
+        ...
+    </suggested-actions>
+</exc:exception>

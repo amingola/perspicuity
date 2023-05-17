@@ -3,8 +3,6 @@ package com.perspicuity;
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -25,8 +23,7 @@ public class NamespaceMapper extends NamespacePrefixMapper{
     private final String clarityPackageRoot;
     private final HashMap<String, String> namespaces = new HashMap<>();
 
-    @Autowired
-    public NamespaceMapper(@Value("${packageRoot}") String clarityPackageRoot){
+    public NamespaceMapper(String clarityPackageRoot){
         this.clarityPackageRoot = clarityPackageRoot;
         initNamespaceMapFromSchemaDirectory();
         findAllClassesUsingClassLoader(clarityPackageRoot);
@@ -120,15 +117,15 @@ public class NamespaceMapper extends NamespacePrefixMapper{
                     try{
                         c.newInstance();
                     } catch(InstantiationException e){
-                        logger.debug("Skipping " + c + " as it can not be instantiated (abstract, interface, enum, etc.)");
+                        //logger.debug("Skipping " + c + " as it can not be instantiated (abstract, interface, enum, etc.)");
                         continue;
                     } catch(IllegalAccessException e){
-                        logger.error("IllegalAccessException trying to register class:  " + c, e);
+                        //logger.error("IllegalAccessException trying to register class:  " + c, e);
                         continue;
                     }
 
                     String sanitizedClassName = sanitizeClassName(c);
-                    logger.debug("adding " + sanitizedClassName);
+                    //logger.debug("adding " + sanitizedClassName);
                     classes.put(sanitizedClassName, c);
 
                 }

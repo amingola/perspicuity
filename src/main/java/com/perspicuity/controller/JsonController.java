@@ -1523,6 +1523,20 @@ public class JsonController {
         return buildResponse(jsonPayload);
     }
 
+    @PostMapping("/com.genologics.ri.step.Lots")
+    ResponseEntity<Object> getStepLots(@RequestBody String xmlPayload) {
+        logger.info("hit /json/com.genologics.ri.step.Lots");
+        com.genologics.ri.step.Lots jsonPayload = (com.genologics.ri.step.Lots) xmlToJson(com.genologics.ri.step.Lots.class, xmlPayload);
+        return buildResponse(jsonPayload);
+    }
+
+    @PostMapping("/com.genologics.ri.step.Lots.ReagentLots")
+    ResponseEntity<Object> getStepLotsReagentLots(@RequestBody String xmlPayload) {
+        logger.info("hit /json/com.genologics.ri.step.Lots.ReagentLots");
+        com.genologics.ri.step.Lots.ReagentLots jsonPayload = (com.genologics.ri.step.Lots.ReagentLots) xmlToJson(com.genologics.ri.step.Lots.ReagentLots.class, xmlPayload);
+        return buildResponse(jsonPayload);
+    }
+
     @PostMapping("/com.genologics.ri.step.NextAction")
     ResponseEntity<Object> getStepNextAction(@RequestBody String xmlPayload) {
         logger.info("hit /json/com.genologics.ri.step.NextAction");
@@ -1660,20 +1674,6 @@ public class JsonController {
     ResponseEntity<Object> getStepReagentsLink(@RequestBody String xmlPayload) {
         logger.info("hit /json/com.genologics.ri.step.ReagentsLink");
         com.genologics.ri.step.ReagentsLink jsonPayload = (com.genologics.ri.step.ReagentsLink) xmlToJson(com.genologics.ri.step.ReagentsLink.class, xmlPayload);
-        return buildResponse(jsonPayload);
-    }
-
-    @PostMapping("/com.genologics.ri.step.ReagentsLots")
-    ResponseEntity<Object> getStepReagentsLots(@RequestBody String xmlPayload) {
-        logger.info("hit /json/com.genologics.ri.step.ReagentsLots");
-        com.genologics.ri.step.ReagentsLots jsonPayload = (com.genologics.ri.step.ReagentsLots) xmlToJson(com.genologics.ri.step.ReagentsLots.class, xmlPayload);
-        return buildResponse(jsonPayload);
-    }
-
-    @PostMapping("/com.genologics.ri.step.ReagentsLots.ReagentLots")
-    ResponseEntity<Object> getStepReagentsLotsReagentLots(@RequestBody String xmlPayload) {
-        logger.info("hit /json/com.genologics.ri.step.ReagentsLots.ReagentLots");
-        com.genologics.ri.step.ReagentsLots.ReagentLots jsonPayload = (com.genologics.ri.step.ReagentsLots.ReagentLots) xmlToJson(com.genologics.ri.step.ReagentsLots.ReagentLots.class, xmlPayload);
         return buildResponse(jsonPayload);
     }
 

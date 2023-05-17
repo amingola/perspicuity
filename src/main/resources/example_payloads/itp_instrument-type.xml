@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itp:instrument-type xmlns:itp="http://genologics.com/ri/instrumenttype" uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <vendor>
+        <!--content of type 'string'-->
+        ...
+    </vendor>
+    <process-types>
+        <process-type uri="...">...</process-type>
+        <process-type>
+            <!--(another 'instrument-type-process-type' type)-->
+        </process-type>
+        <!--...more "process-type" elements...-->
+    </process-types>
+</itp:instrument-type>

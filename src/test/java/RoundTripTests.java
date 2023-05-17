@@ -60,12 +60,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RoundTripTests {
 
     private static MarshallingService marshallingService;
-    private static NamespaceMapper namespaceMapper;
 
     @BeforeAll
     static void init(){
-        namespaceMapper = new NamespaceMapper("com.genologics.ri");
-        marshallingService = new MarshallingService(namespaceMapper);
+        NamespaceMapper namespaceMapper = new NamespaceMapper("com.genologics");
+        marshallingService =
+                new MarshallingService("com.genologics", "http://genologics.com", namespaceMapper);
+
     }
 
     @Test
@@ -1487,12 +1488,12 @@ public class RoundTripTests {
     @Test
     public void roundTripWithReagentsLots() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
-        Class<?> clazz = ReagentsLots.class;
-        ReagentsLots reagentsLots = new ReagentsLots();
-        TestUtils.fillAllFields(reagentsLots);
+        Class<?> clazz = Lots.class;
+        Lots lots = new Lots();
+        TestUtils.fillAllFields(lots);
 
-        System.out.println(reagentsLots);
-        String sampleXml = marshallingService.marshal(clazz, reagentsLots);
+        System.out.println(lots);
+        String sampleXml = marshallingService.marshal(clazz, lots);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 

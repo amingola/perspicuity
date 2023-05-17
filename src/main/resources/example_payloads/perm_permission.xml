@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<perm:permission xmlns:perm="http://genologics.com/ri/permission" uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <action>
+        <!--content of type 'string'-->
+        ...
+    </action>
+    <description>
+        <!--content of type 'string'-->
+        ...
+    </description>
+</perm:permission>

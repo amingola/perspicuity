@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ctp:container-types xmlns:ctp="http://genologics.com/ri/containertype">
+    <container-type name="..." uri="...">
+        <!--content of type 'container-type-link'-->
+    </container-type>
+    <container-type>
+        <!--(another 'container-type-link' type)-->
+    </container-type>
+    <!--...more "container-type" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</ctp:container-types>

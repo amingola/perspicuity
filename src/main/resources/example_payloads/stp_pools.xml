@@ -7,7 +7,7 @@
     <pooled-inputs>
         <pool name="..." output-uri="...">
             <!--content of type 'pooled-inputs'-->
-            <input uri="..." replicates="...">
+            <input uri="..." replicates="123">
                 <!--content of type 'input'-->
             </input>
             <input>
@@ -21,7 +21,7 @@
         <!--...more "pool" elements...-->
     </pooled-inputs>
     <available-inputs>
-        <input uri="..." replicates="...">
+        <input uri="..." replicates="123">
             <!--content of type 'input'-->
         </input>
         <input>

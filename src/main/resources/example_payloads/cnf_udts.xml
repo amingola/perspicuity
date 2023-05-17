@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cnf:udts xmlns:cnf="http://genologics.com/ri/configuration">
+    <udtconfig uri="..." name="..." attach-to-name="..." attach-to-category="...">
+        <!--content of type 'udtconfig-link'-->
+    </udtconfig>
+    <udtconfig>
+        <!--(another 'udtconfig-link' type)-->
+    </udtconfig>
+    <!--...more "udtconfig" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</cnf:udts>

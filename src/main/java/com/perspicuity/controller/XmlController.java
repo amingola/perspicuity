@@ -1305,6 +1305,18 @@ public class XmlController {
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Instrument.class, new com.genologics.ri.step.Instrument()));
     }
 
+    @GetMapping("/com.genologics.ri.step.Lots")
+    ResponseEntity<String> getStepLots() throws JAXBException, ClassNotFoundException {
+        logger.info("hit /xml/com.genologics.ri.step.Lots");
+        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Lots.class, new com.genologics.ri.step.Lots()));
+    }
+
+    @GetMapping("/com.genologics.ri.step.Lots.ReagentLots")
+    ResponseEntity<String> getStepLotsReagentLots() throws JAXBException, ClassNotFoundException {
+        logger.info("hit /xml/com.genologics.ri.step.Lots.ReagentLots");
+        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Lots.ReagentLots.class, new com.genologics.ri.step.Lots.ReagentLots()));
+    }
+
     @GetMapping("/com.genologics.ri.step.NextAction")
     ResponseEntity<String> getStepNextAction() throws JAXBException, ClassNotFoundException {
         logger.info("hit /xml/com.genologics.ri.step.NextAction");
@@ -1423,18 +1435,6 @@ public class XmlController {
     ResponseEntity<String> getStepReagentsLink() throws JAXBException, ClassNotFoundException {
         logger.info("hit /xml/com.genologics.ri.step.ReagentsLink");
         return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ReagentsLink.class, new com.genologics.ri.step.ReagentsLink()));
-    }
-
-    @GetMapping("/com.genologics.ri.step.ReagentsLots")
-    ResponseEntity<String> getStepReagentsLots() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.ReagentsLots");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ReagentsLots.class, new com.genologics.ri.step.ReagentsLots()));
-    }
-
-    @GetMapping("/com.genologics.ri.step.ReagentsLots.ReagentLots")
-    ResponseEntity<String> getStepReagentsLotsReagentLots() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.ReagentsLots.ReagentLots");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ReagentsLots.ReagentLots.class, new com.genologics.ri.step.ReagentsLots.ReagentLots()));
     }
 
     @GetMapping("/com.genologics.ri.step.Setup")

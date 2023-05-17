@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protcnf:protocols xmlns:protcnf="http://genologics.com/ri/protocolconfiguration">
+    <protocol name="..." uri="...">
+        <!--content of type 'protocol-link'-->
+    </protocol>
+    <protocol>
+        <!--(another 'protocol-link' type)-->
+    </protocol>
+    <!--...more "protocol" elements...-->
+</protcnf:protocols>

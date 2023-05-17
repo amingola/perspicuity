@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wkfcnf:workflows xmlns:wkfcnf="http://genologics.com/ri/workflowconfiguration">
+    <workflow name="..." uri="..." status="...">
+        <!--content of type 'workflow-link'-->
+    </workflow>
+    <workflow>
+        <!--(another 'workflow-link' type)-->
+    </workflow>
+    <!--...more "workflow" elements...-->
+</wkfcnf:workflows>

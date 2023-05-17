@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<res:researchers xmlns:res="http://genologics.com/ri/researcher">
+    <researcher uri="...">
+        <!--content of type 'researcher-link'-->
+        <first-name>
+            <!--content of type 'string'-->
+            ...
+        </first-name>
+        <last-name>
+            <!--content of type 'string'-->
+            ...
+        </last-name>
+    </researcher>
+    <researcher>
+        <!--(another 'researcher-link' type)-->
+    </researcher>
+    <!--...more "researcher" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</res:researchers>

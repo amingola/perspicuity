@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ptm:process-template xmlns:ptm="http://genologics.com/ri/processtemplate" uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <type uri="...">...</type>
+    <technician uri="...">
+        <!--content of type 'technician'-->
+        <first-name>
+            <!--content of type 'string'-->
+            ...
+        </first-name>
+        <last-name>
+            <!--content of type 'string'-->
+            ...
+        </last-name>
+    </technician>
+    <instrument uri="...">
+        <!--content of type 'instrument'-->
+    </instrument>
+    <process-parameter name="...">
+        <!--content of type 'parameter'-->
+    </process-parameter>
+    <udf:type xmlns:udf="http://genologics.com/ri/userdefined">...</udf:type>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <!--...more "field" elements...-->
+    <is-default>
+        <!--content of type 'boolean'-->
+        ...
+    </is-default>
+</ptm:process-template>

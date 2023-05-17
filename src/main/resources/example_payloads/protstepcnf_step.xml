@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protstepcnf:step xmlns:protstepcnf="http://genologics.com/ri/stepconfiguration" name="...1" uri="...2" protocol-uri="...3">
+    <protocol-step-index>
+        <!--content of type 'int'-->
+        123
+    </protocol-step-index>
+    <process-type uri="...4">...5</process-type>
+    <permitted-containers>
+        <container-type>
+            <!--content of type 'string'-->
+            ...6
+        </container-type>
+        <container-type>
+            <!--(another 'string' type)-->
+        </container-type>
+        <!--...7more "container-type" elements...9-->
+    </permitted-containers>
+    <permitted-reagent-categories>
+        <reagent-category>
+            <!--content of type 'string'-->
+            ...0
+        </reagent-category>
+        <reagent-category>
+            <!--(another 'string' type)-->
+        </reagent-category>
+        <!--...10more "reagent-category" elements...11-->
+    </permitted-reagent-categories>
+    <required-reagent-kits>
+        <reagent-kit name="...12" uri="...13">
+            <!--content of type 'reagent-kit-link'-->
+        </reagent-kit>
+        <reagent-kit>
+            <!--(another 'reagent-kit-link' type)-->
+        </reagent-kit>
+        <!--...14more "reagent-kit" elements...15-->
+    </required-reagent-kits>
+    <permitted-control-types>
+        <control-type name="...16" uri="...17">
+            <!--content of type 'control-type-link'-->
+        </control-type>
+        <control-type>
+            <!--(another 'control-type-link' type)-->
+        </control-type>
+        <!--...18more "control-type" elements...19-->
+    </permitted-control-types>
+    <transitions>
+        <transition name="20" sequence="21" next-step-uri="...22">
+            <!--content of type 'next-step'-->
+        </transition>
+        <transition>
+            <!--(another 'next-step' type)-->
+        </transition>
+        <!--...23more "transition" elements...24-->
+    </transitions>
+    <default-grouping>
+        <!--content of type 'string'-->
+        ...25
+    </default-grouping>
+    <queue-fields>
+        <queue-field detail="false" name="...26" attach-to="...27" style="...28">
+            <!--content of type 'queuefield'-->
+        </queue-field>
+        <queue-field>
+            <!--(another 'queuefield' type)-->
+        </queue-field>
+        <!--...29more "queue-field" elements...30-->
+    </queue-fields>
+    <step-fields>
+        <step-field name="...31" attach-to="...32" style="...33">
+            <!--content of type 'field'-->
+        </step-field>
+        <step-field>
+            <!--(another 'field' type)-->
+        </step-field>
+        <!--...34more "step-field" elements...35-->
+    </step-fields>
+    <sample-fields>
+        <sample-field name="...36" attach-to="...37" style="...38">
+            <!--content of type 'field'-->
+        </sample-field>
+        <sample-field>
+            <!--(another 'field' type)-->
+        </sample-field>
+        <!--...39more "sample-field" elements...40-->
+    </sample-fields>
+    <step-properties>
+        <step-property name="...41" value="...42">
+            <!--content of type 'step-property'-->
+        </step-property>
+        <step-property>
+            <!--(another 'step-property' type)-->
+        </step-property>
+        <!--...43more "step-property" elements...44-->
+    </step-properties>
+    <step-setup>
+        <!--content of type 'step-setup'-->
+        <files>
+            <file shared-result-file-index="1">
+                <!--content of type 'file'-->
+                <message>
+                    <!--content of type 'string'-->
+                    ...45
+                </message>
+            </file>
+            <file>
+                <!--(another 'file' type)-->
+            </file>
+            <!--...46more "file" elements...47-->
+        </files>
+    </step-setup>
+    <epp-triggers>
+        <epp-trigger name="...48" type="...49" point="...50" status="...51">
+            <!--content of type 'epp-trigger'-->
+        </epp-trigger>
+        <epp-trigger>
+            <!--(another 'epp-trigger' type)-->
+        </epp-trigger>
+        <!--...more "epp-trigger" elements...-->
+    </epp-triggers>
+</protstepcnf:step>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inst:instrument xmlns:inst="http://genologics.com/ri/instrument" uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <type>
+        <!--content of type 'string'-->
+        ...
+    </type>
+</inst:instrument>

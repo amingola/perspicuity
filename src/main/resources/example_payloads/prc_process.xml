@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prc:process xmlns:prc="http://genologics.com/ri/process" limsid="..." uri="...">
+    <type uri="...">...</type>
+    <date-run>
+        <!--content of type 'string'-->
+        ...
+    </date-run>
+    <technician uri="...">
+        <!--content of type 'technician'-->
+        <first-name>
+            <!--content of type 'string'-->
+            ...
+        </first-name>
+        <last-name>
+            <!--content of type 'string'-->
+            ...
+        </last-name>
+    </technician>
+    <input-output-map>
+        <!--content of type 'input-output-map'-->
+        <input limsid="..." output-type="..." output-generation-type="..." uri="..." post-process-uri="...">
+            <!--content of type 'artifact'-->
+            <parent-process limsid="..." uri="...">
+                <!--content of type 'parent-process'-->
+            </parent-process>
+        </input>
+        <output limsid="..." output-type="..." output-generation-type="..." uri="..." post-process-uri="...">
+            <!--content of type 'artifact'-->
+            <parent-process limsid="..." uri="...">
+                <!--content of type 'parent-process'-->
+            </parent-process>
+        </output>
+    </input-output-map>
+    <input-output-map>
+        <!--(another 'input-output-map' type)-->
+    </input-output-map>
+    <!--...more "input-output-map" elements...-->
+    <udf:type xmlns:udf="http://genologics.com/ri/userdefined">...</udf:type>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <!--...more "field" elements...-->
+    <file:file xmlns:file="http://genologics.com/ri/file">...</file:file>
+    <file:file xmlns:file="http://genologics.com/ri/file">...</file:file>
+    <!--...more "file" elements...-->
+    <protocol-name>
+        <!--content of type 'string'-->
+        ...
+    </protocol-name>
+    <instrument uri="...">
+        <!--content of type 'instrument'-->
+    </instrument>
+    <process-parameter name="...">
+        <!--content of type 'parameter'-->
+    </process-parameter>
+</prc:process>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rt:routing xmlns:rt="http://genologics.com/ri/routing">
+    <assign workflow-uri="..." stage-uri="...">
+        <!--content of type 'extArtifactAssignments'-->
+        <artifact uri="...">
+            <!--content of type 'artifact'-->
+        </artifact>
+        <artifact>
+            <!--(another 'artifact' type)-->
+        </artifact>
+        <!--...more "artifact" elements...-->
+    </assign>
+    <assign>
+        <!--(another 'extArtifactAssignments' type)-->
+    </assign>
+    <!--...more "assign" elements...-->
+    <unassign workflow-uri="..." stage-uri="...">
+        <!--content of type 'extArtifactAssignments'-->
+        <artifact uri="...">
+            <!--content of type 'artifact'-->
+        </artifact>
+        <artifact>
+            <!--(another 'artifact' type)-->
+        </artifact>
+        <!--...more "artifact" elements...-->
+    </unassign>
+    <unassign>
+        <!--(another 'extArtifactAssignments' type)-->
+    </unassign>
+    <!--...more "unassign" elements...-->
+</rt:routing>

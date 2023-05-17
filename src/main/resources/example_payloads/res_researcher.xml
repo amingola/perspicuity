@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<res:researcher xmlns:res="http://genologics.com/ri/researcher" uri="...">
+    <first-name>
+        <!--content of type 'string'-->
+        ...
+    </first-name>
+    <last-name>
+        <!--content of type 'string'-->
+        ...
+    </last-name>
+    <phone>
+        <!--content of type 'string'-->
+        ...
+    </phone>
+    <fax>
+        <!--content of type 'string'-->
+        ...
+    </fax>
+    <email>
+        <!--content of type 'string'-->
+        ...
+    </email>
+    <lab uri="...">
+        <!--content of type 'lab'-->
+    </lab>
+    <udf:type xmlns:udf="http://genologics.com/ri/userdefined">...</udf:type>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <!--...more "field" elements...-->
+    <ri:externalid xmlns:ri="http://genologics.com/ri">...</ri:externalid>
+    <ri:externalid xmlns:ri="http://genologics.com/ri">...</ri:externalid>
+    <!--...more "externalid" elements...-->
+    <credentials>
+        <!--content of type 'credentials'-->
+        <username>
+            <!--content of type 'string'-->
+            ...
+        </username>
+        <password>
+            <!--content of type 'string'-->
+            ...
+        </password>
+        <account-locked>
+            <!--content of type 'boolean'-->
+            ...
+        </account-locked>
+        <role roleName="..." name="..." uri="...">
+            <!--content of type 'role'-->
+        </role>
+        <role>
+            <!--(another 'role' type)-->
+        </role>
+        <!--...more "role" elements...-->
+    </credentials>
+    <initials>
+        <!--content of type 'string'-->
+        ...
+    </initials>
+</res:researcher>

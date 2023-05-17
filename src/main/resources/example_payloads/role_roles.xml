@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<role:roles xmlns:role="http://genologics.com/ri/role" uri="...">
+    <role name="..." uri="...">
+        <!--content of type 'role-link'-->
+    </role>
+    <role>
+        <!--(another 'role-link' type)-->
+    </role>
+    <!--...more "role" elements...-->
+</role:roles>

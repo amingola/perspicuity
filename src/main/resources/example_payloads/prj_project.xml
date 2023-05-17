@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prj:project xmlns:prj="http://genologics.com/ri/project" limsid="..." uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <open-date>
+        <!--content of type 'string'-->
+        ...
+    </open-date>
+    <close-date>
+        <!--content of type 'string'-->
+        ...
+    </close-date>
+    <invoice-date>
+        <!--content of type 'string'-->
+        ...
+    </invoice-date>
+    <researcher uri="...">
+        <!--content of type 'researcher'-->
+    </researcher>
+    <udf:type xmlns:udf="http://genologics.com/ri/userdefined">...</udf:type>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <!--...more "field" elements...-->
+    <ri:externalid xmlns:ri="http://genologics.com/ri">...</ri:externalid>
+    <ri:externalid xmlns:ri="http://genologics.com/ri">...</ri:externalid>
+    <!--...more "externalid" elements...-->
+    <file:file xmlns:file="http://genologics.com/ri/file">...</file:file>
+    <file:file xmlns:file="http://genologics.com/ri/file">...</file:file>
+    <!--...more "file" elements...-->
+</prj:project>

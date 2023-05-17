@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<role:role xmlns:role="http://genologics.com/ri/role" built-in="..." uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <researchers>
+        <researcher last-name="..." first-name="..." uri="...">
+            <!--content of type 'researcher-link'-->
+        </researcher>
+        <researcher>
+            <!--(another 'researcher-link' type)-->
+        </researcher>
+        <!--...more "researcher" elements...-->
+    </researchers>
+    <permissions>
+        <permission action="..." name="..." uri="...">
+            <!--content of type 'permission-link'-->
+        </permission>
+        <permission>
+            <!--(another 'permission-link' type)-->
+        </permission>
+        <!--...more "permission" elements...-->
+    </permissions>
+</role:role>

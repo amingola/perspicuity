@@ -19,7 +19,7 @@ public class PerspicuityDemoApplication {
 
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public NamespaceMapper singletonBean(@Value("${packageRoot}") String clarityPackageRoot) {
+    public NamespaceMapper singletonBean(@Value("${clarityPackage}") String clarityPackageRoot) {
         return new NamespaceMapper(clarityPackageRoot);
     }
 

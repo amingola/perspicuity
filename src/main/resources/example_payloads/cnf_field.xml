@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cnf:field xmlns:cnf="http://genologics.com/ri/configuration" type="..." uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <attach-to-name>
+        <!--content of type 'string'-->
+        ...
+    </attach-to-name>
+    <precision>
+        <!--content of type 'int'-->
+        ...
+    </precision>
+    <unit>
+        <!--content of type 'string'-->
+        ...
+    </unit>
+    <type-definition name="..." uri="...">
+        <!--content of type 'type-definition'-->
+    </type-definition>
+    <show-in-lablink>
+        <!--content of type 'boolean'-->
+        ...
+    </show-in-lablink>
+    <allow-non-preset-values>
+        <!--content of type 'boolean'-->
+        ...
+    </allow-non-preset-values>
+    <first-preset-is-default-value>
+        <!--content of type 'boolean'-->
+        ...
+    </first-preset-is-default-value>
+    <show-in-tables>
+        <!--content of type 'boolean'-->
+        ...
+    </show-in-tables>
+    <is-editable>
+        <!--content of type 'boolean'-->
+        ...
+    </is-editable>
+    <is-deviation>
+        <!--content of type 'boolean'-->
+        ...
+    </is-deviation>
+    <is-controlled-vocabulary>
+        <!--content of type 'boolean'-->
+        ...
+    </is-controlled-vocabulary>
+    <parent-uri>
+        <!--content of type 'anyURI'-->
+        ...
+    </parent-uri>
+    <child-uri>
+        <!--content of type 'string'-->
+        ...
+    </child-uri>
+    <child-uri>
+        <!--(another 'string' type)-->
+    </child-uri>
+    <!--...more "child-uri" elements...-->
+    <preset>
+        <!--content of type 'string'-->
+        ...
+    </preset>
+    <preset>
+        <!--(another 'string' type)-->
+    </preset>
+    <!--...more "preset" elements...-->
+    <min-value>
+        <!--content of type 'double'-->
+        ...
+    </min-value>
+    <max-value>
+        <!--content of type 'double'-->
+        ...
+    </max-value>
+    <is-required>
+        <!--content of type 'boolean'-->
+        ...
+    </is-required>
+    <attach-to-category>
+        <!--content of type 'string'-->
+        ...
+    </attach-to-category>
+</cnf:field>

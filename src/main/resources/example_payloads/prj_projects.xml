@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prj:projects xmlns:prj="http://genologics.com/ri/project">
+    <project limsid="..." uri="...">
+        <!--content of type 'project-link'-->
+        <name>
+            <!--content of type 'string'-->
+            ...
+        </name>
+    </project>
+    <project>
+        <!--(another 'project-link' type)-->
+    </project>
+    <!--...more "project" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</prj:projects>

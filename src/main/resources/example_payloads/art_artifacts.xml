@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<art:artifacts xmlns:art="http://genologics.com/ri/artifact">
+    <artifact uri="..." limsid="...">
+        <!--content of type 'artifact-link'-->
+    </artifact>
+    <artifact>
+        <!--(another 'artifact-link' type)-->
+    </artifact>
+    <!--...more "artifact" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</art:artifacts>

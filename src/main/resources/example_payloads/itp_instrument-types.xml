@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itp:instrument-types xmlns:itp="http://genologics.com/ri/instrumenttype">
+    <instrument-type uri="..." name="..." vendor="...">
+        <!--content of type 'instrument-type-link'-->
+    </instrument-type>
+    <instrument-type>
+        <!--(another 'instrument-type-link' type)-->
+    </instrument-type>
+    <!--...more "instrument-type" elements...-->
+</itp:instrument-types>

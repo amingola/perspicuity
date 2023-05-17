@@ -8,7 +8,12 @@
   <xs:element name="placements" type="stp:placements"/>
   <xs:element name="pools" type="stp:pools"/>
   <xs:element name="program-status" type="stp:program-status"/>
-  <xs:element name="lots" type="stp:reagents-lots"/>
+
+<!--NOTE: This was changed from the original version commented below!
+It is the only element in the entire schema that has a type different from "{prefix}:name" and it broke JAXB parsing!-->
+  <xs:element name="lots" type="stp:lots"/>
+<!--  <xs:element name="lots" type="stp:reagent-lots"/> -->
+
   <xs:element name="reagents" type="stp:reagents"/>
   <xs:element name="setup" type="stp:setup"/>
   <xs:complexType name="step">
@@ -1240,7 +1245,10 @@ an input or output of the Step for the input-output-map.]]>
       <xs:enumeration value="QUEUED"/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="reagents-lots">
+
+  <!--This was changed; see comment above-->
+  <xs:complexType name="lots">
+<!--  <xs:complexType name="lots">-->
     <xs:annotation>
       <xs:documentation>
         <![CDATA[The list representation of a step's reagent lots.]]>

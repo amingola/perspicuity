@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artgr:artifactgroups xmlns:artgr="http://genologics.com/ri/artifactgroup">
+    <artifactgroup uri="...">
+        <!--content of type 'artifactgroup-link'-->
+        <name>
+            <!--content of type 'string'-->
+            ...
+        </name>
+    </artifactgroup>
+    <artifactgroup>
+        <!--(another 'artifactgroup-link' type)-->
+    </artifactgroup>
+    <!--...more "artifactgroup" elements...-->
+    <previous-page uri="...">
+        <!--content of type 'page'-->
+    </previous-page>
+    <next-page uri="...">
+        <!--content of type 'page'-->
+    </next-page>
+</artgr:artifactgroups>

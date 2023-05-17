@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smp:samplecreation xmlns:smp="http://genologics.com/ri/sample" limsid="..." uri="...">
+    <location>
+        <!--content of type 'location'-->
+        <container limsid="..." uri="...">
+            <!--content of type 'container'-->
+        </container>
+        <value>
+            <!--content of type 'string'-->
+            ...
+        </value>
+    </location>
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <date-received>
+        <!--content of type 'string'-->
+        ...
+    </date-received>
+    <date-completed>
+        <!--content of type 'string'-->
+        ...
+    </date-completed>
+    <project uri="..." limsid="...">
+        <!--content of type 'project'-->
+    </project>
+    <submitter uri="...">
+        <!--content of type 'submitter'-->
+        <first-name>
+            <!--content of type 'string'-->
+            ...
+        </first-name>
+        <last-name>
+            <!--content of type 'string'-->
+            ...
+        </last-name>
+    </submitter>
+    <artifact uri="..." limsid="...">
+        <!--content of type 'artifact'-->
+    </artifact>
+    <biosource name="...">
+        <!--content of type 'biosource'-->
+        <description>
+            <!--content of type 'string'-->
+            ...
+        </description>
+        <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+        <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+        <!--...more "field" elements...-->
+    </biosource>
+    <udf:type xmlns:udf="http://genologics.com/ri/userdefined">...</udf:type>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <!--...more "field" elements...-->
+    <ri:externalid xmlns:ri="http://genologics.com/ri">...</ri:externalid>
+    <ri:externalid xmlns:ri="http://genologics.com/ri">...</ri:externalid>
+    <!--...more "externalid" elements...-->
+    <file:file xmlns:file="http://genologics.com/ri/file">...</file:file>
+    <file:file xmlns:file="http://genologics.com/ri/file">...</file:file>
+    <!--...more "file" elements...-->
+</smp:samplecreation>

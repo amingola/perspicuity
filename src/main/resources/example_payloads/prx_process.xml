@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prx:process xmlns:prx="http://genologics.com/ri/processexecution">
+    <type>
+        <!--content of type 'string'-->
+        ...
+    </type>
+    <technician uri="...">
+        <!--content of type 'technician'-->
+    </technician>
+    <date-run>
+        <!--content of type 'string'-->
+        ...
+    </date-run>
+    <input-output-map shared="...">
+        <!--content of type 'input-output-map'-->
+        <input uri="...">
+            <!--content of type 'input'-->
+            <qc-flag>
+                <!--content of type 'qc-flag'-->
+                ...
+            </qc-flag>
+        </input>
+        <input>
+            <!--(another 'input' type)-->
+        </input>
+        <!--...more "input" elements...-->
+        <output type="...">
+            <!--content of type 'output'-->
+            <location>
+                <!--content of type 'location'-->
+                <container limsid="..." uri="...">
+                    <!--content of type 'container'-->
+                </container>
+                <value>
+                    <!--content of type 'string'-->
+                    ...
+                </value>
+            </location>
+            <qc-flag>
+                <!--content of type 'qc-flag'-->
+                ...
+            </qc-flag>
+        </output>
+    </input-output-map>
+    <input-output-map>
+        <!--(another 'input-output-map' type)-->
+    </input-output-map>
+    <!--...more "input-output-map" elements...-->
+    <udf:type xmlns:udf="http://genologics.com/ri/userdefined">...</udf:type>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <!--...more "field" elements...-->
+    <instrument uri="...">
+        <!--content of type 'instrument'-->
+    </instrument>
+    <process-parameter name="...">
+        <!--content of type 'parameter'-->
+    </process-parameter>
+</prx:process>

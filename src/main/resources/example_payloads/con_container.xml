@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:container xmlns:con="http://genologics.com/ri/container" limsid="..." uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <type name="..." uri="...">
+        <!--content of type 'container-type'-->
+    </type>
+    <occupied-wells>
+        <!--content of type 'long'-->
+        ...
+    </occupied-wells>
+    <placement limsid="..." uri="...">
+        <!--content of type 'placement'-->
+        <value>
+            <!--content of type 'string'-->
+            ...
+        </value>
+    </placement>
+    <placement>
+        <!--(another 'placement' type)-->
+    </placement>
+    <!--...more "placement" elements...-->
+    <udf:type xmlns:udf="http://genologics.com/ri/userdefined">...</udf:type>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <!--...more "field" elements...-->
+    <state>
+        <!--content of type 'string'-->
+        ...
+    </state>
+</con:container>

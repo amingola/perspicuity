@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lot:reagent-lot xmlns:lot="http://genologics.com/ri/reagentlot" uri="..." limsid="...">
+    <reagent-kit name="..." uri="...">
+        <!--content of type 'reagent-kit-link'-->
+    </reagent-kit>
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <lot-number>
+        <!--content of type 'string'-->
+        ...
+    </lot-number>
+    <created-date>
+        <!--content of type 'string'-->
+        ...
+    </created-date>
+    <last-modified-date>
+        <!--content of type 'string'-->
+        ...
+    </last-modified-date>
+    <expiry-date>
+        <!--content of type 'string'-->
+        ...
+    </expiry-date>
+    <created-by uri="...">
+        <!--content of type 'researcher'-->
+    </created-by>
+    <last-modified-by uri="...">
+        <!--content of type 'researcher'-->
+    </last-modified-by>
+    <storage-location>
+        <!--content of type 'string'-->
+        ...
+    </storage-location>
+    <notes>
+        <!--content of type 'string'-->
+        ...
+    </notes>
+    <status>
+        <!--content of type 'string'-->
+        ...
+    </status>
+    <usage-count>
+        <!--content of type 'long'-->
+        ...
+    </usage-count>
+</lot:reagent-lot>

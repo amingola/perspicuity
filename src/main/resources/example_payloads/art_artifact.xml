@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<art:artifact xmlns:art="http://genologics.com/ri/artifact" limsid="..." uri="...">
+    <name>
+        <!--content of type 'string'-->
+        ...
+    </name>
+    <type>
+        <!--content of type 'string'-->
+        ...
+    </type>
+    <output-type>
+        <!--content of type 'string'-->
+        ...
+    </output-type>
+    <parent-process limsid="..." uri="...">
+        <!--content of type 'parent-process'-->
+    </parent-process>
+    <qc-flag>
+        <!--content of type 'qc-flag'-->
+        ...
+    </qc-flag>
+    <location>
+        <!--content of type 'location'-->
+        <container limsid="..." uri="...">
+            <!--content of type 'container'-->
+        </container>
+        <value>
+            <!--content of type 'string'-->
+            ...
+        </value>
+    </location>
+    <working-flag>
+        <!--content of type 'boolean'-->
+        ...
+    </working-flag>
+    <sample limsid="..." uri="...">
+        <!--content of type 'sample'-->
+    </sample>
+    <sample>
+        <!--(another 'sample' type)-->
+    </sample>
+    <!--...more "sample" elements...-->
+    <reagent-label name="...">
+        <!--content of type 'reagent-label'-->
+    </reagent-label>
+    <reagent-label>
+        <!--(another 'reagent-label' type)-->
+    </reagent-label>
+    <!--...more "reagent-label" elements...-->
+    <control-type uri="...">
+        <!--content of type 'control-type'-->
+    </control-type>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <udf:field xmlns:udf="http://genologics.com/ri/userdefined">...</udf:field>
+    <!--...more "field" elements...-->
+    <file:file xmlns:file="http://genologics.com/ri/file">...</file:file>
+    <artifact-group uri="..." name="...">
+        <!--content of type 'artifactgroup'-->
+    </artifact-group>
+    <artifact-group>
+        <!--(another 'artifactgroup' type)-->
+    </artifact-group>
+    <!--...more "artifact-group" elements...-->
+    <workflow-stages>
+        <workflow-stage uri="..." name="..." status="...">
+            <!--content of type 'workflow-stage'-->
+        </workflow-stage>
+        <workflow-stage>
+            <!--(another 'workflow-stage' type)-->
+        </workflow-stage>
+        <!--...more "workflow-stage" elements...-->
+    </workflow-stages>
+</art:artifact>

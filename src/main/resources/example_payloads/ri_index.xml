@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:index xmlns:ri="http://genologics.com/ri">
+    <link rel="..." uri="...">
+        <!--content of type 'link'-->
+    </link>
+    <link>
+        <!--(another 'link' type)-->
+    </link>
+    <!--...more "link" elements...-->
+</ri:index>
