@@ -22,7 +22,7 @@ public class JsonEndpointDynamicTests {
         String clarityUri = "http://genologics.com";
         String schemaDirectory = "src/main/xsd";
 
-        NamespaceMapper namespaceMapper = new NamespaceMapper(clarityPackage, clarityPackageRoot, clarityUri, schemaDirectory);
+        NamespaceMapper namespaceMapper = new NamespaceMapper(clarityPackageRoot, clarityUri, schemaDirectory);
         marshallingService = new MarshallingService(clarityPackage, clarityPackageRoot, clarityUri, namespaceMapper);
         unmarshallingService = new UnmarshallingService(clarityPackage, clarityUri);
     }

@@ -15,19 +15,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+/**
+ * @author Andrew Mingola
+ */
 public class NamespaceMapper extends NamespacePrefixMapper{
 
     private static final Logger logger = LoggerFactory.getLogger(NamespacePrefixMapper.class);
     private static final HashMap<String, Class<?>> classes = new HashMap<>();
 
-    private final String clarityPackage;
     private final String clarityPackageRoot;
     private final String clarityUri;
     private final String schemaDirectory;
     private final HashMap<String, String> namespaces = new HashMap<>();
 
-    public NamespaceMapper(String clarityPackage, String clarityPackageRoot, String clarityUri, String schemaDirectory){
-        this.clarityPackage = clarityPackage;
+    public NamespaceMapper(String clarityPackageRoot, String clarityUri, String schemaDirectory){
         this.clarityPackageRoot = clarityPackageRoot;
         this.clarityUri = clarityUri;
         this.schemaDirectory = schemaDirectory;

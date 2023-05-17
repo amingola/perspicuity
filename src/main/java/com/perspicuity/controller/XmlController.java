@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.xml.bind.JAXBException;
 
+/**
+ * @author Andrew Mingola
+ */
 @Controller
 @RequestMapping("/xml")
 public class XmlController {

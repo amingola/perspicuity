@@ -11,6 +11,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+/**
+ * @author Andrew Mingola
+ */
 public class ControllerGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(ControllerGenerator.class);
@@ -22,6 +25,7 @@ public class ControllerGenerator {
     private static final String jsonFileBeginning =
             "package com.perspicuity.controller;\n\n" +
             "import com.perspicuity.service.MarshallingService;\n" +
+            "import com.perspicuity.service.UnmarshallingService;\n" +
             "import org.slf4j.Logger;\n" +
             "import org.slf4j.LoggerFactory;\n" +
             "import org.springframework.http.HttpStatus;\n" +
@@ -30,37 +34,43 @@ public class ControllerGenerator {
             "import org.springframework.web.bind.annotation.PostMapping;\n" +
             "import org.springframework.web.bind.annotation.RequestBody;\n" +
             "import org.springframework.web.bind.annotation.RequestMapping;\n\n" +
-            "@Controller\n" +
-            "@RequestMapping(\"/%2$s\")\n" +
-            "public class JsonController {\n\n" +
-            "    private static final Logger logger = LoggerFactory.getLogger(JsonController.class);\n\n" +
-            "    final MarshallingService marshallingService;\n\n" +
-            "    public JsonController(MarshallingService marshallingService) {\n" +
+            "import javax.xml.bind.JAXBException;\n\n" +
+            "/**\n" +
+            " * @author Andrew Mingola\n" +
+            " */" +
+            "\n@Controller\n" +
+            "@RequestMapping(\"/%2$s\")" +
+            "\npublic class %1$s {\n\n" +
+            "    private static final Logger logger = LoggerFactory.getLogger(%1$s.class);\n\n" +
+            "    final MarshallingService marshallingService;\n" +
+            "    final UnmarshallingService unmarshallingService;\n\n" +
+            "    public %1$s(MarshallingService marshallingService, UnmarshallingService unmarshallingService) {\n" +
             "        this.marshallingService = marshallingService;\n" +
+            "        this.unmarshallingService = unmarshallingService;\n" +
             "    }\n";
     private static final String jsonEndpointTemplate =
-                    "\n    @PostMapping(\"/%1$s\")\n" +
-                    "    ResponseEntity<Object> get%2$s(@RequestBody String xmlPayload) {\n" +
-                    "        logger.info(\"hit /%3$s/%1$s\");\n" +
-                    "        %1$s jsonPayload = (%1$s) xmlToJson(%1$s.class, xmlPayload);\n" +
-                            "        return buildResponse(jsonPayload);\n" +
-                    "    }\n";
+                "\n    @PostMapping(\"/%1$s\")\n" +
+                "    ResponseEntity<Object> get%2$s(@RequestBody String xmlPayload) {\n" +
+                "        logger.info(\"hit /%3$s/%1$s\");\n" +
+                "        %1$s jsonPayload = (%1$s) xmlToJson(%1$s.class, xmlPayload);\n" +
+                        "        return buildResponse(jsonPayload);\n" +
+                "    }\n";
     private static final String jsonFileEnd =
-            "    private ResponseEntity<Object> buildResponse(Object jsonPayload) {\n" +
-                    "        return (jsonPayload != null)\n" +
-                    "                ? ResponseEntity.ok(jsonPayload)\n" +
-                    "                : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();\n" +
-                    "    }\n\n" +
-                    "    private Object xmlToJson(Class<?> payloadClass, String xmlPayload){\n\n" +
-                    "        logger.info(\"\\n\" + xmlPayload);\n\n" +
-                    "        try {\n" +
-                    "            return UnmarshallingService.unmarshal(payloadClass, xmlPayload).getValue();\n" +
-                    "        } catch (JAXBException | ClassNotFoundException e) {\n" +
-                    "            logger.error(\"xmlToJson didn't work for payload: \" + xmlPayload, e);\n" +
-                    "        }\n\n" +
-                    "        return null;\n\n" +
-                    "    }\n\n" +
-                    "}\n";
+            "\n    private ResponseEntity<Object> buildResponse(Object jsonPayload) {\n" +
+            "        return (jsonPayload != null)\n" +
+            "                ? ResponseEntity.ok(jsonPayload)\n" +
+            "                : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();\n" +
+            "    }\n\n" +
+            "    private Object xmlToJson(Class<?> payloadClass, String xmlPayload){\n\n" +
+            "        logger.info(\"\\n\" + xmlPayload);\n\n" +
+            "        try {\n" +
+            "            return unmarshallingService.unmarshal(payloadClass, xmlPayload).getValue();\n" +
+            "        } catch (JAXBException | ClassNotFoundException e) {\n" +
+            "            logger.error(\"xmlToJson didn't work for payload: \" + xmlPayload, e);\n" +
+            "        }\n\n" +
+            "        return null;\n\n" +
+            "    }\n\n" +
+            "}\n";
 
     private static final String xmlControllerName = "XmlController";
     private static final String xmlEndpointPathPrefix = "xml";
@@ -77,7 +87,9 @@ public class ControllerGenerator {
                     "import org.springframework.web.bind.annotation.RequestBody;\n" +
                     "import org.springframework.web.bind.annotation.RequestMapping;\n\n" +
                     "import javax.xml.bind.JAXBException;\n\n" +
-                    "@Controller\n" +
+                    "/**\n" +
+                    " * @author Andrew Mingola\n" +
+                    " */\n@Controller\n" +
                     "@RequestMapping(\"/%2$s\")\n" +
                     "public class %1$s {\n\n" +
                     "    private static final Logger logger = LoggerFactory.getLogger(%1$s.class);\n\n" +

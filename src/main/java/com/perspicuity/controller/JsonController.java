@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.xml.bind.JAXBException;
 
+/**
+ * @author Andrew Mingola
+ */
 @Controller
 @RequestMapping("/json")
 public class JsonController {
@@ -2007,6 +2010,7 @@ public class JsonController {
         com.genologics.ri.workflowconfiguration.Workflows jsonPayload = (com.genologics.ri.workflowconfiguration.Workflows) xmlToJson(com.genologics.ri.workflowconfiguration.Workflows.class, xmlPayload);
         return buildResponse(jsonPayload);
     }
+
     private ResponseEntity<Object> buildResponse(Object jsonPayload) {
         return (jsonPayload != null)
                 ? ResponseEntity.ok(jsonPayload)

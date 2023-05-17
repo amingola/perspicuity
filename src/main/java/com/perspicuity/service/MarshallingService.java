@@ -20,6 +20,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * @author Andrew Mingola
+ *
  * This class provides one key method, <code>marshal()</code>, that marshals various payload types generically,
  * whichever the Clarity LIMS endpoint may require.
  *

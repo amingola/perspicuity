@@ -18,6 +18,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * @author Andrew Mingola
+ *
  * This class provides a single method, unmarshal(), which accepts a Class and a String represented the well-formed XML
  * to be unmarshalled.
  */
