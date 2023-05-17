@@ -13,6 +13,10 @@ import java.util.stream.Collectors;
 
 /**
  * @author Andrew Mingola
+ * It is optional to make use of this class, but the <code>main()</code> will generate Spring Boot Controllers,
+ * "<code>JsonController</code>" and "<code>XmlController</code>" (by default) in the
+ * <code>com.perspicuity.controller</code> package. These controllers contain endpoints that enable the marshalling
+ * and unmarshalling of any Clarity type to/from XML/JSON.
  */
 public class ControllerGenerator {
 
@@ -98,9 +102,9 @@ public class ControllerGenerator {
                     "        this.marshallingService = marshallingService;\n" +
                     "    }";
     private static final String xmlEndpointTemplate =
-                    "\n\n    @PostMapping(\"/%3$s/%2$s\")\n" +
+                    "\n\n    @PostMapping(\"/%3$s/%1$s\")\n" +
                     "    ResponseEntity<String> xmlToJsonSample(@RequestBody %1$s %2$s){\n" +
-                    "        logger.info(\"hit /marshal/%1$s\");\n" +
+                    "        logger.info(\"hit /xml/%1$s\");\n" +
                     "        return marshal(%2$s.getClass(), %2$s);\n" +
                     "    }";
     private static final String xmlFileEnd = "\n\n" +
