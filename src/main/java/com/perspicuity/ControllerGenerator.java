@@ -22,7 +22,6 @@ public class ControllerGenerator {
     private static final String jsonFileBeginning =
             "package com.perspicuity.controller;\n\n" +
             "import com.perspicuity.service.MarshallingService;\n" +
-            "import com.perspicuity.service.UnmarshallingService;\n" +
             "import org.slf4j.Logger;\n" +
             "import org.slf4j.LoggerFactory;\n" +
             "import org.springframework.http.HttpStatus;\n" +
@@ -31,7 +30,6 @@ public class ControllerGenerator {
             "import org.springframework.web.bind.annotation.PostMapping;\n" +
             "import org.springframework.web.bind.annotation.RequestBody;\n" +
             "import org.springframework.web.bind.annotation.RequestMapping;\n\n" +
-            "import javax.xml.bind.JAXBException;\n\n" +
             "@Controller\n" +
             "@RequestMapping(\"/%2$s\")\n" +
             "public class JsonController {\n\n" +
@@ -72,9 +70,11 @@ public class ControllerGenerator {
                     "import com.perspicuity.service.MarshallingService;\n" +
                     "import org.slf4j.Logger;\n" +
                     "import org.slf4j.LoggerFactory;\n" +
+                    "import org.springframework.http.HttpStatus;\n" +
                     "import org.springframework.http.ResponseEntity;\n" +
                     "import org.springframework.stereotype.Controller;\n" +
-                    "import org.springframework.web.bind.annotation.GetMapping;\n" +
+                    "import org.springframework.web.bind.annotation.PostMapping;\n" +
+                    "import org.springframework.web.bind.annotation.RequestBody;\n" +
                     "import org.springframework.web.bind.annotation.RequestMapping;\n\n" +
                     "import javax.xml.bind.JAXBException;\n\n" +
                     "@Controller\n" +
@@ -86,18 +86,40 @@ public class ControllerGenerator {
                     "        this.marshallingService = marshallingService;\n" +
                     "    }";
     private static final String xmlEndpointTemplate =
-            "\n    @GetMapping(\"/%1$s\")\n" +
-                    "    ResponseEntity<String> get%2$s() throws JAXBException, ClassNotFoundException {\n" +
-                    "        logger.info(\"hit /%3$s/%1$s\");\n" +
-                    "        return ResponseEntity.ok(marshallingService.marshal(%1$s.class, new %1$s()));\n" +
-                    "    }\n";
-    private static final String xmlFileEnd = "\n}";
+                    "\n\n    @PostMapping(\"/%3$s/%2$s\")\n" +
+                    "    ResponseEntity<String> xmlToJsonSample(@RequestBody %1$s %2$s){\n" +
+                    "        logger.info(\"hit /marshal/%1$s\");\n" +
+                    "        return marshal(%2$s.getClass(), %2$s);\n" +
+                    "    }";
+    private static final String xmlFileEnd = "\n\n" +
+            "    private ResponseEntity<String> marshal(Class<?> payloadClass, Object payload){\n" +
+            "\n" +
+            "        try {\n" +
+            "\n" +
+            "            String response = marshallingService.marshal(payloadClass, payload);\n" +
+            "            return ResponseEntity.ok().body(response);\n" +
+            "\n" +
+            "        } catch (JAXBException e) {\n" +
+            "\n" +
+            "            logger.error(\"Something broke real bad...\", e);\n" +
+            "            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());\n" +
+            "\n" +
+            "        } catch (ClassNotFoundException e) {\n" +
+            "\n" +
+            "            String msg = \"ClassNotFoundException...was this a Clarity datatype?: \" + payloadClass;\n" +
+            "\n" +
+            "            logger.error(msg, e);\n" +
+            "            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(msg);\n" +
+            "\n" +
+            "        }\n" +
+            "\n" +
+            "    }\n}";
 
     private static final ArrayList<String> jaxbClasses = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
 
-        logger.info("Generating endpoints for all instantiable JAXB classes");
+        logger.info("Generating endpoints for all instantiable JAXB classes...");
 
         extractAllInstantiableJaxbClassesFromGeneratedSources();
         generateJsonController();
@@ -131,7 +153,8 @@ public class ControllerGenerator {
 
         jaxbClasses.forEach(fullTypeName -> {
             try {
-                String endpoint = String.format(xmlEndpointTemplate, fullTypeName, setToTitleCase(fullTypeName), xmlEndpointPathPrefix);
+                String endpoint =
+                        String.format(xmlEndpointTemplate, fullTypeName, setToTitleCase(fullTypeName).toLowerCase(), xmlEndpointPathPrefix);
                 bufferedWriter.write(endpoint);
             } catch (IOException e) {
                 logger.error("Failed to create XML endpoint for class \"" + fullTypeName, e);

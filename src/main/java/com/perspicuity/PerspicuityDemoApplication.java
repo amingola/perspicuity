@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Scope;
 public class PerspicuityDemoApplication {
 
     //TODO AOP logging
-    //TODO should services have static methods?
 
     public static void main(String[] args) {
         SpringApplication.run(PerspicuityDemoApplication.class, args);

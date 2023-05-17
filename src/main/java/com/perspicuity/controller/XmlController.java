@@ -3,9 +3,11 @@ package com.perspicuity.controller;
 import com.perspicuity.service.MarshallingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.xml.bind.JAXBException;
@@ -21,1702 +23,1725 @@ public class XmlController {
     public XmlController(MarshallingService marshallingService) {
         this.marshallingService = marshallingService;
     }
-    @GetMapping("/com.genologics.ri.Address")
-    ResponseEntity<String> getAddress() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.Address");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.Address.class, new com.genologics.ri.Address()));
+
+    @PostMapping("/xml/address")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.Address address){
+        logger.info("hit /marshal/com.genologics.ri.Address");
+        return marshal(address.getClass(), address);
     }
 
-    @GetMapping("/com.genologics.ri.Container")
-    ResponseEntity<String> getContainer() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.Container");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.Container.class, new com.genologics.ri.Container()));
+    @PostMapping("/xml/container")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.Container container){
+        logger.info("hit /marshal/com.genologics.ri.Container");
+        return marshal(container.getClass(), container);
     }
 
-    @GetMapping("/com.genologics.ri.Externalid")
-    ResponseEntity<String> getExternalid() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.Externalid");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.Externalid.class, new com.genologics.ri.Externalid()));
+    @PostMapping("/xml/externalid")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.Externalid externalid){
+        logger.info("hit /marshal/com.genologics.ri.Externalid");
+        return marshal(externalid.getClass(), externalid);
     }
 
-    @GetMapping("/com.genologics.ri.Index")
-    ResponseEntity<String> getIndex() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.Index");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.Index.class, new com.genologics.ri.Index()));
+    @PostMapping("/xml/index")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.Index index){
+        logger.info("hit /marshal/com.genologics.ri.Index");
+        return marshal(index.getClass(), index);
     }
 
-    @GetMapping("/com.genologics.ri.Link")
-    ResponseEntity<String> getLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.Link");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.Link.class, new com.genologics.ri.Link()));
+    @PostMapping("/xml/link")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.Link link){
+        logger.info("hit /marshal/com.genologics.ri.Link");
+        return marshal(link.getClass(), link);
     }
 
-    @GetMapping("/com.genologics.ri.Links")
-    ResponseEntity<String> getLinks() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.Links");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.Links.class, new com.genologics.ri.Links()));
+    @PostMapping("/xml/links")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.Links links){
+        logger.info("hit /marshal/com.genologics.ri.Links");
+        return marshal(links.getClass(), links);
     }
 
-    @GetMapping("/com.genologics.ri.Location")
-    ResponseEntity<String> getLocation() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.Location");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.Location.class, new com.genologics.ri.Location()));
+    @PostMapping("/xml/location")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.Location location){
+        logger.info("hit /marshal/com.genologics.ri.Location");
+        return marshal(location.getClass(), location);
     }
 
-    @GetMapping("/com.genologics.ri.Page")
-    ResponseEntity<String> getPage() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.Page");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.Page.class, new com.genologics.ri.Page()));
+    @PostMapping("/xml/page")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.Page page){
+        logger.info("hit /marshal/com.genologics.ri.Page");
+        return marshal(page.getClass(), page);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.Artifact")
-    ResponseEntity<String> getArtifactArtifact() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.Artifact");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.Artifact.class, new com.genologics.ri.artifact.Artifact()));
+    @PostMapping("/xml/artifactartifact")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.Artifact artifactartifact){
+        logger.info("hit /marshal/com.genologics.ri.artifact.Artifact");
+        return marshal(artifactartifact.getClass(), artifactartifact);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.Artifact.WorkflowStages")
-    ResponseEntity<String> getArtifactArtifactWorkflowStages() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.Artifact.WorkflowStages");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.Artifact.WorkflowStages.class, new com.genologics.ri.artifact.Artifact.WorkflowStages()));
+    @PostMapping("/xml/artifactartifactworkflowstages")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.Artifact.WorkflowStages artifactartifactworkflowstages){
+        logger.info("hit /marshal/com.genologics.ri.artifact.Artifact.WorkflowStages");
+        return marshal(artifactartifactworkflowstages.getClass(), artifactartifactworkflowstages);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.ArtifactLink")
-    ResponseEntity<String> getArtifactArtifactLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.ArtifactLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.ArtifactLink.class, new com.genologics.ri.artifact.ArtifactLink()));
+    @PostMapping("/xml/artifactartifactlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.ArtifactLink artifactartifactlink){
+        logger.info("hit /marshal/com.genologics.ri.artifact.ArtifactLink");
+        return marshal(artifactartifactlink.getClass(), artifactartifactlink);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.Artifactgroup")
-    ResponseEntity<String> getArtifactArtifactgroup() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.Artifactgroup");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.Artifactgroup.class, new com.genologics.ri.artifact.Artifactgroup()));
+    @PostMapping("/xml/artifactartifactgroup")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.Artifactgroup artifactartifactgroup){
+        logger.info("hit /marshal/com.genologics.ri.artifact.Artifactgroup");
+        return marshal(artifactartifactgroup.getClass(), artifactartifactgroup);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.Artifacts")
-    ResponseEntity<String> getArtifactArtifacts() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.Artifacts");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.Artifacts.class, new com.genologics.ri.artifact.Artifacts()));
+    @PostMapping("/xml/artifactartifacts")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.Artifacts artifactartifacts){
+        logger.info("hit /marshal/com.genologics.ri.artifact.Artifacts");
+        return marshal(artifactartifacts.getClass(), artifactartifacts);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.ControlType")
-    ResponseEntity<String> getArtifactControlType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.ControlType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.ControlType.class, new com.genologics.ri.artifact.ControlType()));
+    @PostMapping("/xml/artifactcontroltype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.ControlType artifactcontroltype){
+        logger.info("hit /marshal/com.genologics.ri.artifact.ControlType");
+        return marshal(artifactcontroltype.getClass(), artifactcontroltype);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.Demux")
-    ResponseEntity<String> getArtifactDemux() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.Demux");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.Demux.class, new com.genologics.ri.artifact.Demux()));
+    @PostMapping("/xml/artifactdemux")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.Demux artifactdemux){
+        logger.info("hit /marshal/com.genologics.ri.artifact.Demux");
+        return marshal(artifactdemux.getClass(), artifactdemux);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.DemuxArtifact")
-    ResponseEntity<String> getArtifactDemuxArtifact() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.DemuxArtifact");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.DemuxArtifact.class, new com.genologics.ri.artifact.DemuxArtifact()));
+    @PostMapping("/xml/artifactdemuxartifact")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.DemuxArtifact artifactdemuxartifact){
+        logger.info("hit /marshal/com.genologics.ri.artifact.DemuxArtifact");
+        return marshal(artifactdemuxartifact.getClass(), artifactdemuxartifact);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.DemuxArtifact.ReagentLabels")
-    ResponseEntity<String> getArtifactDemuxArtifactReagentLabels() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.DemuxArtifact.ReagentLabels");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.DemuxArtifact.ReagentLabels.class, new com.genologics.ri.artifact.DemuxArtifact.ReagentLabels()));
+    @PostMapping("/xml/artifactdemuxartifactreagentlabels")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.DemuxArtifact.ReagentLabels artifactdemuxartifactreagentlabels){
+        logger.info("hit /marshal/com.genologics.ri.artifact.DemuxArtifact.ReagentLabels");
+        return marshal(artifactdemuxartifactreagentlabels.getClass(), artifactdemuxartifactreagentlabels);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.DemuxArtifact.Samples")
-    ResponseEntity<String> getArtifactDemuxArtifactSamples() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.DemuxArtifact.Samples");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.DemuxArtifact.Samples.class, new com.genologics.ri.artifact.DemuxArtifact.Samples()));
+    @PostMapping("/xml/artifactdemuxartifactsamples")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.DemuxArtifact.Samples artifactdemuxartifactsamples){
+        logger.info("hit /marshal/com.genologics.ri.artifact.DemuxArtifact.Samples");
+        return marshal(artifactdemuxartifactsamples.getClass(), artifactdemuxartifactsamples);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.DemuxArtifactSample")
-    ResponseEntity<String> getArtifactDemuxArtifactSample() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.DemuxArtifactSample");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.DemuxArtifactSample.class, new com.genologics.ri.artifact.DemuxArtifactSample()));
+    @PostMapping("/xml/artifactdemuxartifactsample")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.DemuxArtifactSample artifactdemuxartifactsample){
+        logger.info("hit /marshal/com.genologics.ri.artifact.DemuxArtifactSample");
+        return marshal(artifactdemuxartifactsample.getClass(), artifactdemuxartifactsample);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.DemuxDetails")
-    ResponseEntity<String> getArtifactDemuxDetails() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.DemuxDetails");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.DemuxDetails.class, new com.genologics.ri.artifact.DemuxDetails()));
+    @PostMapping("/xml/artifactdemuxdetails")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.DemuxDetails artifactdemuxdetails){
+        logger.info("hit /marshal/com.genologics.ri.artifact.DemuxDetails");
+        return marshal(artifactdemuxdetails.getClass(), artifactdemuxdetails);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.DemuxDetails.Artifacts")
-    ResponseEntity<String> getArtifactDemuxDetailsArtifacts() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.DemuxDetails.Artifacts");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.DemuxDetails.Artifacts.class, new com.genologics.ri.artifact.DemuxDetails.Artifacts()));
+    @PostMapping("/xml/artifactdemuxdetailsartifacts")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.DemuxDetails.Artifacts artifactdemuxdetailsartifacts){
+        logger.info("hit /marshal/com.genologics.ri.artifact.DemuxDetails.Artifacts");
+        return marshal(artifactdemuxdetailsartifacts.getClass(), artifactdemuxdetailsartifacts);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.DemuxLink")
-    ResponseEntity<String> getArtifactDemuxLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.DemuxLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.DemuxLink.class, new com.genologics.ri.artifact.DemuxLink()));
+    @PostMapping("/xml/artifactdemuxlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.DemuxLink artifactdemuxlink){
+        logger.info("hit /marshal/com.genologics.ri.artifact.DemuxLink");
+        return marshal(artifactdemuxlink.getClass(), artifactdemuxlink);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.DemuxSourceArtifact")
-    ResponseEntity<String> getArtifactDemuxSourceArtifact() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.DemuxSourceArtifact");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.DemuxSourceArtifact.class, new com.genologics.ri.artifact.DemuxSourceArtifact()));
+    @PostMapping("/xml/artifactdemuxsourceartifact")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.DemuxSourceArtifact artifactdemuxsourceartifact){
+        logger.info("hit /marshal/com.genologics.ri.artifact.DemuxSourceArtifact");
+        return marshal(artifactdemuxsourceartifact.getClass(), artifactdemuxsourceartifact);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.Details")
-    ResponseEntity<String> getArtifactDetails() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.Details");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.Details.class, new com.genologics.ri.artifact.Details()));
+    @PostMapping("/xml/artifactdetails")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.Details artifactdetails){
+        logger.info("hit /marshal/com.genologics.ri.artifact.Details");
+        return marshal(artifactdetails.getClass(), artifactdetails);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.ParentProcess")
-    ResponseEntity<String> getArtifactParentProcess() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.ParentProcess");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.ParentProcess.class, new com.genologics.ri.artifact.ParentProcess()));
+    @PostMapping("/xml/artifactparentprocess")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.ParentProcess artifactparentprocess){
+        logger.info("hit /marshal/com.genologics.ri.artifact.ParentProcess");
+        return marshal(artifactparentprocess.getClass(), artifactparentprocess);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.PoolStep")
-    ResponseEntity<String> getArtifactPoolStep() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.PoolStep");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.PoolStep.class, new com.genologics.ri.artifact.PoolStep()));
+    @PostMapping("/xml/artifactpoolstep")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.PoolStep artifactpoolstep){
+        logger.info("hit /marshal/com.genologics.ri.artifact.PoolStep");
+        return marshal(artifactpoolstep.getClass(), artifactpoolstep);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.ReagentLabel")
-    ResponseEntity<String> getArtifactReagentLabel() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.ReagentLabel");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.ReagentLabel.class, new com.genologics.ri.artifact.ReagentLabel()));
+    @PostMapping("/xml/artifactreagentlabel")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.ReagentLabel artifactreagentlabel){
+        logger.info("hit /marshal/com.genologics.ri.artifact.ReagentLabel");
+        return marshal(artifactreagentlabel.getClass(), artifactreagentlabel);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.Sample")
-    ResponseEntity<String> getArtifactSample() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.Sample");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.Sample.class, new com.genologics.ri.artifact.Sample()));
+    @PostMapping("/xml/artifactsample")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.Sample artifactsample){
+        logger.info("hit /marshal/com.genologics.ri.artifact.Sample");
+        return marshal(artifactsample.getClass(), artifactsample);
     }
 
-    @GetMapping("/com.genologics.ri.artifact.WorkflowStage")
-    ResponseEntity<String> getArtifactWorkflowStage() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifact.WorkflowStage");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifact.WorkflowStage.class, new com.genologics.ri.artifact.WorkflowStage()));
+    @PostMapping("/xml/artifactworkflowstage")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifact.WorkflowStage artifactworkflowstage){
+        logger.info("hit /marshal/com.genologics.ri.artifact.WorkflowStage");
+        return marshal(artifactworkflowstage.getClass(), artifactworkflowstage);
     }
 
-    @GetMapping("/com.genologics.ri.artifactgroup.Artifactgroup")
-    ResponseEntity<String> getArtifactgroupArtifactgroup() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifactgroup.Artifactgroup");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifactgroup.Artifactgroup.class, new com.genologics.ri.artifactgroup.Artifactgroup()));
+    @PostMapping("/xml/artifactgroupartifactgroup")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifactgroup.Artifactgroup artifactgroupartifactgroup){
+        logger.info("hit /marshal/com.genologics.ri.artifactgroup.Artifactgroup");
+        return marshal(artifactgroupartifactgroup.getClass(), artifactgroupartifactgroup);
     }
 
-    @GetMapping("/com.genologics.ri.artifactgroup.ArtifactgroupLink")
-    ResponseEntity<String> getArtifactgroupArtifactgroupLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifactgroup.ArtifactgroupLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifactgroup.ArtifactgroupLink.class, new com.genologics.ri.artifactgroup.ArtifactgroupLink()));
+    @PostMapping("/xml/artifactgroupartifactgrouplink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifactgroup.ArtifactgroupLink artifactgroupartifactgrouplink){
+        logger.info("hit /marshal/com.genologics.ri.artifactgroup.ArtifactgroupLink");
+        return marshal(artifactgroupartifactgrouplink.getClass(), artifactgroupartifactgrouplink);
     }
 
-    @GetMapping("/com.genologics.ri.artifactgroup.Artifactgroups")
-    ResponseEntity<String> getArtifactgroupArtifactgroups() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifactgroup.Artifactgroups");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifactgroup.Artifactgroups.class, new com.genologics.ri.artifactgroup.Artifactgroups()));
+    @PostMapping("/xml/artifactgroupartifactgroups")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifactgroup.Artifactgroups artifactgroupartifactgroups){
+        logger.info("hit /marshal/com.genologics.ri.artifactgroup.Artifactgroups");
+        return marshal(artifactgroupartifactgroups.getClass(), artifactgroupartifactgroups);
     }
 
-    @GetMapping("/com.genologics.ri.artifactgroup.Artifacts")
-    ResponseEntity<String> getArtifactgroupArtifacts() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.artifactgroup.Artifacts");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.artifactgroup.Artifacts.class, new com.genologics.ri.artifactgroup.Artifacts()));
+    @PostMapping("/xml/artifactgroupartifacts")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.artifactgroup.Artifacts artifactgroupartifacts){
+        logger.info("hit /marshal/com.genologics.ri.artifactgroup.Artifacts");
+        return marshal(artifactgroupartifacts.getClass(), artifactgroupartifacts);
     }
 
-    @GetMapping("/com.genologics.ri.automation.Automation")
-    ResponseEntity<String> getAutomationAutomation() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.automation.Automation");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.automation.Automation.class, new com.genologics.ri.automation.Automation()));
+    @PostMapping("/xml/automationautomation")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.automation.Automation automationautomation){
+        logger.info("hit /marshal/com.genologics.ri.automation.Automation");
+        return marshal(automationautomation.getClass(), automationautomation);
     }
 
-    @GetMapping("/com.genologics.ri.automation.Automation.ProcessTypes")
-    ResponseEntity<String> getAutomationAutomationProcessTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.automation.Automation.ProcessTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.automation.Automation.ProcessTypes.class, new com.genologics.ri.automation.Automation.ProcessTypes()));
+    @PostMapping("/xml/automationautomationprocesstypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.automation.Automation.ProcessTypes automationautomationprocesstypes){
+        logger.info("hit /marshal/com.genologics.ri.automation.Automation.ProcessTypes");
+        return marshal(automationautomationprocesstypes.getClass(), automationautomationprocesstypes);
     }
 
-    @GetMapping("/com.genologics.ri.automation.AutomationLink")
-    ResponseEntity<String> getAutomationAutomationLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.automation.AutomationLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.automation.AutomationLink.class, new com.genologics.ri.automation.AutomationLink()));
+    @PostMapping("/xml/automationautomationlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.automation.AutomationLink automationautomationlink){
+        logger.info("hit /marshal/com.genologics.ri.automation.AutomationLink");
+        return marshal(automationautomationlink.getClass(), automationautomationlink);
     }
 
-    @GetMapping("/com.genologics.ri.automation.Automations")
-    ResponseEntity<String> getAutomationAutomations() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.automation.Automations");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.automation.Automations.class, new com.genologics.ri.automation.Automations()));
+    @PostMapping("/xml/automationautomations")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.automation.Automations automationautomations){
+        logger.info("hit /marshal/com.genologics.ri.automation.Automations");
+        return marshal(automationautomations.getClass(), automationautomations);
     }
 
-    @GetMapping("/com.genologics.ri.automation.ProcessType")
-    ResponseEntity<String> getAutomationProcessType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.automation.ProcessType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.automation.ProcessType.class, new com.genologics.ri.automation.ProcessType()));
+    @PostMapping("/xml/automationprocesstype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.automation.ProcessType automationprocesstype){
+        logger.info("hit /marshal/com.genologics.ri.automation.ProcessType");
+        return marshal(automationprocesstype.getClass(), automationprocesstype);
     }
 
-    @GetMapping("/com.genologics.ri.configuration.Field")
-    ResponseEntity<String> getConfigurationField() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.configuration.Field");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.configuration.Field.class, new com.genologics.ri.configuration.Field()));
+    @PostMapping("/xml/configurationfield")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.configuration.Field configurationfield){
+        logger.info("hit /marshal/com.genologics.ri.configuration.Field");
+        return marshal(configurationfield.getClass(), configurationfield);
     }
 
-    @GetMapping("/com.genologics.ri.configuration.FieldLink")
-    ResponseEntity<String> getConfigurationFieldLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.configuration.FieldLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.configuration.FieldLink.class, new com.genologics.ri.configuration.FieldLink()));
+    @PostMapping("/xml/configurationfieldlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.configuration.FieldLink configurationfieldlink){
+        logger.info("hit /marshal/com.genologics.ri.configuration.FieldLink");
+        return marshal(configurationfieldlink.getClass(), configurationfieldlink);
     }
 
-    @GetMapping("/com.genologics.ri.configuration.Type")
-    ResponseEntity<String> getConfigurationType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.configuration.Type");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.configuration.Type.class, new com.genologics.ri.configuration.Type()));
+    @PostMapping("/xml/configurationtype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.configuration.Type configurationtype){
+        logger.info("hit /marshal/com.genologics.ri.configuration.Type");
+        return marshal(configurationtype.getClass(), configurationtype);
     }
 
-    @GetMapping("/com.genologics.ri.configuration.TypeDefinition")
-    ResponseEntity<String> getConfigurationTypeDefinition() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.configuration.TypeDefinition");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.configuration.TypeDefinition.class, new com.genologics.ri.configuration.TypeDefinition()));
+    @PostMapping("/xml/configurationtypedefinition")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.configuration.TypeDefinition configurationtypedefinition){
+        logger.info("hit /marshal/com.genologics.ri.configuration.TypeDefinition");
+        return marshal(configurationtypedefinition.getClass(), configurationtypedefinition);
     }
 
-    @GetMapping("/com.genologics.ri.configuration.UdfconfigLink")
-    ResponseEntity<String> getConfigurationUdfconfigLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.configuration.UdfconfigLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.configuration.UdfconfigLink.class, new com.genologics.ri.configuration.UdfconfigLink()));
+    @PostMapping("/xml/configurationudfconfiglink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.configuration.UdfconfigLink configurationudfconfiglink){
+        logger.info("hit /marshal/com.genologics.ri.configuration.UdfconfigLink");
+        return marshal(configurationudfconfiglink.getClass(), configurationudfconfiglink);
     }
 
-    @GetMapping("/com.genologics.ri.configuration.Udfs")
-    ResponseEntity<String> getConfigurationUdfs() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.configuration.Udfs");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.configuration.Udfs.class, new com.genologics.ri.configuration.Udfs()));
+    @PostMapping("/xml/configurationudfs")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.configuration.Udfs configurationudfs){
+        logger.info("hit /marshal/com.genologics.ri.configuration.Udfs");
+        return marshal(configurationudfs.getClass(), configurationudfs);
     }
 
-    @GetMapping("/com.genologics.ri.configuration.UdtconfigLink")
-    ResponseEntity<String> getConfigurationUdtconfigLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.configuration.UdtconfigLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.configuration.UdtconfigLink.class, new com.genologics.ri.configuration.UdtconfigLink()));
+    @PostMapping("/xml/configurationudtconfiglink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.configuration.UdtconfigLink configurationudtconfiglink){
+        logger.info("hit /marshal/com.genologics.ri.configuration.UdtconfigLink");
+        return marshal(configurationudtconfiglink.getClass(), configurationudtconfiglink);
     }
 
-    @GetMapping("/com.genologics.ri.configuration.Udts")
-    ResponseEntity<String> getConfigurationUdts() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.configuration.Udts");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.configuration.Udts.class, new com.genologics.ri.configuration.Udts()));
+    @PostMapping("/xml/configurationudts")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.configuration.Udts configurationudts){
+        logger.info("hit /marshal/com.genologics.ri.configuration.Udts");
+        return marshal(configurationudts.getClass(), configurationudts);
     }
 
-    @GetMapping("/com.genologics.ri.container.Container")
-    ResponseEntity<String> getContainerContainer() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.container.Container");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.container.Container.class, new com.genologics.ri.container.Container()));
+    @PostMapping("/xml/containercontainer")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.container.Container containercontainer){
+        logger.info("hit /marshal/com.genologics.ri.container.Container");
+        return marshal(containercontainer.getClass(), containercontainer);
     }
 
-    @GetMapping("/com.genologics.ri.container.ContainerLink")
-    ResponseEntity<String> getContainerContainerLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.container.ContainerLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.container.ContainerLink.class, new com.genologics.ri.container.ContainerLink()));
+    @PostMapping("/xml/containercontainerlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.container.ContainerLink containercontainerlink){
+        logger.info("hit /marshal/com.genologics.ri.container.ContainerLink");
+        return marshal(containercontainerlink.getClass(), containercontainerlink);
     }
 
-    @GetMapping("/com.genologics.ri.container.ContainerType")
-    ResponseEntity<String> getContainerContainerType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.container.ContainerType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.container.ContainerType.class, new com.genologics.ri.container.ContainerType()));
+    @PostMapping("/xml/containercontainertype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.container.ContainerType containercontainertype){
+        logger.info("hit /marshal/com.genologics.ri.container.ContainerType");
+        return marshal(containercontainertype.getClass(), containercontainertype);
     }
 
-    @GetMapping("/com.genologics.ri.container.Containers")
-    ResponseEntity<String> getContainerContainers() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.container.Containers");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.container.Containers.class, new com.genologics.ri.container.Containers()));
+    @PostMapping("/xml/containercontainers")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.container.Containers containercontainers){
+        logger.info("hit /marshal/com.genologics.ri.container.Containers");
+        return marshal(containercontainers.getClass(), containercontainers);
     }
 
-    @GetMapping("/com.genologics.ri.container.Details")
-    ResponseEntity<String> getContainerDetails() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.container.Details");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.container.Details.class, new com.genologics.ri.container.Details()));
+    @PostMapping("/xml/containerdetails")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.container.Details containerdetails){
+        logger.info("hit /marshal/com.genologics.ri.container.Details");
+        return marshal(containerdetails.getClass(), containerdetails);
     }
 
-    @GetMapping("/com.genologics.ri.container.Placement")
-    ResponseEntity<String> getContainerPlacement() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.container.Placement");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.container.Placement.class, new com.genologics.ri.container.Placement()));
+    @PostMapping("/xml/containerplacement")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.container.Placement containerplacement){
+        logger.info("hit /marshal/com.genologics.ri.container.Placement");
+        return marshal(containerplacement.getClass(), containerplacement);
     }
 
-    @GetMapping("/com.genologics.ri.containertype.CalibrantWell")
-    ResponseEntity<String> getContainertypeCalibrantWell() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.containertype.CalibrantWell");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.containertype.CalibrantWell.class, new com.genologics.ri.containertype.CalibrantWell()));
+    @PostMapping("/xml/containertypecalibrantwell")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.containertype.CalibrantWell containertypecalibrantwell){
+        logger.info("hit /marshal/com.genologics.ri.containertype.CalibrantWell");
+        return marshal(containertypecalibrantwell.getClass(), containertypecalibrantwell);
     }
 
-    @GetMapping("/com.genologics.ri.containertype.ContainerType")
-    ResponseEntity<String> getContainertypeContainerType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.containertype.ContainerType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.containertype.ContainerType.class, new com.genologics.ri.containertype.ContainerType()));
+    @PostMapping("/xml/containertypecontainertype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.containertype.ContainerType containertypecontainertype){
+        logger.info("hit /marshal/com.genologics.ri.containertype.ContainerType");
+        return marshal(containertypecontainertype.getClass(), containertypecontainertype);
     }
 
-    @GetMapping("/com.genologics.ri.containertype.ContainerTypeLink")
-    ResponseEntity<String> getContainertypeContainerTypeLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.containertype.ContainerTypeLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.containertype.ContainerTypeLink.class, new com.genologics.ri.containertype.ContainerTypeLink()));
+    @PostMapping("/xml/containertypecontainertypelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.containertype.ContainerTypeLink containertypecontainertypelink){
+        logger.info("hit /marshal/com.genologics.ri.containertype.ContainerTypeLink");
+        return marshal(containertypecontainertypelink.getClass(), containertypecontainertypelink);
     }
 
-    @GetMapping("/com.genologics.ri.containertype.ContainerTypes")
-    ResponseEntity<String> getContainertypeContainerTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.containertype.ContainerTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.containertype.ContainerTypes.class, new com.genologics.ri.containertype.ContainerTypes()));
+    @PostMapping("/xml/containertypecontainertypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.containertype.ContainerTypes containertypecontainertypes){
+        logger.info("hit /marshal/com.genologics.ri.containertype.ContainerTypes");
+        return marshal(containertypecontainertypes.getClass(), containertypecontainertypes);
     }
 
-    @GetMapping("/com.genologics.ri.containertype.Dimension")
-    ResponseEntity<String> getContainertypeDimension() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.containertype.Dimension");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.containertype.Dimension.class, new com.genologics.ri.containertype.Dimension()));
+    @PostMapping("/xml/containertypedimension")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.containertype.Dimension containertypedimension){
+        logger.info("hit /marshal/com.genologics.ri.containertype.Dimension");
+        return marshal(containertypedimension.getClass(), containertypedimension);
     }
 
-    @GetMapping("/com.genologics.ri.controltype.ControlType")
-    ResponseEntity<String> getControltypeControlType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.controltype.ControlType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.controltype.ControlType.class, new com.genologics.ri.controltype.ControlType()));
+    @PostMapping("/xml/controltypecontroltype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.controltype.ControlType controltypecontroltype){
+        logger.info("hit /marshal/com.genologics.ri.controltype.ControlType");
+        return marshal(controltypecontroltype.getClass(), controltypecontroltype);
     }
 
-    @GetMapping("/com.genologics.ri.controltype.ControlTypeLink")
-    ResponseEntity<String> getControltypeControlTypeLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.controltype.ControlTypeLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.controltype.ControlTypeLink.class, new com.genologics.ri.controltype.ControlTypeLink()));
+    @PostMapping("/xml/controltypecontroltypelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.controltype.ControlTypeLink controltypecontroltypelink){
+        logger.info("hit /marshal/com.genologics.ri.controltype.ControlTypeLink");
+        return marshal(controltypecontroltypelink.getClass(), controltypecontroltypelink);
     }
 
-    @GetMapping("/com.genologics.ri.controltype.ControlTypes")
-    ResponseEntity<String> getControltypeControlTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.controltype.ControlTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.controltype.ControlTypes.class, new com.genologics.ri.controltype.ControlTypes()));
+    @PostMapping("/xml/controltypecontroltypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.controltype.ControlTypes controltypecontroltypes){
+        logger.info("hit /marshal/com.genologics.ri.controltype.ControlTypes");
+        return marshal(controltypecontroltypes.getClass(), controltypecontroltypes);
     }
 
-    @GetMapping("/com.genologics.ri.exception.Exception")
-    ResponseEntity<String> getExceptionException() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.exception.Exception");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.exception.Exception.class, new com.genologics.ri.exception.Exception()));
+    @PostMapping("/xml/exceptionexception")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.exception.Exception exceptionexception){
+        logger.info("hit /marshal/com.genologics.ri.exception.Exception");
+        return marshal(exceptionexception.getClass(), exceptionexception);
     }
 
-    @GetMapping("/com.genologics.ri.file.Details")
-    ResponseEntity<String> getFileDetails() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.file.Details");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.file.Details.class, new com.genologics.ri.file.Details()));
+    @PostMapping("/xml/filedetails")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.file.Details filedetails){
+        logger.info("hit /marshal/com.genologics.ri.file.Details");
+        return marshal(filedetails.getClass(), filedetails);
     }
 
-    @GetMapping("/com.genologics.ri.file.File")
-    ResponseEntity<String> getFileFile() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.file.File");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.file.File.class, new com.genologics.ri.file.File()));
+    @PostMapping("/xml/filefile")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.file.File filefile){
+        logger.info("hit /marshal/com.genologics.ri.file.File");
+        return marshal(filefile.getClass(), filefile);
     }
 
-    @GetMapping("/com.genologics.ri.file.FileLink")
-    ResponseEntity<String> getFileFileLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.file.FileLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.file.FileLink.class, new com.genologics.ri.file.FileLink()));
+    @PostMapping("/xml/filefilelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.file.FileLink filefilelink){
+        logger.info("hit /marshal/com.genologics.ri.file.FileLink");
+        return marshal(filefilelink.getClass(), filefilelink);
     }
 
-    @GetMapping("/com.genologics.ri.file.Files")
-    ResponseEntity<String> getFileFiles() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.file.Files");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.file.Files.class, new com.genologics.ri.file.Files()));
+    @PostMapping("/xml/filefiles")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.file.Files filefiles){
+        logger.info("hit /marshal/com.genologics.ri.file.Files");
+        return marshal(filefiles.getClass(), filefiles);
     }
 
-    @GetMapping("/com.genologics.ri.instrument.Instrument")
-    ResponseEntity<String> getInstrumentInstrument() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.instrument.Instrument");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrument.Instrument.class, new com.genologics.ri.instrument.Instrument()));
+    @PostMapping("/xml/instrumentinstrument")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.instrument.Instrument instrumentinstrument){
+        logger.info("hit /marshal/com.genologics.ri.instrument.Instrument");
+        return marshal(instrumentinstrument.getClass(), instrumentinstrument);
     }
 
-    @GetMapping("/com.genologics.ri.instrument.InstrumentLink")
-    ResponseEntity<String> getInstrumentInstrumentLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.instrument.InstrumentLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrument.InstrumentLink.class, new com.genologics.ri.instrument.InstrumentLink()));
+    @PostMapping("/xml/instrumentinstrumentlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.instrument.InstrumentLink instrumentinstrumentlink){
+        logger.info("hit /marshal/com.genologics.ri.instrument.InstrumentLink");
+        return marshal(instrumentinstrumentlink.getClass(), instrumentinstrumentlink);
     }
 
-    @GetMapping("/com.genologics.ri.instrument.Instruments")
-    ResponseEntity<String> getInstrumentInstruments() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.instrument.Instruments");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrument.Instruments.class, new com.genologics.ri.instrument.Instruments()));
+    @PostMapping("/xml/instrumentinstruments")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.instrument.Instruments instrumentinstruments){
+        logger.info("hit /marshal/com.genologics.ri.instrument.Instruments");
+        return marshal(instrumentinstruments.getClass(), instrumentinstruments);
     }
 
-    @GetMapping("/com.genologics.ri.instrumenttype.InstrumentType")
-    ResponseEntity<String> getInstrumenttypeInstrumentType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.instrumenttype.InstrumentType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrumenttype.InstrumentType.class, new com.genologics.ri.instrumenttype.InstrumentType()));
+    @PostMapping("/xml/instrumenttypeinstrumenttype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.instrumenttype.InstrumentType instrumenttypeinstrumenttype){
+        logger.info("hit /marshal/com.genologics.ri.instrumenttype.InstrumentType");
+        return marshal(instrumenttypeinstrumenttype.getClass(), instrumenttypeinstrumenttype);
     }
 
-    @GetMapping("/com.genologics.ri.instrumenttype.InstrumentType.ProcessTypes")
-    ResponseEntity<String> getInstrumenttypeInstrumentTypeProcessTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.instrumenttype.InstrumentType.ProcessTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrumenttype.InstrumentType.ProcessTypes.class, new com.genologics.ri.instrumenttype.InstrumentType.ProcessTypes()));
+    @PostMapping("/xml/instrumenttypeinstrumenttypeprocesstypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.instrumenttype.InstrumentType.ProcessTypes instrumenttypeinstrumenttypeprocesstypes){
+        logger.info("hit /marshal/com.genologics.ri.instrumenttype.InstrumentType.ProcessTypes");
+        return marshal(instrumenttypeinstrumenttypeprocesstypes.getClass(), instrumenttypeinstrumenttypeprocesstypes);
     }
 
-    @GetMapping("/com.genologics.ri.instrumenttype.InstrumentTypeLink")
-    ResponseEntity<String> getInstrumenttypeInstrumentTypeLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.instrumenttype.InstrumentTypeLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrumenttype.InstrumentTypeLink.class, new com.genologics.ri.instrumenttype.InstrumentTypeLink()));
+    @PostMapping("/xml/instrumenttypeinstrumenttypelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.instrumenttype.InstrumentTypeLink instrumenttypeinstrumenttypelink){
+        logger.info("hit /marshal/com.genologics.ri.instrumenttype.InstrumentTypeLink");
+        return marshal(instrumenttypeinstrumenttypelink.getClass(), instrumenttypeinstrumenttypelink);
     }
 
-    @GetMapping("/com.genologics.ri.instrumenttype.InstrumentTypeProcessType")
-    ResponseEntity<String> getInstrumenttypeInstrumentTypeProcessType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.instrumenttype.InstrumentTypeProcessType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrumenttype.InstrumentTypeProcessType.class, new com.genologics.ri.instrumenttype.InstrumentTypeProcessType()));
+    @PostMapping("/xml/instrumenttypeinstrumenttypeprocesstype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.instrumenttype.InstrumentTypeProcessType instrumenttypeinstrumenttypeprocesstype){
+        logger.info("hit /marshal/com.genologics.ri.instrumenttype.InstrumentTypeProcessType");
+        return marshal(instrumenttypeinstrumenttypeprocesstype.getClass(), instrumenttypeinstrumenttypeprocesstype);
     }
 
-    @GetMapping("/com.genologics.ri.instrumenttype.InstrumentTypes")
-    ResponseEntity<String> getInstrumenttypeInstrumentTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.instrumenttype.InstrumentTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.instrumenttype.InstrumentTypes.class, new com.genologics.ri.instrumenttype.InstrumentTypes()));
+    @PostMapping("/xml/instrumenttypeinstrumenttypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.instrumenttype.InstrumentTypes instrumenttypeinstrumenttypes){
+        logger.info("hit /marshal/com.genologics.ri.instrumenttype.InstrumentTypes");
+        return marshal(instrumenttypeinstrumenttypes.getClass(), instrumenttypeinstrumenttypes);
     }
 
-    @GetMapping("/com.genologics.ri.lab.Lab")
-    ResponseEntity<String> getLabLab() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.lab.Lab");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.lab.Lab.class, new com.genologics.ri.lab.Lab()));
+    @PostMapping("/xml/lablab")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.lab.Lab lablab){
+        logger.info("hit /marshal/com.genologics.ri.lab.Lab");
+        return marshal(lablab.getClass(), lablab);
     }
 
-    @GetMapping("/com.genologics.ri.lab.LabLink")
-    ResponseEntity<String> getLabLabLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.lab.LabLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.lab.LabLink.class, new com.genologics.ri.lab.LabLink()));
+    @PostMapping("/xml/lablablink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.lab.LabLink lablablink){
+        logger.info("hit /marshal/com.genologics.ri.lab.LabLink");
+        return marshal(lablablink.getClass(), lablablink);
     }
 
-    @GetMapping("/com.genologics.ri.lab.Labs")
-    ResponseEntity<String> getLabLabs() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.lab.Labs");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.lab.Labs.class, new com.genologics.ri.lab.Labs()));
+    @PostMapping("/xml/lablabs")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.lab.Labs lablabs){
+        logger.info("hit /marshal/com.genologics.ri.lab.Labs");
+        return marshal(lablabs.getClass(), lablabs);
     }
 
-    @GetMapping("/com.genologics.ri.permission.Permission")
-    ResponseEntity<String> getPermissionPermission() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.permission.Permission");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.permission.Permission.class, new com.genologics.ri.permission.Permission()));
+    @PostMapping("/xml/permissionpermission")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.permission.Permission permissionpermission){
+        logger.info("hit /marshal/com.genologics.ri.permission.Permission");
+        return marshal(permissionpermission.getClass(), permissionpermission);
     }
 
-    @GetMapping("/com.genologics.ri.permission.PermissionLink")
-    ResponseEntity<String> getPermissionPermissionLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.permission.PermissionLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.permission.PermissionLink.class, new com.genologics.ri.permission.PermissionLink()));
+    @PostMapping("/xml/permissionpermissionlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.permission.PermissionLink permissionpermissionlink){
+        logger.info("hit /marshal/com.genologics.ri.permission.PermissionLink");
+        return marshal(permissionpermissionlink.getClass(), permissionpermissionlink);
     }
 
-    @GetMapping("/com.genologics.ri.permission.Permissions")
-    ResponseEntity<String> getPermissionPermissions() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.permission.Permissions");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.permission.Permissions.class, new com.genologics.ri.permission.Permissions()));
+    @PostMapping("/xml/permissionpermissions")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.permission.Permissions permissionpermissions){
+        logger.info("hit /marshal/com.genologics.ri.permission.Permissions");
+        return marshal(permissionpermissions.getClass(), permissionpermissions);
     }
 
-    @GetMapping("/com.genologics.ri.process.Artifact")
-    ResponseEntity<String> getProcessArtifact() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.process.Artifact");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.Artifact.class, new com.genologics.ri.process.Artifact()));
+    @PostMapping("/xml/processartifact")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.process.Artifact processartifact){
+        logger.info("hit /marshal/com.genologics.ri.process.Artifact");
+        return marshal(processartifact.getClass(), processartifact);
     }
 
-    @GetMapping("/com.genologics.ri.process.InputOutputMap")
-    ResponseEntity<String> getProcessInputOutputMap() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.process.InputOutputMap");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.InputOutputMap.class, new com.genologics.ri.process.InputOutputMap()));
+    @PostMapping("/xml/processinputoutputmap")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.process.InputOutputMap processinputoutputmap){
+        logger.info("hit /marshal/com.genologics.ri.process.InputOutputMap");
+        return marshal(processinputoutputmap.getClass(), processinputoutputmap);
     }
 
-    @GetMapping("/com.genologics.ri.process.Instrument")
-    ResponseEntity<String> getProcessInstrument() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.process.Instrument");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.Instrument.class, new com.genologics.ri.process.Instrument()));
+    @PostMapping("/xml/processinstrument")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.process.Instrument processinstrument){
+        logger.info("hit /marshal/com.genologics.ri.process.Instrument");
+        return marshal(processinstrument.getClass(), processinstrument);
     }
 
-    @GetMapping("/com.genologics.ri.process.Parameter")
-    ResponseEntity<String> getProcessParameter() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.process.Parameter");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.Parameter.class, new com.genologics.ri.process.Parameter()));
+    @PostMapping("/xml/processparameter")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.process.Parameter processparameter){
+        logger.info("hit /marshal/com.genologics.ri.process.Parameter");
+        return marshal(processparameter.getClass(), processparameter);
     }
 
-    @GetMapping("/com.genologics.ri.process.ParentProcess")
-    ResponseEntity<String> getProcessParentProcess() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.process.ParentProcess");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.ParentProcess.class, new com.genologics.ri.process.ParentProcess()));
+    @PostMapping("/xml/processparentprocess")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.process.ParentProcess processparentprocess){
+        logger.info("hit /marshal/com.genologics.ri.process.ParentProcess");
+        return marshal(processparentprocess.getClass(), processparentprocess);
     }
 
-    @GetMapping("/com.genologics.ri.process.Process")
-    ResponseEntity<String> getProcessProcess() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.process.Process");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.Process.class, new com.genologics.ri.process.Process()));
+    @PostMapping("/xml/processprocess")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.process.Process processprocess){
+        logger.info("hit /marshal/com.genologics.ri.process.Process");
+        return marshal(processprocess.getClass(), processprocess);
     }
 
-    @GetMapping("/com.genologics.ri.process.ProcessLink")
-    ResponseEntity<String> getProcessProcessLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.process.ProcessLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.ProcessLink.class, new com.genologics.ri.process.ProcessLink()));
+    @PostMapping("/xml/processprocesslink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.process.ProcessLink processprocesslink){
+        logger.info("hit /marshal/com.genologics.ri.process.ProcessLink");
+        return marshal(processprocesslink.getClass(), processprocesslink);
     }
 
-    @GetMapping("/com.genologics.ri.process.ProcessType")
-    ResponseEntity<String> getProcessProcessType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.process.ProcessType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.ProcessType.class, new com.genologics.ri.process.ProcessType()));
+    @PostMapping("/xml/processprocesstype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.process.ProcessType processprocesstype){
+        logger.info("hit /marshal/com.genologics.ri.process.ProcessType");
+        return marshal(processprocesstype.getClass(), processprocesstype);
     }
 
-    @GetMapping("/com.genologics.ri.process.Processes")
-    ResponseEntity<String> getProcessProcesses() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.process.Processes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.Processes.class, new com.genologics.ri.process.Processes()));
+    @PostMapping("/xml/processprocesses")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.process.Processes processprocesses){
+        logger.info("hit /marshal/com.genologics.ri.process.Processes");
+        return marshal(processprocesses.getClass(), processprocesses);
     }
 
-    @GetMapping("/com.genologics.ri.process.Technician")
-    ResponseEntity<String> getProcessTechnician() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.process.Technician");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.process.Technician.class, new com.genologics.ri.process.Technician()));
+    @PostMapping("/xml/processtechnician")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.process.Technician processtechnician){
+        logger.info("hit /marshal/com.genologics.ri.process.Technician");
+        return marshal(processtechnician.getClass(), processtechnician);
     }
 
-    @GetMapping("/com.genologics.ri.processexecution.Input")
-    ResponseEntity<String> getProcessexecutionInput() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processexecution.Input");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processexecution.Input.class, new com.genologics.ri.processexecution.Input()));
+    @PostMapping("/xml/processexecutioninput")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processexecution.Input processexecutioninput){
+        logger.info("hit /marshal/com.genologics.ri.processexecution.Input");
+        return marshal(processexecutioninput.getClass(), processexecutioninput);
     }
 
-    @GetMapping("/com.genologics.ri.processexecution.InputOutputMap")
-    ResponseEntity<String> getProcessexecutionInputOutputMap() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processexecution.InputOutputMap");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processexecution.InputOutputMap.class, new com.genologics.ri.processexecution.InputOutputMap()));
+    @PostMapping("/xml/processexecutioninputoutputmap")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processexecution.InputOutputMap processexecutioninputoutputmap){
+        logger.info("hit /marshal/com.genologics.ri.processexecution.InputOutputMap");
+        return marshal(processexecutioninputoutputmap.getClass(), processexecutioninputoutputmap);
     }
 
-    @GetMapping("/com.genologics.ri.processexecution.Instrument")
-    ResponseEntity<String> getProcessexecutionInstrument() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processexecution.Instrument");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processexecution.Instrument.class, new com.genologics.ri.processexecution.Instrument()));
+    @PostMapping("/xml/processexecutioninstrument")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processexecution.Instrument processexecutioninstrument){
+        logger.info("hit /marshal/com.genologics.ri.processexecution.Instrument");
+        return marshal(processexecutioninstrument.getClass(), processexecutioninstrument);
     }
 
-    @GetMapping("/com.genologics.ri.processexecution.Output")
-    ResponseEntity<String> getProcessexecutionOutput() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processexecution.Output");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processexecution.Output.class, new com.genologics.ri.processexecution.Output()));
+    @PostMapping("/xml/processexecutionoutput")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processexecution.Output processexecutionoutput){
+        logger.info("hit /marshal/com.genologics.ri.processexecution.Output");
+        return marshal(processexecutionoutput.getClass(), processexecutionoutput);
     }
 
-    @GetMapping("/com.genologics.ri.processexecution.Parameter")
-    ResponseEntity<String> getProcessexecutionParameter() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processexecution.Parameter");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processexecution.Parameter.class, new com.genologics.ri.processexecution.Parameter()));
+    @PostMapping("/xml/processexecutionparameter")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processexecution.Parameter processexecutionparameter){
+        logger.info("hit /marshal/com.genologics.ri.processexecution.Parameter");
+        return marshal(processexecutionparameter.getClass(), processexecutionparameter);
     }
 
-    @GetMapping("/com.genologics.ri.processexecution.Process")
-    ResponseEntity<String> getProcessexecutionProcess() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processexecution.Process");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processexecution.Process.class, new com.genologics.ri.processexecution.Process()));
+    @PostMapping("/xml/processexecutionprocess")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processexecution.Process processexecutionprocess){
+        logger.info("hit /marshal/com.genologics.ri.processexecution.Process");
+        return marshal(processexecutionprocess.getClass(), processexecutionprocess);
     }
 
-    @GetMapping("/com.genologics.ri.processexecution.Technician")
-    ResponseEntity<String> getProcessexecutionTechnician() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processexecution.Technician");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processexecution.Technician.class, new com.genologics.ri.processexecution.Technician()));
+    @PostMapping("/xml/processexecutiontechnician")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processexecution.Technician processexecutiontechnician){
+        logger.info("hit /marshal/com.genologics.ri.processexecution.Technician");
+        return marshal(processexecutiontechnician.getClass(), processexecutiontechnician);
     }
 
-    @GetMapping("/com.genologics.ri.processtemplate.Instrument")
-    ResponseEntity<String> getProcesstemplateInstrument() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtemplate.Instrument");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtemplate.Instrument.class, new com.genologics.ri.processtemplate.Instrument()));
+    @PostMapping("/xml/processtemplateinstrument")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtemplate.Instrument processtemplateinstrument){
+        logger.info("hit /marshal/com.genologics.ri.processtemplate.Instrument");
+        return marshal(processtemplateinstrument.getClass(), processtemplateinstrument);
     }
 
-    @GetMapping("/com.genologics.ri.processtemplate.Parameter")
-    ResponseEntity<String> getProcesstemplateParameter() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtemplate.Parameter");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtemplate.Parameter.class, new com.genologics.ri.processtemplate.Parameter()));
+    @PostMapping("/xml/processtemplateparameter")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtemplate.Parameter processtemplateparameter){
+        logger.info("hit /marshal/com.genologics.ri.processtemplate.Parameter");
+        return marshal(processtemplateparameter.getClass(), processtemplateparameter);
     }
 
-    @GetMapping("/com.genologics.ri.processtemplate.ProcessTemplate")
-    ResponseEntity<String> getProcesstemplateProcessTemplate() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtemplate.ProcessTemplate");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtemplate.ProcessTemplate.class, new com.genologics.ri.processtemplate.ProcessTemplate()));
+    @PostMapping("/xml/processtemplateprocesstemplate")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtemplate.ProcessTemplate processtemplateprocesstemplate){
+        logger.info("hit /marshal/com.genologics.ri.processtemplate.ProcessTemplate");
+        return marshal(processtemplateprocesstemplate.getClass(), processtemplateprocesstemplate);
     }
 
-    @GetMapping("/com.genologics.ri.processtemplate.ProcessTemplateLink")
-    ResponseEntity<String> getProcesstemplateProcessTemplateLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtemplate.ProcessTemplateLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtemplate.ProcessTemplateLink.class, new com.genologics.ri.processtemplate.ProcessTemplateLink()));
+    @PostMapping("/xml/processtemplateprocesstemplatelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtemplate.ProcessTemplateLink processtemplateprocesstemplatelink){
+        logger.info("hit /marshal/com.genologics.ri.processtemplate.ProcessTemplateLink");
+        return marshal(processtemplateprocesstemplatelink.getClass(), processtemplateprocesstemplatelink);
     }
 
-    @GetMapping("/com.genologics.ri.processtemplate.ProcessTemplates")
-    ResponseEntity<String> getProcesstemplateProcessTemplates() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtemplate.ProcessTemplates");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtemplate.ProcessTemplates.class, new com.genologics.ri.processtemplate.ProcessTemplates()));
+    @PostMapping("/xml/processtemplateprocesstemplates")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtemplate.ProcessTemplates processtemplateprocesstemplates){
+        logger.info("hit /marshal/com.genologics.ri.processtemplate.ProcessTemplates");
+        return marshal(processtemplateprocesstemplates.getClass(), processtemplateprocesstemplates);
     }
 
-    @GetMapping("/com.genologics.ri.processtemplate.ProcessType")
-    ResponseEntity<String> getProcesstemplateProcessType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtemplate.ProcessType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtemplate.ProcessType.class, new com.genologics.ri.processtemplate.ProcessType()));
+    @PostMapping("/xml/processtemplateprocesstype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtemplate.ProcessType processtemplateprocesstype){
+        logger.info("hit /marshal/com.genologics.ri.processtemplate.ProcessType");
+        return marshal(processtemplateprocesstype.getClass(), processtemplateprocesstype);
     }
 
-    @GetMapping("/com.genologics.ri.processtemplate.Technician")
-    ResponseEntity<String> getProcesstemplateTechnician() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtemplate.Technician");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtemplate.Technician.class, new com.genologics.ri.processtemplate.Technician()));
+    @PostMapping("/xml/processtemplatetechnician")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtemplate.Technician processtemplatetechnician){
+        logger.info("hit /marshal/com.genologics.ri.processtemplate.Technician");
+        return marshal(processtemplatetechnician.getClass(), processtemplatetechnician);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ContainerTypeLink")
-    ResponseEntity<String> getProcesstypeContainerTypeLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ContainerTypeLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ContainerTypeLink.class, new com.genologics.ri.processtype.ContainerTypeLink()));
+    @PostMapping("/xml/processtypecontainertypelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ContainerTypeLink processtypecontainertypelink){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ContainerTypeLink");
+        return marshal(processtypecontainertypelink.getClass(), processtypecontainertypelink);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ControlTypeLink")
-    ResponseEntity<String> getProcesstypeControlTypeLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ControlTypeLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ControlTypeLink.class, new com.genologics.ri.processtype.ControlTypeLink()));
+    @PostMapping("/xml/processtypecontroltypelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ControlTypeLink processtypecontroltypelink){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ControlTypeLink");
+        return marshal(processtypecontroltypelink.getClass(), processtypecontroltypelink);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.EppTrigger")
-    ResponseEntity<String> getProcesstypeEppTrigger() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.EppTrigger");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.EppTrigger.class, new com.genologics.ri.processtype.EppTrigger()));
+    @PostMapping("/xml/processtypeepptrigger")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.EppTrigger processtypeepptrigger){
+        logger.info("hit /marshal/com.genologics.ri.processtype.EppTrigger");
+        return marshal(processtypeepptrigger.getClass(), processtypeepptrigger);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.Field")
-    ResponseEntity<String> getProcesstypeField() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.Field");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.Field.class, new com.genologics.ri.processtype.Field()));
+    @PostMapping("/xml/processtypefield")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.Field processtypefield){
+        logger.info("hit /marshal/com.genologics.ri.processtype.Field");
+        return marshal(processtypefield.getClass(), processtypefield);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.File")
-    ResponseEntity<String> getProcesstypeFile() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.File");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.File.class, new com.genologics.ri.processtype.File()));
+    @PostMapping("/xml/processtypefile")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.File processtypefile){
+        logger.info("hit /marshal/com.genologics.ri.processtype.File");
+        return marshal(processtypefile.getClass(), processtypefile);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.Icebucketfield")
-    ResponseEntity<String> getProcesstypeIcebucketfield() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.Icebucketfield");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.Icebucketfield.class, new com.genologics.ri.processtype.Icebucketfield()));
+    @PostMapping("/xml/processtypeicebucketfield")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.Icebucketfield processtypeicebucketfield){
+        logger.info("hit /marshal/com.genologics.ri.processtype.Icebucketfield");
+        return marshal(processtypeicebucketfield.getClass(), processtypeicebucketfield);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.Parameter")
-    ResponseEntity<String> getProcesstypeParameter() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.Parameter");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.Parameter.class, new com.genologics.ri.processtype.Parameter()));
+    @PostMapping("/xml/processtypeparameter")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.Parameter processtypeparameter){
+        logger.info("hit /marshal/com.genologics.ri.processtype.Parameter");
+        return marshal(processtypeparameter.getClass(), processtypeparameter);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessInput")
-    ResponseEntity<String> getProcesstypeProcessInput() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessInput");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessInput.class, new com.genologics.ri.processtype.ProcessInput()));
+    @PostMapping("/xml/processtypeprocessinput")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessInput processtypeprocessinput){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessInput");
+        return marshal(processtypeprocessinput.getClass(), processtypeprocessinput);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessOutput")
-    ResponseEntity<String> getProcesstypeProcessOutput() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessOutput");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessOutput.class, new com.genologics.ri.processtype.ProcessOutput()));
+    @PostMapping("/xml/processtypeprocessoutput")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessOutput processtypeprocessoutput){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessOutput");
+        return marshal(processtypeprocessoutput.getClass(), processtypeprocessoutput);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType")
-    ResponseEntity<String> getProcesstypeProcessType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.class, new com.genologics.ri.processtype.ProcessType()));
+    @PostMapping("/xml/processtypeprocesstype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType processtypeprocesstype){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType");
+        return marshal(processtypeprocesstype.getClass(), processtypeprocesstype);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.EppTriggers")
-    ResponseEntity<String> getProcesstypeProcessTypeEppTriggers() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.EppTriggers");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.EppTriggers.class, new com.genologics.ri.processtype.ProcessType.EppTriggers()));
+    @PostMapping("/xml/processtypeprocesstypeepptriggers")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.EppTriggers processtypeprocesstypeepptriggers){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.EppTriggers");
+        return marshal(processtypeprocesstypeepptriggers.getClass(), processtypeprocesstypeepptriggers);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.IceBucketFields")
-    ResponseEntity<String> getProcesstypeProcessTypeIceBucketFields() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.IceBucketFields");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.IceBucketFields.class, new com.genologics.ri.processtype.ProcessType.IceBucketFields()));
+    @PostMapping("/xml/processtypeprocesstypeicebucketfields")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.IceBucketFields processtypeprocesstypeicebucketfields){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.IceBucketFields");
+        return marshal(processtypeprocesstypeicebucketfields.getClass(), processtypeprocesstypeicebucketfields);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.PermittedContainers")
-    ResponseEntity<String> getProcesstypeProcessTypePermittedContainers() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.PermittedContainers");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.PermittedContainers.class, new com.genologics.ri.processtype.ProcessType.PermittedContainers()));
+    @PostMapping("/xml/processtypeprocesstypepermittedcontainers")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.PermittedContainers processtypeprocesstypepermittedcontainers){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.PermittedContainers");
+        return marshal(processtypeprocesstypepermittedcontainers.getClass(), processtypeprocesstypepermittedcontainers);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.PermittedControlTypes")
-    ResponseEntity<String> getProcesstypeProcessTypePermittedControlTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.PermittedControlTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.PermittedControlTypes.class, new com.genologics.ri.processtype.ProcessType.PermittedControlTypes()));
+    @PostMapping("/xml/processtypeprocesstypepermittedcontroltypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.PermittedControlTypes processtypeprocesstypepermittedcontroltypes){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.PermittedControlTypes");
+        return marshal(processtypeprocesstypepermittedcontroltypes.getClass(), processtypeprocesstypepermittedcontroltypes);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.PermittedInstrumentTypes")
-    ResponseEntity<String> getProcesstypeProcessTypePermittedInstrumentTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.PermittedInstrumentTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.PermittedInstrumentTypes.class, new com.genologics.ri.processtype.ProcessType.PermittedInstrumentTypes()));
+    @PostMapping("/xml/processtypeprocesstypepermittedinstrumenttypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.PermittedInstrumentTypes processtypeprocesstypepermittedinstrumenttypes){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.PermittedInstrumentTypes");
+        return marshal(processtypeprocesstypepermittedinstrumenttypes.getClass(), processtypeprocesstypepermittedinstrumenttypes);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.PermittedReagentCategories")
-    ResponseEntity<String> getProcesstypeProcessTypePermittedReagentCategories() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.PermittedReagentCategories");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.PermittedReagentCategories.class, new com.genologics.ri.processtype.ProcessType.PermittedReagentCategories()));
+    @PostMapping("/xml/processtypeprocesstypepermittedreagentcategories")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.PermittedReagentCategories processtypeprocesstypepermittedreagentcategories){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.PermittedReagentCategories");
+        return marshal(processtypeprocesstypepermittedreagentcategories.getClass(), processtypeprocesstypepermittedreagentcategories);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.QueueFields")
-    ResponseEntity<String> getProcesstypeProcessTypeQueueFields() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.QueueFields");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.QueueFields.class, new com.genologics.ri.processtype.ProcessType.QueueFields()));
+    @PostMapping("/xml/processtypeprocesstypequeuefields")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.QueueFields processtypeprocesstypequeuefields){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.QueueFields");
+        return marshal(processtypeprocesstypequeuefields.getClass(), processtypeprocesstypequeuefields);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.RequiredReagentKits")
-    ResponseEntity<String> getProcesstypeProcessTypeRequiredReagentKits() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.RequiredReagentKits");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.RequiredReagentKits.class, new com.genologics.ri.processtype.ProcessType.RequiredReagentKits()));
+    @PostMapping("/xml/processtypeprocesstyperequiredreagentkits")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.RequiredReagentKits processtypeprocesstyperequiredreagentkits){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.RequiredReagentKits");
+        return marshal(processtypeprocesstyperequiredreagentkits.getClass(), processtypeprocesstyperequiredreagentkits);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.SampleFields")
-    ResponseEntity<String> getProcesstypeProcessTypeSampleFields() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.SampleFields");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.SampleFields.class, new com.genologics.ri.processtype.ProcessType.SampleFields()));
+    @PostMapping("/xml/processtypeprocesstypesamplefields")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.SampleFields processtypeprocesstypesamplefields){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.SampleFields");
+        return marshal(processtypeprocesstypesamplefields.getClass(), processtypeprocesstypesamplefields);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.StepFields")
-    ResponseEntity<String> getProcesstypeProcessTypeStepFields() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.StepFields");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.StepFields.class, new com.genologics.ri.processtype.ProcessType.StepFields()));
+    @PostMapping("/xml/processtypeprocesstypestepfields")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.StepFields processtypeprocesstypestepfields){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.StepFields");
+        return marshal(processtypeprocesstypestepfields.getClass(), processtypeprocesstypestepfields);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessType.StepProperties")
-    ResponseEntity<String> getProcesstypeProcessTypeStepProperties() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessType.StepProperties");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessType.StepProperties.class, new com.genologics.ri.processtype.ProcessType.StepProperties()));
+    @PostMapping("/xml/processtypeprocesstypestepproperties")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessType.StepProperties processtypeprocesstypestepproperties){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessType.StepProperties");
+        return marshal(processtypeprocesstypestepproperties.getClass(), processtypeprocesstypestepproperties);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessTypeAttribute")
-    ResponseEntity<String> getProcesstypeProcessTypeAttribute() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessTypeAttribute");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessTypeAttribute.class, new com.genologics.ri.processtype.ProcessTypeAttribute()));
+    @PostMapping("/xml/processtypeprocesstypeattribute")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessTypeAttribute processtypeprocesstypeattribute){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessTypeAttribute");
+        return marshal(processtypeprocesstypeattribute.getClass(), processtypeprocesstypeattribute);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessTypeLink")
-    ResponseEntity<String> getProcesstypeProcessTypeLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessTypeLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessTypeLink.class, new com.genologics.ri.processtype.ProcessTypeLink()));
+    @PostMapping("/xml/processtypeprocesstypelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessTypeLink processtypeprocesstypelink){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessTypeLink");
+        return marshal(processtypeprocesstypelink.getClass(), processtypeprocesstypelink);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ProcessTypes")
-    ResponseEntity<String> getProcesstypeProcessTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ProcessTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ProcessTypes.class, new com.genologics.ri.processtype.ProcessTypes()));
+    @PostMapping("/xml/processtypeprocesstypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ProcessTypes processtypeprocesstypes){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ProcessTypes");
+        return marshal(processtypeprocesstypes.getClass(), processtypeprocesstypes);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.Queuefield")
-    ResponseEntity<String> getProcesstypeQueuefield() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.Queuefield");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.Queuefield.class, new com.genologics.ri.processtype.Queuefield()));
+    @PostMapping("/xml/processtypequeuefield")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.Queuefield processtypequeuefield){
+        logger.info("hit /marshal/com.genologics.ri.processtype.Queuefield");
+        return marshal(processtypequeuefield.getClass(), processtypequeuefield);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.ReagentKitLink")
-    ResponseEntity<String> getProcesstypeReagentKitLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.ReagentKitLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.ReagentKitLink.class, new com.genologics.ri.processtype.ReagentKitLink()));
+    @PostMapping("/xml/processtypereagentkitlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.ReagentKitLink processtypereagentkitlink){
+        logger.info("hit /marshal/com.genologics.ri.processtype.ReagentKitLink");
+        return marshal(processtypereagentkitlink.getClass(), processtypereagentkitlink);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.StepProperty")
-    ResponseEntity<String> getProcesstypeStepProperty() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.StepProperty");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.StepProperty.class, new com.genologics.ri.processtype.StepProperty()));
+    @PostMapping("/xml/processtypestepproperty")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.StepProperty processtypestepproperty){
+        logger.info("hit /marshal/com.genologics.ri.processtype.StepProperty");
+        return marshal(processtypestepproperty.getClass(), processtypestepproperty);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.StepSetup")
-    ResponseEntity<String> getProcesstypeStepSetup() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.StepSetup");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.StepSetup.class, new com.genologics.ri.processtype.StepSetup()));
+    @PostMapping("/xml/processtypestepsetup")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.StepSetup processtypestepsetup){
+        logger.info("hit /marshal/com.genologics.ri.processtype.StepSetup");
+        return marshal(processtypestepsetup.getClass(), processtypestepsetup);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.StepSetup.Files")
-    ResponseEntity<String> getProcesstypeStepSetupFiles() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.StepSetup.Files");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.StepSetup.Files.class, new com.genologics.ri.processtype.StepSetup.Files()));
+    @PostMapping("/xml/processtypestepsetupfiles")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.StepSetup.Files processtypestepsetupfiles){
+        logger.info("hit /marshal/com.genologics.ri.processtype.StepSetup.Files");
+        return marshal(processtypestepsetupfiles.getClass(), processtypestepsetupfiles);
     }
 
-    @GetMapping("/com.genologics.ri.processtype.TypeDefinition")
-    ResponseEntity<String> getProcesstypeTypeDefinition() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.processtype.TypeDefinition");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.processtype.TypeDefinition.class, new com.genologics.ri.processtype.TypeDefinition()));
+    @PostMapping("/xml/processtypetypedefinition")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.processtype.TypeDefinition processtypetypedefinition){
+        logger.info("hit /marshal/com.genologics.ri.processtype.TypeDefinition");
+        return marshal(processtypetypedefinition.getClass(), processtypetypedefinition);
     }
 
-    @GetMapping("/com.genologics.ri.project.Project")
-    ResponseEntity<String> getProjectProject() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.project.Project");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.project.Project.class, new com.genologics.ri.project.Project()));
+    @PostMapping("/xml/projectproject")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.project.Project projectproject){
+        logger.info("hit /marshal/com.genologics.ri.project.Project");
+        return marshal(projectproject.getClass(), projectproject);
     }
 
-    @GetMapping("/com.genologics.ri.project.ProjectLink")
-    ResponseEntity<String> getProjectProjectLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.project.ProjectLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.project.ProjectLink.class, new com.genologics.ri.project.ProjectLink()));
+    @PostMapping("/xml/projectprojectlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.project.ProjectLink projectprojectlink){
+        logger.info("hit /marshal/com.genologics.ri.project.ProjectLink");
+        return marshal(projectprojectlink.getClass(), projectprojectlink);
     }
 
-    @GetMapping("/com.genologics.ri.project.Projects")
-    ResponseEntity<String> getProjectProjects() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.project.Projects");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.project.Projects.class, new com.genologics.ri.project.Projects()));
+    @PostMapping("/xml/projectprojects")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.project.Projects projectprojects){
+        logger.info("hit /marshal/com.genologics.ri.project.Projects");
+        return marshal(projectprojects.getClass(), projectprojects);
     }
 
-    @GetMapping("/com.genologics.ri.project.Researcher")
-    ResponseEntity<String> getProjectResearcher() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.project.Researcher");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.project.Researcher.class, new com.genologics.ri.project.Researcher()));
+    @PostMapping("/xml/projectresearcher")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.project.Researcher projectresearcher){
+        logger.info("hit /marshal/com.genologics.ri.project.Researcher");
+        return marshal(projectresearcher.getClass(), projectresearcher);
     }
 
-    @GetMapping("/com.genologics.ri.property.Properties")
-    ResponseEntity<String> getPropertyProperties() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.property.Properties");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.property.Properties.class, new com.genologics.ri.property.Properties()));
+    @PostMapping("/xml/propertyproperties")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.property.Properties propertyproperties){
+        logger.info("hit /marshal/com.genologics.ri.property.Properties");
+        return marshal(propertyproperties.getClass(), propertyproperties);
     }
 
-    @GetMapping("/com.genologics.ri.property.PropertyLink")
-    ResponseEntity<String> getPropertyPropertyLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.property.PropertyLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.property.PropertyLink.class, new com.genologics.ri.property.PropertyLink()));
+    @PostMapping("/xml/propertypropertylink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.property.PropertyLink propertypropertylink){
+        logger.info("hit /marshal/com.genologics.ri.property.PropertyLink");
+        return marshal(propertypropertylink.getClass(), propertypropertylink);
     }
 
-    @GetMapping("/com.genologics.ri.protocolconfiguration.Protocol")
-    ResponseEntity<String> getProtocolconfigurationProtocol() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.protocolconfiguration.Protocol");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.protocolconfiguration.Protocol.class, new com.genologics.ri.protocolconfiguration.Protocol()));
+    @PostMapping("/xml/protocolconfigurationprotocol")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.protocolconfiguration.Protocol protocolconfigurationprotocol){
+        logger.info("hit /marshal/com.genologics.ri.protocolconfiguration.Protocol");
+        return marshal(protocolconfigurationprotocol.getClass(), protocolconfigurationprotocol);
     }
 
-    @GetMapping("/com.genologics.ri.protocolconfiguration.Protocol.ProtocolProperties")
-    ResponseEntity<String> getProtocolconfigurationProtocolProtocolProperties() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.protocolconfiguration.Protocol.ProtocolProperties");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.protocolconfiguration.Protocol.ProtocolProperties.class, new com.genologics.ri.protocolconfiguration.Protocol.ProtocolProperties()));
+    @PostMapping("/xml/protocolconfigurationprotocolprotocolproperties")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.protocolconfiguration.Protocol.ProtocolProperties protocolconfigurationprotocolprotocolproperties){
+        logger.info("hit /marshal/com.genologics.ri.protocolconfiguration.Protocol.ProtocolProperties");
+        return marshal(protocolconfigurationprotocolprotocolproperties.getClass(), protocolconfigurationprotocolprotocolproperties);
     }
 
-    @GetMapping("/com.genologics.ri.protocolconfiguration.Protocol.Steps")
-    ResponseEntity<String> getProtocolconfigurationProtocolSteps() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.protocolconfiguration.Protocol.Steps");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.protocolconfiguration.Protocol.Steps.class, new com.genologics.ri.protocolconfiguration.Protocol.Steps()));
+    @PostMapping("/xml/protocolconfigurationprotocolsteps")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.protocolconfiguration.Protocol.Steps protocolconfigurationprotocolsteps){
+        logger.info("hit /marshal/com.genologics.ri.protocolconfiguration.Protocol.Steps");
+        return marshal(protocolconfigurationprotocolsteps.getClass(), protocolconfigurationprotocolsteps);
     }
 
-    @GetMapping("/com.genologics.ri.protocolconfiguration.ProtocolLink")
-    ResponseEntity<String> getProtocolconfigurationProtocolLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.protocolconfiguration.ProtocolLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.protocolconfiguration.ProtocolLink.class, new com.genologics.ri.protocolconfiguration.ProtocolLink()));
+    @PostMapping("/xml/protocolconfigurationprotocollink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.protocolconfiguration.ProtocolLink protocolconfigurationprotocollink){
+        logger.info("hit /marshal/com.genologics.ri.protocolconfiguration.ProtocolLink");
+        return marshal(protocolconfigurationprotocollink.getClass(), protocolconfigurationprotocollink);
     }
 
-    @GetMapping("/com.genologics.ri.protocolconfiguration.ProtocolProperty")
-    ResponseEntity<String> getProtocolconfigurationProtocolProperty() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.protocolconfiguration.ProtocolProperty");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.protocolconfiguration.ProtocolProperty.class, new com.genologics.ri.protocolconfiguration.ProtocolProperty()));
+    @PostMapping("/xml/protocolconfigurationprotocolproperty")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.protocolconfiguration.ProtocolProperty protocolconfigurationprotocolproperty){
+        logger.info("hit /marshal/com.genologics.ri.protocolconfiguration.ProtocolProperty");
+        return marshal(protocolconfigurationprotocolproperty.getClass(), protocolconfigurationprotocolproperty);
     }
 
-    @GetMapping("/com.genologics.ri.protocolconfiguration.Protocols")
-    ResponseEntity<String> getProtocolconfigurationProtocols() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.protocolconfiguration.Protocols");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.protocolconfiguration.Protocols.class, new com.genologics.ri.protocolconfiguration.Protocols()));
+    @PostMapping("/xml/protocolconfigurationprotocols")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.protocolconfiguration.Protocols protocolconfigurationprotocols){
+        logger.info("hit /marshal/com.genologics.ri.protocolconfiguration.Protocols");
+        return marshal(protocolconfigurationprotocols.getClass(), protocolconfigurationprotocols);
     }
 
-    @GetMapping("/com.genologics.ri.queue.ArtifactLink")
-    ResponseEntity<String> getQueueArtifactLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.queue.ArtifactLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.queue.ArtifactLink.class, new com.genologics.ri.queue.ArtifactLink()));
+    @PostMapping("/xml/queueartifactlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.queue.ArtifactLink queueartifactlink){
+        logger.info("hit /marshal/com.genologics.ri.queue.ArtifactLink");
+        return marshal(queueartifactlink.getClass(), queueartifactlink);
     }
 
-    @GetMapping("/com.genologics.ri.queue.Queue")
-    ResponseEntity<String> getQueueQueue() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.queue.Queue");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.queue.Queue.class, new com.genologics.ri.queue.Queue()));
+    @PostMapping("/xml/queuequeue")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.queue.Queue queuequeue){
+        logger.info("hit /marshal/com.genologics.ri.queue.Queue");
+        return marshal(queuequeue.getClass(), queuequeue);
     }
 
-    @GetMapping("/com.genologics.ri.queue.Queue.Artifacts")
-    ResponseEntity<String> getQueueQueueArtifacts() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.queue.Queue.Artifacts");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.queue.Queue.Artifacts.class, new com.genologics.ri.queue.Queue.Artifacts()));
+    @PostMapping("/xml/queuequeueartifacts")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.queue.Queue.Artifacts queuequeueartifacts){
+        logger.info("hit /marshal/com.genologics.ri.queue.Queue.Artifacts");
+        return marshal(queuequeueartifacts.getClass(), queuequeueartifacts);
     }
 
-    @GetMapping("/com.genologics.ri.reagentkit.ReagentKit")
-    ResponseEntity<String> getReagentkitReagentKit() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagentkit.ReagentKit");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentkit.ReagentKit.class, new com.genologics.ri.reagentkit.ReagentKit()));
+    @PostMapping("/xml/reagentkitreagentkit")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagentkit.ReagentKit reagentkitreagentkit){
+        logger.info("hit /marshal/com.genologics.ri.reagentkit.ReagentKit");
+        return marshal(reagentkitreagentkit.getClass(), reagentkitreagentkit);
     }
 
-    @GetMapping("/com.genologics.ri.reagentkit.ReagentKitLink")
-    ResponseEntity<String> getReagentkitReagentKitLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagentkit.ReagentKitLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentkit.ReagentKitLink.class, new com.genologics.ri.reagentkit.ReagentKitLink()));
+    @PostMapping("/xml/reagentkitreagentkitlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagentkit.ReagentKitLink reagentkitreagentkitlink){
+        logger.info("hit /marshal/com.genologics.ri.reagentkit.ReagentKitLink");
+        return marshal(reagentkitreagentkitlink.getClass(), reagentkitreagentkitlink);
     }
 
-    @GetMapping("/com.genologics.ri.reagentkit.ReagentKits")
-    ResponseEntity<String> getReagentkitReagentKits() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagentkit.ReagentKits");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentkit.ReagentKits.class, new com.genologics.ri.reagentkit.ReagentKits()));
+    @PostMapping("/xml/reagentkitreagentkits")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagentkit.ReagentKits reagentkitreagentkits){
+        logger.info("hit /marshal/com.genologics.ri.reagentkit.ReagentKits");
+        return marshal(reagentkitreagentkits.getClass(), reagentkitreagentkits);
     }
 
-    @GetMapping("/com.genologics.ri.reagentlot.ReagentKitLink")
-    ResponseEntity<String> getReagentlotReagentKitLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagentlot.ReagentKitLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentlot.ReagentKitLink.class, new com.genologics.ri.reagentlot.ReagentKitLink()));
+    @PostMapping("/xml/reagentlotreagentkitlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagentlot.ReagentKitLink reagentlotreagentkitlink){
+        logger.info("hit /marshal/com.genologics.ri.reagentlot.ReagentKitLink");
+        return marshal(reagentlotreagentkitlink.getClass(), reagentlotreagentkitlink);
     }
 
-    @GetMapping("/com.genologics.ri.reagentlot.ReagentLot")
-    ResponseEntity<String> getReagentlotReagentLot() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagentlot.ReagentLot");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentlot.ReagentLot.class, new com.genologics.ri.reagentlot.ReagentLot()));
+    @PostMapping("/xml/reagentlotreagentlot")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagentlot.ReagentLot reagentlotreagentlot){
+        logger.info("hit /marshal/com.genologics.ri.reagentlot.ReagentLot");
+        return marshal(reagentlotreagentlot.getClass(), reagentlotreagentlot);
     }
 
-    @GetMapping("/com.genologics.ri.reagentlot.ReagentLotLink")
-    ResponseEntity<String> getReagentlotReagentLotLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagentlot.ReagentLotLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentlot.ReagentLotLink.class, new com.genologics.ri.reagentlot.ReagentLotLink()));
+    @PostMapping("/xml/reagentlotreagentlotlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagentlot.ReagentLotLink reagentlotreagentlotlink){
+        logger.info("hit /marshal/com.genologics.ri.reagentlot.ReagentLotLink");
+        return marshal(reagentlotreagentlotlink.getClass(), reagentlotreagentlotlink);
     }
 
-    @GetMapping("/com.genologics.ri.reagentlot.ReagentLots")
-    ResponseEntity<String> getReagentlotReagentLots() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagentlot.ReagentLots");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentlot.ReagentLots.class, new com.genologics.ri.reagentlot.ReagentLots()));
+    @PostMapping("/xml/reagentlotreagentlots")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagentlot.ReagentLots reagentlotreagentlots){
+        logger.info("hit /marshal/com.genologics.ri.reagentlot.ReagentLots");
+        return marshal(reagentlotreagentlots.getClass(), reagentlotreagentlots);
     }
 
-    @GetMapping("/com.genologics.ri.reagentlot.Researcher")
-    ResponseEntity<String> getReagentlotResearcher() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagentlot.Researcher");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagentlot.Researcher.class, new com.genologics.ri.reagentlot.Researcher()));
+    @PostMapping("/xml/reagentlotresearcher")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagentlot.Researcher reagentlotresearcher){
+        logger.info("hit /marshal/com.genologics.ri.reagentlot.Researcher");
+        return marshal(reagentlotresearcher.getClass(), reagentlotresearcher);
     }
 
-    @GetMapping("/com.genologics.ri.reagenttype.Attribute")
-    ResponseEntity<String> getReagenttypeAttribute() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagenttype.Attribute");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagenttype.Attribute.class, new com.genologics.ri.reagenttype.Attribute()));
+    @PostMapping("/xml/reagenttypeattribute")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagenttype.Attribute reagenttypeattribute){
+        logger.info("hit /marshal/com.genologics.ri.reagenttype.Attribute");
+        return marshal(reagenttypeattribute.getClass(), reagenttypeattribute);
     }
 
-    @GetMapping("/com.genologics.ri.reagenttype.ReagentType")
-    ResponseEntity<String> getReagenttypeReagentType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagenttype.ReagentType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagenttype.ReagentType.class, new com.genologics.ri.reagenttype.ReagentType()));
+    @PostMapping("/xml/reagenttypereagenttype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagenttype.ReagentType reagenttypereagenttype){
+        logger.info("hit /marshal/com.genologics.ri.reagenttype.ReagentType");
+        return marshal(reagenttypereagenttype.getClass(), reagenttypereagenttype);
     }
 
-    @GetMapping("/com.genologics.ri.reagenttype.ReagentTypeLink")
-    ResponseEntity<String> getReagenttypeReagentTypeLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagenttype.ReagentTypeLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagenttype.ReagentTypeLink.class, new com.genologics.ri.reagenttype.ReagentTypeLink()));
+    @PostMapping("/xml/reagenttypereagenttypelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagenttype.ReagentTypeLink reagenttypereagenttypelink){
+        logger.info("hit /marshal/com.genologics.ri.reagenttype.ReagentTypeLink");
+        return marshal(reagenttypereagenttypelink.getClass(), reagenttypereagenttypelink);
     }
 
-    @GetMapping("/com.genologics.ri.reagenttype.ReagentTypes")
-    ResponseEntity<String> getReagenttypeReagentTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagenttype.ReagentTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagenttype.ReagentTypes.class, new com.genologics.ri.reagenttype.ReagentTypes()));
+    @PostMapping("/xml/reagenttypereagenttypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagenttype.ReagentTypes reagenttypereagenttypes){
+        logger.info("hit /marshal/com.genologics.ri.reagenttype.ReagentTypes");
+        return marshal(reagenttypereagenttypes.getClass(), reagenttypereagenttypes);
     }
 
-    @GetMapping("/com.genologics.ri.reagenttype.SpecialType")
-    ResponseEntity<String> getReagenttypeSpecialType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.reagenttype.SpecialType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.reagenttype.SpecialType.class, new com.genologics.ri.reagenttype.SpecialType()));
+    @PostMapping("/xml/reagenttypespecialtype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.reagenttype.SpecialType reagenttypespecialtype){
+        logger.info("hit /marshal/com.genologics.ri.reagenttype.SpecialType");
+        return marshal(reagenttypespecialtype.getClass(), reagenttypespecialtype);
     }
 
-    @GetMapping("/com.genologics.ri.researcher.Credentials")
-    ResponseEntity<String> getResearcherCredentials() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.researcher.Credentials");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.researcher.Credentials.class, new com.genologics.ri.researcher.Credentials()));
+    @PostMapping("/xml/researchercredentials")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.researcher.Credentials researchercredentials){
+        logger.info("hit /marshal/com.genologics.ri.researcher.Credentials");
+        return marshal(researchercredentials.getClass(), researchercredentials);
     }
 
-    @GetMapping("/com.genologics.ri.researcher.Lab")
-    ResponseEntity<String> getResearcherLab() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.researcher.Lab");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.researcher.Lab.class, new com.genologics.ri.researcher.Lab()));
+    @PostMapping("/xml/researcherlab")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.researcher.Lab researcherlab){
+        logger.info("hit /marshal/com.genologics.ri.researcher.Lab");
+        return marshal(researcherlab.getClass(), researcherlab);
     }
 
-    @GetMapping("/com.genologics.ri.researcher.Researcher")
-    ResponseEntity<String> getResearcherResearcher() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.researcher.Researcher");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.researcher.Researcher.class, new com.genologics.ri.researcher.Researcher()));
+    @PostMapping("/xml/researcherresearcher")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.researcher.Researcher researcherresearcher){
+        logger.info("hit /marshal/com.genologics.ri.researcher.Researcher");
+        return marshal(researcherresearcher.getClass(), researcherresearcher);
     }
 
-    @GetMapping("/com.genologics.ri.researcher.ResearcherLink")
-    ResponseEntity<String> getResearcherResearcherLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.researcher.ResearcherLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.researcher.ResearcherLink.class, new com.genologics.ri.researcher.ResearcherLink()));
+    @PostMapping("/xml/researcherresearcherlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.researcher.ResearcherLink researcherresearcherlink){
+        logger.info("hit /marshal/com.genologics.ri.researcher.ResearcherLink");
+        return marshal(researcherresearcherlink.getClass(), researcherresearcherlink);
     }
 
-    @GetMapping("/com.genologics.ri.researcher.Researchers")
-    ResponseEntity<String> getResearcherResearchers() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.researcher.Researchers");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.researcher.Researchers.class, new com.genologics.ri.researcher.Researchers()));
+    @PostMapping("/xml/researcherresearchers")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.researcher.Researchers researcherresearchers){
+        logger.info("hit /marshal/com.genologics.ri.researcher.Researchers");
+        return marshal(researcherresearchers.getClass(), researcherresearchers);
     }
 
-    @GetMapping("/com.genologics.ri.researcher.Role")
-    ResponseEntity<String> getResearcherRole() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.researcher.Role");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.researcher.Role.class, new com.genologics.ri.researcher.Role()));
+    @PostMapping("/xml/researcherrole")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.researcher.Role researcherrole){
+        logger.info("hit /marshal/com.genologics.ri.researcher.Role");
+        return marshal(researcherrole.getClass(), researcherrole);
     }
 
-    @GetMapping("/com.genologics.ri.role.PermissionLink")
-    ResponseEntity<String> getRolePermissionLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.role.PermissionLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.role.PermissionLink.class, new com.genologics.ri.role.PermissionLink()));
+    @PostMapping("/xml/rolepermissionlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.role.PermissionLink rolepermissionlink){
+        logger.info("hit /marshal/com.genologics.ri.role.PermissionLink");
+        return marshal(rolepermissionlink.getClass(), rolepermissionlink);
     }
 
-    @GetMapping("/com.genologics.ri.role.ResearcherLink")
-    ResponseEntity<String> getRoleResearcherLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.role.ResearcherLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.role.ResearcherLink.class, new com.genologics.ri.role.ResearcherLink()));
+    @PostMapping("/xml/roleresearcherlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.role.ResearcherLink roleresearcherlink){
+        logger.info("hit /marshal/com.genologics.ri.role.ResearcherLink");
+        return marshal(roleresearcherlink.getClass(), roleresearcherlink);
     }
 
-    @GetMapping("/com.genologics.ri.role.Role")
-    ResponseEntity<String> getRoleRole() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.role.Role");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.role.Role.class, new com.genologics.ri.role.Role()));
+    @PostMapping("/xml/rolerole")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.role.Role rolerole){
+        logger.info("hit /marshal/com.genologics.ri.role.Role");
+        return marshal(rolerole.getClass(), rolerole);
     }
 
-    @GetMapping("/com.genologics.ri.role.Role.Permissions")
-    ResponseEntity<String> getRoleRolePermissions() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.role.Role.Permissions");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.role.Role.Permissions.class, new com.genologics.ri.role.Role.Permissions()));
+    @PostMapping("/xml/rolerolepermissions")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.role.Role.Permissions rolerolepermissions){
+        logger.info("hit /marshal/com.genologics.ri.role.Role.Permissions");
+        return marshal(rolerolepermissions.getClass(), rolerolepermissions);
     }
 
-    @GetMapping("/com.genologics.ri.role.Role.Researchers")
-    ResponseEntity<String> getRoleRoleResearchers() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.role.Role.Researchers");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.role.Role.Researchers.class, new com.genologics.ri.role.Role.Researchers()));
+    @PostMapping("/xml/roleroleresearchers")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.role.Role.Researchers roleroleresearchers){
+        logger.info("hit /marshal/com.genologics.ri.role.Role.Researchers");
+        return marshal(roleroleresearchers.getClass(), roleroleresearchers);
     }
 
-    @GetMapping("/com.genologics.ri.role.RoleLink")
-    ResponseEntity<String> getRoleRoleLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.role.RoleLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.role.RoleLink.class, new com.genologics.ri.role.RoleLink()));
+    @PostMapping("/xml/rolerolelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.role.RoleLink rolerolelink){
+        logger.info("hit /marshal/com.genologics.ri.role.RoleLink");
+        return marshal(rolerolelink.getClass(), rolerolelink);
     }
 
-    @GetMapping("/com.genologics.ri.role.Roles")
-    ResponseEntity<String> getRoleRoles() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.role.Roles");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.role.Roles.class, new com.genologics.ri.role.Roles()));
+    @PostMapping("/xml/roleroles")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.role.Roles roleroles){
+        logger.info("hit /marshal/com.genologics.ri.role.Roles");
+        return marshal(roleroles.getClass(), roleroles);
     }
 
-    @GetMapping("/com.genologics.ri.routing.Artifact")
-    ResponseEntity<String> getRoutingArtifact() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.routing.Artifact");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.routing.Artifact.class, new com.genologics.ri.routing.Artifact()));
+    @PostMapping("/xml/routingartifact")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.routing.Artifact routingartifact){
+        logger.info("hit /marshal/com.genologics.ri.routing.Artifact");
+        return marshal(routingartifact.getClass(), routingartifact);
     }
 
-    @GetMapping("/com.genologics.ri.routing.ExtArtifactAssignments")
-    ResponseEntity<String> getRoutingExtArtifactAssignments() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.routing.ExtArtifactAssignments");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.routing.ExtArtifactAssignments.class, new com.genologics.ri.routing.ExtArtifactAssignments()));
+    @PostMapping("/xml/routingextartifactassignments")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.routing.ExtArtifactAssignments routingextartifactassignments){
+        logger.info("hit /marshal/com.genologics.ri.routing.ExtArtifactAssignments");
+        return marshal(routingextartifactassignments.getClass(), routingextartifactassignments);
     }
 
-    @GetMapping("/com.genologics.ri.routing.Routing")
-    ResponseEntity<String> getRoutingRouting() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.routing.Routing");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.routing.Routing.class, new com.genologics.ri.routing.Routing()));
+    @PostMapping("/xml/routingrouting")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.routing.Routing routingrouting){
+        logger.info("hit /marshal/com.genologics.ri.routing.Routing");
+        return marshal(routingrouting.getClass(), routingrouting);
     }
 
-    @GetMapping("/com.genologics.ri.sample.Artifact")
-    ResponseEntity<String> getSampleArtifact() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.Artifact");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Artifact.class, new com.genologics.ri.sample.Artifact()));
+    @PostMapping("/xml/sampleartifact")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.Artifact sampleartifact){
+        logger.info("hit /marshal/com.genologics.ri.sample.Artifact");
+        return marshal(sampleartifact.getClass(), sampleartifact);
     }
 
-    @GetMapping("/com.genologics.ri.sample.Biosource")
-    ResponseEntity<String> getSampleBiosource() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.Biosource");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Biosource.class, new com.genologics.ri.sample.Biosource()));
+    @PostMapping("/xml/samplebiosource")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.Biosource samplebiosource){
+        logger.info("hit /marshal/com.genologics.ri.sample.Biosource");
+        return marshal(samplebiosource.getClass(), samplebiosource);
     }
 
-    @GetMapping("/com.genologics.ri.sample.ContainerType")
-    ResponseEntity<String> getSampleContainerType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.ContainerType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.ContainerType.class, new com.genologics.ri.sample.ContainerType()));
+    @PostMapping("/xml/samplecontainertype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.ContainerType samplecontainertype){
+        logger.info("hit /marshal/com.genologics.ri.sample.ContainerType");
+        return marshal(samplecontainertype.getClass(), samplecontainertype);
     }
 
-    @GetMapping("/com.genologics.ri.sample.ControlType")
-    ResponseEntity<String> getSampleControlType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.ControlType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.ControlType.class, new com.genologics.ri.sample.ControlType()));
+    @PostMapping("/xml/samplecontroltype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.ControlType samplecontroltype){
+        logger.info("hit /marshal/com.genologics.ri.sample.ControlType");
+        return marshal(samplecontroltype.getClass(), samplecontroltype);
     }
 
-    @GetMapping("/com.genologics.ri.sample.Details")
-    ResponseEntity<String> getSampleDetails() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.Details");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Details.class, new com.genologics.ri.sample.Details()));
+    @PostMapping("/xml/sampledetails")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.Details sampledetails){
+        logger.info("hit /marshal/com.genologics.ri.sample.Details");
+        return marshal(sampledetails.getClass(), sampledetails);
     }
 
-    @GetMapping("/com.genologics.ri.sample.Project")
-    ResponseEntity<String> getSampleProject() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.Project");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Project.class, new com.genologics.ri.sample.Project()));
+    @PostMapping("/xml/sampleproject")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.Project sampleproject){
+        logger.info("hit /marshal/com.genologics.ri.sample.Project");
+        return marshal(sampleproject.getClass(), sampleproject);
     }
 
-    @GetMapping("/com.genologics.ri.sample.Sample")
-    ResponseEntity<String> getSampleSample() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.Sample");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Sample.class, new com.genologics.ri.sample.Sample()));
+    @PostMapping("/xml/samplesample")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.Sample samplesample){
+        logger.info("hit /marshal/com.genologics.ri.sample.Sample");
+        return marshal(samplesample.getClass(), samplesample);
     }
 
-    @GetMapping("/com.genologics.ri.sample.SampleLink")
-    ResponseEntity<String> getSampleSampleLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.SampleLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.SampleLink.class, new com.genologics.ri.sample.SampleLink()));
+    @PostMapping("/xml/samplesamplelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.SampleLink samplesamplelink){
+        logger.info("hit /marshal/com.genologics.ri.sample.SampleLink");
+        return marshal(samplesamplelink.getClass(), samplesamplelink);
     }
 
-    @GetMapping("/com.genologics.ri.sample.Samplebase")
-    ResponseEntity<String> getSampleSamplebase() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.Samplebase");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Samplebase.class, new com.genologics.ri.sample.Samplebase()));
+    @PostMapping("/xml/samplesamplebase")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.Samplebase samplesamplebase){
+        logger.info("hit /marshal/com.genologics.ri.sample.Samplebase");
+        return marshal(samplesamplebase.getClass(), samplesamplebase);
     }
 
-    @GetMapping("/com.genologics.ri.sample.Samplecreation")
-    ResponseEntity<String> getSampleSamplecreation() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.Samplecreation");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Samplecreation.class, new com.genologics.ri.sample.Samplecreation()));
+    @PostMapping("/xml/samplesamplecreation")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.Samplecreation samplesamplecreation){
+        logger.info("hit /marshal/com.genologics.ri.sample.Samplecreation");
+        return marshal(samplesamplecreation.getClass(), samplesamplecreation);
     }
 
-    @GetMapping("/com.genologics.ri.sample.Samples")
-    ResponseEntity<String> getSampleSamples() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.Samples");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Samples.class, new com.genologics.ri.sample.Samples()));
+    @PostMapping("/xml/samplesamples")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.Samples samplesamples){
+        logger.info("hit /marshal/com.genologics.ri.sample.Samples");
+        return marshal(samplesamples.getClass(), samplesamples);
     }
 
-    @GetMapping("/com.genologics.ri.sample.Submitter")
-    ResponseEntity<String> getSampleSubmitter() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.sample.Submitter");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.sample.Submitter.class, new com.genologics.ri.sample.Submitter()));
+    @PostMapping("/xml/samplesubmitter")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.sample.Submitter samplesubmitter){
+        logger.info("hit /marshal/com.genologics.ri.sample.Submitter");
+        return marshal(samplesubmitter.getClass(), samplesubmitter);
     }
 
-    @GetMapping("/com.genologics.ri.stage.Protocol")
-    ResponseEntity<String> getStageProtocol() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stage.Protocol");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stage.Protocol.class, new com.genologics.ri.stage.Protocol()));
+    @PostMapping("/xml/stageprotocol")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stage.Protocol stageprotocol){
+        logger.info("hit /marshal/com.genologics.ri.stage.Protocol");
+        return marshal(stageprotocol.getClass(), stageprotocol);
     }
 
-    @GetMapping("/com.genologics.ri.stage.Stage")
-    ResponseEntity<String> getStageStage() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stage.Stage");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stage.Stage.class, new com.genologics.ri.stage.Stage()));
+    @PostMapping("/xml/stagestage")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stage.Stage stagestage){
+        logger.info("hit /marshal/com.genologics.ri.stage.Stage");
+        return marshal(stagestage.getClass(), stagestage);
     }
 
-    @GetMapping("/com.genologics.ri.stage.Step")
-    ResponseEntity<String> getStageStep() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stage.Step");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stage.Step.class, new com.genologics.ri.stage.Step()));
+    @PostMapping("/xml/stagestep")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stage.Step stagestep){
+        logger.info("hit /marshal/com.genologics.ri.stage.Step");
+        return marshal(stagestep.getClass(), stagestep);
     }
 
-    @GetMapping("/com.genologics.ri.stage.Workflow")
-    ResponseEntity<String> getStageWorkflow() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stage.Workflow");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stage.Workflow.class, new com.genologics.ri.stage.Workflow()));
+    @PostMapping("/xml/stageworkflow")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stage.Workflow stageworkflow){
+        logger.info("hit /marshal/com.genologics.ri.stage.Workflow");
+        return marshal(stageworkflow.getClass(), stageworkflow);
     }
 
-    @GetMapping("/com.genologics.ri.step.Actions")
-    ResponseEntity<String> getStepActions() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Actions");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Actions.class, new com.genologics.ri.step.Actions()));
+    @PostMapping("/xml/stepactions")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Actions stepactions){
+        logger.info("hit /marshal/com.genologics.ri.step.Actions");
+        return marshal(stepactions.getClass(), stepactions);
     }
 
-    @GetMapping("/com.genologics.ri.step.Actions.NextActions")
-    ResponseEntity<String> getStepActionsNextActions() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Actions.NextActions");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Actions.NextActions.class, new com.genologics.ri.step.Actions.NextActions()));
+    @PostMapping("/xml/stepactionsnextactions")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Actions.NextActions stepactionsnextactions){
+        logger.info("hit /marshal/com.genologics.ri.step.Actions.NextActions");
+        return marshal(stepactionsnextactions.getClass(), stepactionsnextactions);
     }
 
-    @GetMapping("/com.genologics.ri.step.ActionsLink")
-    ResponseEntity<String> getStepActionsLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.ActionsLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ActionsLink.class, new com.genologics.ri.step.ActionsLink()));
+    @PostMapping("/xml/stepactionslink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.ActionsLink stepactionslink){
+        logger.info("hit /marshal/com.genologics.ri.step.ActionsLink");
+        return marshal(stepactionslink.getClass(), stepactionslink);
     }
 
-    @GetMapping("/com.genologics.ri.step.Artifact")
-    ResponseEntity<String> getStepArtifact() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Artifact");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Artifact.class, new com.genologics.ri.step.Artifact()));
+    @PostMapping("/xml/stepartifact")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Artifact stepartifact){
+        logger.info("hit /marshal/com.genologics.ri.step.Artifact");
+        return marshal(stepartifact.getClass(), stepartifact);
     }
 
-    @GetMapping("/com.genologics.ri.step.AutomaticNextStepLink")
-    ResponseEntity<String> getStepAutomaticNextStepLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.AutomaticNextStepLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.AutomaticNextStepLink.class, new com.genologics.ri.step.AutomaticNextStepLink()));
+    @PostMapping("/xml/stepautomaticnextsteplink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.AutomaticNextStepLink stepautomaticnextsteplink){
+        logger.info("hit /marshal/com.genologics.ri.step.AutomaticNextStepLink");
+        return marshal(stepautomaticnextsteplink.getClass(), stepautomaticnextsteplink);
     }
 
-    @GetMapping("/com.genologics.ri.step.AvailableProgram")
-    ResponseEntity<String> getStepAvailableProgram() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.AvailableProgram");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.AvailableProgram.class, new com.genologics.ri.step.AvailableProgram()));
+    @PostMapping("/xml/stepavailableprogram")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.AvailableProgram stepavailableprogram){
+        logger.info("hit /marshal/com.genologics.ri.step.AvailableProgram");
+        return marshal(stepavailableprogram.getClass(), stepavailableprogram);
     }
 
-    @GetMapping("/com.genologics.ri.step.Container")
-    ResponseEntity<String> getStepContainer() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Container");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Container.class, new com.genologics.ri.step.Container()));
+    @PostMapping("/xml/stepcontainer")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Container stepcontainer){
+        logger.info("hit /marshal/com.genologics.ri.step.Container");
+        return marshal(stepcontainer.getClass(), stepcontainer);
     }
 
-    @GetMapping("/com.genologics.ri.step.CreationInput")
-    ResponseEntity<String> getStepCreationInput() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.CreationInput");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.CreationInput.class, new com.genologics.ri.step.CreationInput()));
+    @PostMapping("/xml/stepcreationinput")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.CreationInput stepcreationinput){
+        logger.info("hit /marshal/com.genologics.ri.step.CreationInput");
+        return marshal(stepcreationinput.getClass(), stepcreationinput);
     }
 
-    @GetMapping("/com.genologics.ri.step.Details")
-    ResponseEntity<String> getStepDetails() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Details");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Details.class, new com.genologics.ri.step.Details()));
+    @PostMapping("/xml/stepdetails")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Details stepdetails){
+        logger.info("hit /marshal/com.genologics.ri.step.Details");
+        return marshal(stepdetails.getClass(), stepdetails);
     }
 
-    @GetMapping("/com.genologics.ri.step.Details.Fields")
-    ResponseEntity<String> getStepDetailsFields() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Details.Fields");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Details.Fields.class, new com.genologics.ri.step.Details.Fields()));
+    @PostMapping("/xml/stepdetailsfields")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Details.Fields stepdetailsfields){
+        logger.info("hit /marshal/com.genologics.ri.step.Details.Fields");
+        return marshal(stepdetailsfields.getClass(), stepdetailsfields);
     }
 
-    @GetMapping("/com.genologics.ri.step.Details.InputOutputMaps")
-    ResponseEntity<String> getStepDetailsInputOutputMaps() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Details.InputOutputMaps");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Details.InputOutputMaps.class, new com.genologics.ri.step.Details.InputOutputMaps()));
+    @PostMapping("/xml/stepdetailsinputoutputmaps")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Details.InputOutputMaps stepdetailsinputoutputmaps){
+        logger.info("hit /marshal/com.genologics.ri.step.Details.InputOutputMaps");
+        return marshal(stepdetailsinputoutputmaps.getClass(), stepdetailsinputoutputmaps);
     }
 
-    @GetMapping("/com.genologics.ri.step.DetailsLink")
-    ResponseEntity<String> getStepDetailsLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.DetailsLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.DetailsLink.class, new com.genologics.ri.step.DetailsLink()));
+    @PostMapping("/xml/stepdetailslink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.DetailsLink stepdetailslink){
+        logger.info("hit /marshal/com.genologics.ri.step.DetailsLink");
+        return marshal(stepdetailslink.getClass(), stepdetailslink);
     }
 
-    @GetMapping("/com.genologics.ri.step.EscalatedArtifact")
-    ResponseEntity<String> getStepEscalatedArtifact() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.EscalatedArtifact");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.EscalatedArtifact.class, new com.genologics.ri.step.EscalatedArtifact()));
+    @PostMapping("/xml/stepescalatedartifact")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.EscalatedArtifact stepescalatedartifact){
+        logger.info("hit /marshal/com.genologics.ri.step.EscalatedArtifact");
+        return marshal(stepescalatedartifact.getClass(), stepescalatedartifact);
     }
 
-    @GetMapping("/com.genologics.ri.step.Escalation")
-    ResponseEntity<String> getStepEscalation() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Escalation");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Escalation.class, new com.genologics.ri.step.Escalation()));
+    @PostMapping("/xml/stepescalation")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Escalation stepescalation){
+        logger.info("hit /marshal/com.genologics.ri.step.Escalation");
+        return marshal(stepescalation.getClass(), stepescalation);
     }
 
-    @GetMapping("/com.genologics.ri.step.Escalation.EscalatedArtifacts")
-    ResponseEntity<String> getStepEscalationEscalatedArtifacts() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Escalation.EscalatedArtifacts");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Escalation.EscalatedArtifacts.class, new com.genologics.ri.step.Escalation.EscalatedArtifacts()));
+    @PostMapping("/xml/stepescalationescalatedartifacts")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Escalation.EscalatedArtifacts stepescalationescalatedartifacts){
+        logger.info("hit /marshal/com.genologics.ri.step.Escalation.EscalatedArtifacts");
+        return marshal(stepescalationescalatedartifacts.getClass(), stepescalationescalatedartifacts);
     }
 
-    @GetMapping("/com.genologics.ri.step.EscalationRequest")
-    ResponseEntity<String> getStepEscalationRequest() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.EscalationRequest");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.EscalationRequest.class, new com.genologics.ri.step.EscalationRequest()));
+    @PostMapping("/xml/stepescalationrequest")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.EscalationRequest stepescalationrequest){
+        logger.info("hit /marshal/com.genologics.ri.step.EscalationRequest");
+        return marshal(stepescalationrequest.getClass(), stepescalationrequest);
     }
 
-    @GetMapping("/com.genologics.ri.step.EscalationReview")
-    ResponseEntity<String> getStepEscalationReview() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.EscalationReview");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.EscalationReview.class, new com.genologics.ri.step.EscalationReview()));
+    @PostMapping("/xml/stepescalationreview")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.EscalationReview stepescalationreview){
+        logger.info("hit /marshal/com.genologics.ri.step.EscalationReview");
+        return marshal(stepescalationreview.getClass(), stepescalationreview);
     }
 
-    @GetMapping("/com.genologics.ri.step.File")
-    ResponseEntity<String> getStepFile() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.File");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.File.class, new com.genologics.ri.step.File()));
+    @PostMapping("/xml/stepfile")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.File stepfile){
+        logger.info("hit /marshal/com.genologics.ri.step.File");
+        return marshal(stepfile.getClass(), stepfile);
     }
 
-    @GetMapping("/com.genologics.ri.step.Input")
-    ResponseEntity<String> getStepInput() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Input");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Input.class, new com.genologics.ri.step.Input()));
+    @PostMapping("/xml/stepinput")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Input stepinput){
+        logger.info("hit /marshal/com.genologics.ri.step.Input");
+        return marshal(stepinput.getClass(), stepinput);
     }
 
-    @GetMapping("/com.genologics.ri.step.InputOutputMap")
-    ResponseEntity<String> getStepInputOutputMap() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.InputOutputMap");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.InputOutputMap.class, new com.genologics.ri.step.InputOutputMap()));
+    @PostMapping("/xml/stepinputoutputmap")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.InputOutputMap stepinputoutputmap){
+        logger.info("hit /marshal/com.genologics.ri.step.InputOutputMap");
+        return marshal(stepinputoutputmap.getClass(), stepinputoutputmap);
     }
 
-    @GetMapping("/com.genologics.ri.step.Instrument")
-    ResponseEntity<String> getStepInstrument() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Instrument");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Instrument.class, new com.genologics.ri.step.Instrument()));
+    @PostMapping("/xml/stepinstrument")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Instrument stepinstrument){
+        logger.info("hit /marshal/com.genologics.ri.step.Instrument");
+        return marshal(stepinstrument.getClass(), stepinstrument);
     }
 
-    @GetMapping("/com.genologics.ri.step.Lots")
-    ResponseEntity<String> getStepLots() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Lots");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Lots.class, new com.genologics.ri.step.Lots()));
+    @PostMapping("/xml/steplots")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Lots steplots){
+        logger.info("hit /marshal/com.genologics.ri.step.Lots");
+        return marshal(steplots.getClass(), steplots);
     }
 
-    @GetMapping("/com.genologics.ri.step.Lots.ReagentLots")
-    ResponseEntity<String> getStepLotsReagentLots() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Lots.ReagentLots");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Lots.ReagentLots.class, new com.genologics.ri.step.Lots.ReagentLots()));
+    @PostMapping("/xml/steplotsreagentlots")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Lots.ReagentLots steplotsreagentlots){
+        logger.info("hit /marshal/com.genologics.ri.step.Lots.ReagentLots");
+        return marshal(steplotsreagentlots.getClass(), steplotsreagentlots);
     }
 
-    @GetMapping("/com.genologics.ri.step.NextAction")
-    ResponseEntity<String> getStepNextAction() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.NextAction");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.NextAction.class, new com.genologics.ri.step.NextAction()));
+    @PostMapping("/xml/stepnextaction")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.NextAction stepnextaction){
+        logger.info("hit /marshal/com.genologics.ri.step.NextAction");
+        return marshal(stepnextaction.getClass(), stepnextaction);
     }
 
-    @GetMapping("/com.genologics.ri.step.Output")
-    ResponseEntity<String> getStepOutput() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Output");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Output.class, new com.genologics.ri.step.Output()));
+    @PostMapping("/xml/stepoutput")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Output stepoutput){
+        logger.info("hit /marshal/com.genologics.ri.step.Output");
+        return marshal(stepoutput.getClass(), stepoutput);
     }
 
-    @GetMapping("/com.genologics.ri.step.OutputPlacement")
-    ResponseEntity<String> getStepOutputPlacement() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.OutputPlacement");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.OutputPlacement.class, new com.genologics.ri.step.OutputPlacement()));
+    @PostMapping("/xml/stepoutputplacement")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.OutputPlacement stepoutputplacement){
+        logger.info("hit /marshal/com.genologics.ri.step.OutputPlacement");
+        return marshal(stepoutputplacement.getClass(), stepoutputplacement);
     }
 
-    @GetMapping("/com.genologics.ri.step.Placements")
-    ResponseEntity<String> getStepPlacements() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Placements");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Placements.class, new com.genologics.ri.step.Placements()));
+    @PostMapping("/xml/stepplacements")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Placements stepplacements){
+        logger.info("hit /marshal/com.genologics.ri.step.Placements");
+        return marshal(stepplacements.getClass(), stepplacements);
     }
 
-    @GetMapping("/com.genologics.ri.step.Placements.OutputPlacements")
-    ResponseEntity<String> getStepPlacementsOutputPlacements() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Placements.OutputPlacements");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Placements.OutputPlacements.class, new com.genologics.ri.step.Placements.OutputPlacements()));
+    @PostMapping("/xml/stepplacementsoutputplacements")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Placements.OutputPlacements stepplacementsoutputplacements){
+        logger.info("hit /marshal/com.genologics.ri.step.Placements.OutputPlacements");
+        return marshal(stepplacementsoutputplacements.getClass(), stepplacementsoutputplacements);
     }
 
-    @GetMapping("/com.genologics.ri.step.Placements.SelectedContainers")
-    ResponseEntity<String> getStepPlacementsSelectedContainers() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Placements.SelectedContainers");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Placements.SelectedContainers.class, new com.genologics.ri.step.Placements.SelectedContainers()));
+    @PostMapping("/xml/stepplacementsselectedcontainers")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Placements.SelectedContainers stepplacementsselectedcontainers){
+        logger.info("hit /marshal/com.genologics.ri.step.Placements.SelectedContainers");
+        return marshal(stepplacementsselectedcontainers.getClass(), stepplacementsselectedcontainers);
     }
 
-    @GetMapping("/com.genologics.ri.step.PlacementsLink")
-    ResponseEntity<String> getStepPlacementsLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.PlacementsLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.PlacementsLink.class, new com.genologics.ri.step.PlacementsLink()));
+    @PostMapping("/xml/stepplacementslink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.PlacementsLink stepplacementslink){
+        logger.info("hit /marshal/com.genologics.ri.step.PlacementsLink");
+        return marshal(stepplacementslink.getClass(), stepplacementslink);
     }
 
-    @GetMapping("/com.genologics.ri.step.PooledInputs")
-    ResponseEntity<String> getStepPooledInputs() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.PooledInputs");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.PooledInputs.class, new com.genologics.ri.step.PooledInputs()));
+    @PostMapping("/xml/steppooledinputs")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.PooledInputs steppooledinputs){
+        logger.info("hit /marshal/com.genologics.ri.step.PooledInputs");
+        return marshal(steppooledinputs.getClass(), steppooledinputs);
     }
 
-    @GetMapping("/com.genologics.ri.step.Pools")
-    ResponseEntity<String> getStepPools() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Pools");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Pools.class, new com.genologics.ri.step.Pools()));
+    @PostMapping("/xml/steppools")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Pools steppools){
+        logger.info("hit /marshal/com.genologics.ri.step.Pools");
+        return marshal(steppools.getClass(), steppools);
     }
 
-    @GetMapping("/com.genologics.ri.step.Pools.AvailableInputs")
-    ResponseEntity<String> getStepPoolsAvailableInputs() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Pools.AvailableInputs");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Pools.AvailableInputs.class, new com.genologics.ri.step.Pools.AvailableInputs()));
+    @PostMapping("/xml/steppoolsavailableinputs")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Pools.AvailableInputs steppoolsavailableinputs){
+        logger.info("hit /marshal/com.genologics.ri.step.Pools.AvailableInputs");
+        return marshal(steppoolsavailableinputs.getClass(), steppoolsavailableinputs);
     }
 
-    @GetMapping("/com.genologics.ri.step.Pools.PooledInputs")
-    ResponseEntity<String> getStepPoolsPooledInputs() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Pools.PooledInputs");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Pools.PooledInputs.class, new com.genologics.ri.step.Pools.PooledInputs()));
+    @PostMapping("/xml/steppoolspooledinputs")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Pools.PooledInputs steppoolspooledinputs){
+        logger.info("hit /marshal/com.genologics.ri.step.Pools.PooledInputs");
+        return marshal(steppoolspooledinputs.getClass(), steppoolspooledinputs);
     }
 
-    @GetMapping("/com.genologics.ri.step.PoolsLink")
-    ResponseEntity<String> getStepPoolsLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.PoolsLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.PoolsLink.class, new com.genologics.ri.step.PoolsLink()));
+    @PostMapping("/xml/steppoolslink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.PoolsLink steppoolslink){
+        logger.info("hit /marshal/com.genologics.ri.step.PoolsLink");
+        return marshal(steppoolslink.getClass(), steppoolslink);
     }
 
-    @GetMapping("/com.genologics.ri.step.ProgramStatus")
-    ResponseEntity<String> getStepProgramStatus() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.ProgramStatus");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ProgramStatus.class, new com.genologics.ri.step.ProgramStatus()));
+    @PostMapping("/xml/stepprogramstatus")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.ProgramStatus stepprogramstatus){
+        logger.info("hit /marshal/com.genologics.ri.step.ProgramStatus");
+        return marshal(stepprogramstatus.getClass(), stepprogramstatus);
     }
 
-    @GetMapping("/com.genologics.ri.step.ProgramStatusLink")
-    ResponseEntity<String> getStepProgramStatusLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.ProgramStatusLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ProgramStatusLink.class, new com.genologics.ri.step.ProgramStatusLink()));
+    @PostMapping("/xml/stepprogramstatuslink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.ProgramStatusLink stepprogramstatuslink){
+        logger.info("hit /marshal/com.genologics.ri.step.ProgramStatusLink");
+        return marshal(stepprogramstatuslink.getClass(), stepprogramstatuslink);
     }
 
-    @GetMapping("/com.genologics.ri.step.ReagentLabel")
-    ResponseEntity<String> getStepReagentLabel() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.ReagentLabel");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ReagentLabel.class, new com.genologics.ri.step.ReagentLabel()));
+    @PostMapping("/xml/stepreagentlabel")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.ReagentLabel stepreagentlabel){
+        logger.info("hit /marshal/com.genologics.ri.step.ReagentLabel");
+        return marshal(stepreagentlabel.getClass(), stepreagentlabel);
     }
 
-    @GetMapping("/com.genologics.ri.step.ReagentLotLink")
-    ResponseEntity<String> getStepReagentLotLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.ReagentLotLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ReagentLotLink.class, new com.genologics.ri.step.ReagentLotLink()));
+    @PostMapping("/xml/stepreagentlotlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.ReagentLotLink stepreagentlotlink){
+        logger.info("hit /marshal/com.genologics.ri.step.ReagentLotLink");
+        return marshal(stepreagentlotlink.getClass(), stepreagentlotlink);
     }
 
-    @GetMapping("/com.genologics.ri.step.ReagentLotsLink")
-    ResponseEntity<String> getStepReagentLotsLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.ReagentLotsLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ReagentLotsLink.class, new com.genologics.ri.step.ReagentLotsLink()));
+    @PostMapping("/xml/stepreagentlotslink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.ReagentLotsLink stepreagentlotslink){
+        logger.info("hit /marshal/com.genologics.ri.step.ReagentLotsLink");
+        return marshal(stepreagentlotslink.getClass(), stepreagentlotslink);
     }
 
-    @GetMapping("/com.genologics.ri.step.Reagents")
-    ResponseEntity<String> getStepReagents() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Reagents");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Reagents.class, new com.genologics.ri.step.Reagents()));
+    @PostMapping("/xml/stepreagents")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Reagents stepreagents){
+        logger.info("hit /marshal/com.genologics.ri.step.Reagents");
+        return marshal(stepreagents.getClass(), stepreagents);
     }
 
-    @GetMapping("/com.genologics.ri.step.Reagents.OutputReagents")
-    ResponseEntity<String> getStepReagentsOutputReagents() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Reagents.OutputReagents");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Reagents.OutputReagents.class, new com.genologics.ri.step.Reagents.OutputReagents()));
+    @PostMapping("/xml/stepreagentsoutputreagents")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Reagents.OutputReagents stepreagentsoutputreagents){
+        logger.info("hit /marshal/com.genologics.ri.step.Reagents.OutputReagents");
+        return marshal(stepreagentsoutputreagents.getClass(), stepreagentsoutputreagents);
     }
 
-    @GetMapping("/com.genologics.ri.step.ReagentsLink")
-    ResponseEntity<String> getStepReagentsLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.ReagentsLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.ReagentsLink.class, new com.genologics.ri.step.ReagentsLink()));
+    @PostMapping("/xml/stepreagentslink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.ReagentsLink stepreagentslink){
+        logger.info("hit /marshal/com.genologics.ri.step.ReagentsLink");
+        return marshal(stepreagentslink.getClass(), stepreagentslink);
     }
 
-    @GetMapping("/com.genologics.ri.step.Setup")
-    ResponseEntity<String> getStepSetup() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Setup");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Setup.class, new com.genologics.ri.step.Setup()));
+    @PostMapping("/xml/stepsetup")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Setup stepsetup){
+        logger.info("hit /marshal/com.genologics.ri.step.Setup");
+        return marshal(stepsetup.getClass(), stepsetup);
     }
 
-    @GetMapping("/com.genologics.ri.step.Setup.Files")
-    ResponseEntity<String> getStepSetupFiles() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Setup.Files");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Setup.Files.class, new com.genologics.ri.step.Setup.Files()));
+    @PostMapping("/xml/stepsetupfiles")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Setup.Files stepsetupfiles){
+        logger.info("hit /marshal/com.genologics.ri.step.Setup.Files");
+        return marshal(stepsetupfiles.getClass(), stepsetupfiles);
     }
 
-    @GetMapping("/com.genologics.ri.step.SetupLink")
-    ResponseEntity<String> getStepSetupLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.SetupLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.SetupLink.class, new com.genologics.ri.step.SetupLink()));
+    @PostMapping("/xml/stepsetuplink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.SetupLink stepsetuplink){
+        logger.info("hit /marshal/com.genologics.ri.step.SetupLink");
+        return marshal(stepsetuplink.getClass(), stepsetuplink);
     }
 
-    @GetMapping("/com.genologics.ri.step.Step")
-    ResponseEntity<String> getStepStep() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Step");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Step.class, new com.genologics.ri.step.Step()));
+    @PostMapping("/xml/stepstep")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Step stepstep){
+        logger.info("hit /marshal/com.genologics.ri.step.Step");
+        return marshal(stepstep.getClass(), stepstep);
     }
 
-    @GetMapping("/com.genologics.ri.step.Step.AvailablePrograms")
-    ResponseEntity<String> getStepStepAvailablePrograms() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.Step.AvailablePrograms");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.Step.AvailablePrograms.class, new com.genologics.ri.step.Step.AvailablePrograms()));
+    @PostMapping("/xml/stepstepavailableprograms")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.Step.AvailablePrograms stepstepavailableprograms){
+        logger.info("hit /marshal/com.genologics.ri.step.Step.AvailablePrograms");
+        return marshal(stepstepavailableprograms.getClass(), stepstepavailableprograms);
     }
 
-    @GetMapping("/com.genologics.ri.step.StepConfiguration")
-    ResponseEntity<String> getStepStepConfiguration() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.StepConfiguration");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.StepConfiguration.class, new com.genologics.ri.step.StepConfiguration()));
+    @PostMapping("/xml/stepstepconfiguration")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.StepConfiguration stepstepconfiguration){
+        logger.info("hit /marshal/com.genologics.ri.step.StepConfiguration");
+        return marshal(stepstepconfiguration.getClass(), stepstepconfiguration);
     }
 
-    @GetMapping("/com.genologics.ri.step.StepCreation")
-    ResponseEntity<String> getStepStepCreation() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.StepCreation");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.StepCreation.class, new com.genologics.ri.step.StepCreation()));
+    @PostMapping("/xml/stepstepcreation")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.StepCreation stepstepcreation){
+        logger.info("hit /marshal/com.genologics.ri.step.StepCreation");
+        return marshal(stepstepcreation.getClass(), stepstepcreation);
     }
 
-    @GetMapping("/com.genologics.ri.step.StepCreation.Inputs")
-    ResponseEntity<String> getStepStepCreationInputs() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.StepCreation.Inputs");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.StepCreation.Inputs.class, new com.genologics.ri.step.StepCreation.Inputs()));
+    @PostMapping("/xml/stepstepcreationinputs")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.StepCreation.Inputs stepstepcreationinputs){
+        logger.info("hit /marshal/com.genologics.ri.step.StepCreation.Inputs");
+        return marshal(stepstepcreationinputs.getClass(), stepstepcreationinputs);
     }
 
-    @GetMapping("/com.genologics.ri.step.User")
-    ResponseEntity<String> getStepUser() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.step.User");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.step.User.class, new com.genologics.ri.step.User()));
+    @PostMapping("/xml/stepuser")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.step.User stepuser){
+        logger.info("hit /marshal/com.genologics.ri.step.User");
+        return marshal(stepuser.getClass(), stepuser);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.ControlTypeLink")
-    ResponseEntity<String> getStepconfigurationControlTypeLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.ControlTypeLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.ControlTypeLink.class, new com.genologics.ri.stepconfiguration.ControlTypeLink()));
+    @PostMapping("/xml/stepconfigurationcontroltypelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.ControlTypeLink stepconfigurationcontroltypelink){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.ControlTypeLink");
+        return marshal(stepconfigurationcontroltypelink.getClass(), stepconfigurationcontroltypelink);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.EppTrigger")
-    ResponseEntity<String> getStepconfigurationEppTrigger() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.EppTrigger");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.EppTrigger.class, new com.genologics.ri.stepconfiguration.EppTrigger()));
+    @PostMapping("/xml/stepconfigurationepptrigger")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.EppTrigger stepconfigurationepptrigger){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.EppTrigger");
+        return marshal(stepconfigurationepptrigger.getClass(), stepconfigurationepptrigger);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Field")
-    ResponseEntity<String> getStepconfigurationField() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Field");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Field.class, new com.genologics.ri.stepconfiguration.Field()));
+    @PostMapping("/xml/stepconfigurationfield")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Field stepconfigurationfield){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Field");
+        return marshal(stepconfigurationfield.getClass(), stepconfigurationfield);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.File")
-    ResponseEntity<String> getStepconfigurationFile() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.File");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.File.class, new com.genologics.ri.stepconfiguration.File()));
+    @PostMapping("/xml/stepconfigurationfile")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.File stepconfigurationfile){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.File");
+        return marshal(stepconfigurationfile.getClass(), stepconfigurationfile);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.GenericTypeLink")
-    ResponseEntity<String> getStepconfigurationGenericTypeLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.GenericTypeLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.GenericTypeLink.class, new com.genologics.ri.stepconfiguration.GenericTypeLink()));
+    @PostMapping("/xml/stepconfigurationgenerictypelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.GenericTypeLink stepconfigurationgenerictypelink){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.GenericTypeLink");
+        return marshal(stepconfigurationgenerictypelink.getClass(), stepconfigurationgenerictypelink);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Icebucketfield")
-    ResponseEntity<String> getStepconfigurationIcebucketfield() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Icebucketfield");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Icebucketfield.class, new com.genologics.ri.stepconfiguration.Icebucketfield()));
+    @PostMapping("/xml/stepconfigurationicebucketfield")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Icebucketfield stepconfigurationicebucketfield){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Icebucketfield");
+        return marshal(stepconfigurationicebucketfield.getClass(), stepconfigurationicebucketfield);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.LockableSetting")
-    ResponseEntity<String> getStepconfigurationLockableSetting() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.LockableSetting");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.LockableSetting.class, new com.genologics.ri.stepconfiguration.LockableSetting()));
+    @PostMapping("/xml/stepconfigurationlockablesetting")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.LockableSetting stepconfigurationlockablesetting){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.LockableSetting");
+        return marshal(stepconfigurationlockablesetting.getClass(), stepconfigurationlockablesetting);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.NextStep")
-    ResponseEntity<String> getStepconfigurationNextStep() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.NextStep");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.NextStep.class, new com.genologics.ri.stepconfiguration.NextStep()));
+    @PostMapping("/xml/stepconfigurationnextstep")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.NextStep stepconfigurationnextstep){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.NextStep");
+        return marshal(stepconfigurationnextstep.getClass(), stepconfigurationnextstep);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.ProcessType")
-    ResponseEntity<String> getStepconfigurationProcessType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.ProcessType");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.ProcessType.class, new com.genologics.ri.stepconfiguration.ProcessType()));
+    @PostMapping("/xml/stepconfigurationprocesstype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.ProcessType stepconfigurationprocesstype){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.ProcessType");
+        return marshal(stepconfigurationprocesstype.getClass(), stepconfigurationprocesstype);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Queuefield")
-    ResponseEntity<String> getStepconfigurationQueuefield() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Queuefield");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Queuefield.class, new com.genologics.ri.stepconfiguration.Queuefield()));
+    @PostMapping("/xml/stepconfigurationqueuefield")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Queuefield stepconfigurationqueuefield){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Queuefield");
+        return marshal(stepconfigurationqueuefield.getClass(), stepconfigurationqueuefield);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.ReagentKitLink")
-    ResponseEntity<String> getStepconfigurationReagentKitLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.ReagentKitLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.ReagentKitLink.class, new com.genologics.ri.stepconfiguration.ReagentKitLink()));
+    @PostMapping("/xml/stepconfigurationreagentkitlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.ReagentKitLink stepconfigurationreagentkitlink){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.ReagentKitLink");
+        return marshal(stepconfigurationreagentkitlink.getClass(), stepconfigurationreagentkitlink);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step")
-    ResponseEntity<String> getStepconfigurationStep() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.class, new com.genologics.ri.stepconfiguration.Step()));
+    @PostMapping("/xml/stepconfigurationstep")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step stepconfigurationstep){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step");
+        return marshal(stepconfigurationstep.getClass(), stepconfigurationstep);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.EppTriggers")
-    ResponseEntity<String> getStepconfigurationStepEppTriggers() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.EppTriggers");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.EppTriggers.class, new com.genologics.ri.stepconfiguration.Step.EppTriggers()));
+    @PostMapping("/xml/stepconfigurationstepepptriggers")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.EppTriggers stepconfigurationstepepptriggers){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.EppTriggers");
+        return marshal(stepconfigurationstepepptriggers.getClass(), stepconfigurationstepepptriggers);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.IceBucketFields")
-    ResponseEntity<String> getStepconfigurationStepIceBucketFields() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.IceBucketFields");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.IceBucketFields.class, new com.genologics.ri.stepconfiguration.Step.IceBucketFields()));
+    @PostMapping("/xml/stepconfigurationstepicebucketfields")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.IceBucketFields stepconfigurationstepicebucketfields){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.IceBucketFields");
+        return marshal(stepconfigurationstepicebucketfields.getClass(), stepconfigurationstepicebucketfields);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.PermittedContainers")
-    ResponseEntity<String> getStepconfigurationStepPermittedContainers() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.PermittedContainers");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.PermittedContainers.class, new com.genologics.ri.stepconfiguration.Step.PermittedContainers()));
+    @PostMapping("/xml/stepconfigurationsteppermittedcontainers")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.PermittedContainers stepconfigurationsteppermittedcontainers){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.PermittedContainers");
+        return marshal(stepconfigurationsteppermittedcontainers.getClass(), stepconfigurationsteppermittedcontainers);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.PermittedControlTypes")
-    ResponseEntity<String> getStepconfigurationStepPermittedControlTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.PermittedControlTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.PermittedControlTypes.class, new com.genologics.ri.stepconfiguration.Step.PermittedControlTypes()));
+    @PostMapping("/xml/stepconfigurationsteppermittedcontroltypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.PermittedControlTypes stepconfigurationsteppermittedcontroltypes){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.PermittedControlTypes");
+        return marshal(stepconfigurationsteppermittedcontroltypes.getClass(), stepconfigurationsteppermittedcontroltypes);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.PermittedInstrumentTypes")
-    ResponseEntity<String> getStepconfigurationStepPermittedInstrumentTypes() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.PermittedInstrumentTypes");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.PermittedInstrumentTypes.class, new com.genologics.ri.stepconfiguration.Step.PermittedInstrumentTypes()));
+    @PostMapping("/xml/stepconfigurationsteppermittedinstrumenttypes")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.PermittedInstrumentTypes stepconfigurationsteppermittedinstrumenttypes){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.PermittedInstrumentTypes");
+        return marshal(stepconfigurationsteppermittedinstrumenttypes.getClass(), stepconfigurationsteppermittedinstrumenttypes);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.PermittedReagentCategories")
-    ResponseEntity<String> getStepconfigurationStepPermittedReagentCategories() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.PermittedReagentCategories");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.PermittedReagentCategories.class, new com.genologics.ri.stepconfiguration.Step.PermittedReagentCategories()));
+    @PostMapping("/xml/stepconfigurationsteppermittedreagentcategories")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.PermittedReagentCategories stepconfigurationsteppermittedreagentcategories){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.PermittedReagentCategories");
+        return marshal(stepconfigurationsteppermittedreagentcategories.getClass(), stepconfigurationsteppermittedreagentcategories);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.QueueFields")
-    ResponseEntity<String> getStepconfigurationStepQueueFields() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.QueueFields");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.QueueFields.class, new com.genologics.ri.stepconfiguration.Step.QueueFields()));
+    @PostMapping("/xml/stepconfigurationstepqueuefields")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.QueueFields stepconfigurationstepqueuefields){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.QueueFields");
+        return marshal(stepconfigurationstepqueuefields.getClass(), stepconfigurationstepqueuefields);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.RequiredReagentKits")
-    ResponseEntity<String> getStepconfigurationStepRequiredReagentKits() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.RequiredReagentKits");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.RequiredReagentKits.class, new com.genologics.ri.stepconfiguration.Step.RequiredReagentKits()));
+    @PostMapping("/xml/stepconfigurationsteprequiredreagentkits")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.RequiredReagentKits stepconfigurationsteprequiredreagentkits){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.RequiredReagentKits");
+        return marshal(stepconfigurationsteprequiredreagentkits.getClass(), stepconfigurationsteprequiredreagentkits);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.SampleFields")
-    ResponseEntity<String> getStepconfigurationStepSampleFields() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.SampleFields");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.SampleFields.class, new com.genologics.ri.stepconfiguration.Step.SampleFields()));
+    @PostMapping("/xml/stepconfigurationstepsamplefields")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.SampleFields stepconfigurationstepsamplefields){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.SampleFields");
+        return marshal(stepconfigurationstepsamplefields.getClass(), stepconfigurationstepsamplefields);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.StepFields")
-    ResponseEntity<String> getStepconfigurationStepStepFields() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.StepFields");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.StepFields.class, new com.genologics.ri.stepconfiguration.Step.StepFields()));
+    @PostMapping("/xml/stepconfigurationstepstepfields")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.StepFields stepconfigurationstepstepfields){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.StepFields");
+        return marshal(stepconfigurationstepstepfields.getClass(), stepconfigurationstepstepfields);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.StepProperties")
-    ResponseEntity<String> getStepconfigurationStepStepProperties() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.StepProperties");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.StepProperties.class, new com.genologics.ri.stepconfiguration.Step.StepProperties()));
+    @PostMapping("/xml/stepconfigurationstepstepproperties")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.StepProperties stepconfigurationstepstepproperties){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.StepProperties");
+        return marshal(stepconfigurationstepstepproperties.getClass(), stepconfigurationstepstepproperties);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.Step.Transitions")
-    ResponseEntity<String> getStepconfigurationStepTransitions() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.Step.Transitions");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.Step.Transitions.class, new com.genologics.ri.stepconfiguration.Step.Transitions()));
+    @PostMapping("/xml/stepconfigurationsteptransitions")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.Step.Transitions stepconfigurationsteptransitions){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.Step.Transitions");
+        return marshal(stepconfigurationsteptransitions.getClass(), stepconfigurationsteptransitions);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.StepProperty")
-    ResponseEntity<String> getStepconfigurationStepProperty() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.StepProperty");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.StepProperty.class, new com.genologics.ri.stepconfiguration.StepProperty()));
+    @PostMapping("/xml/stepconfigurationstepproperty")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.StepProperty stepconfigurationstepproperty){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.StepProperty");
+        return marshal(stepconfigurationstepproperty.getClass(), stepconfigurationstepproperty);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.StepSetup")
-    ResponseEntity<String> getStepconfigurationStepSetup() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.StepSetup");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.StepSetup.class, new com.genologics.ri.stepconfiguration.StepSetup()));
+    @PostMapping("/xml/stepconfigurationstepsetup")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.StepSetup stepconfigurationstepsetup){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.StepSetup");
+        return marshal(stepconfigurationstepsetup.getClass(), stepconfigurationstepsetup);
     }
 
-    @GetMapping("/com.genologics.ri.stepconfiguration.StepSetup.Files")
-    ResponseEntity<String> getStepconfigurationStepSetupFiles() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.stepconfiguration.StepSetup.Files");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.stepconfiguration.StepSetup.Files.class, new com.genologics.ri.stepconfiguration.StepSetup.Files()));
+    @PostMapping("/xml/stepconfigurationstepsetupfiles")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.stepconfiguration.StepSetup.Files stepconfigurationstepsetupfiles){
+        logger.info("hit /marshal/com.genologics.ri.stepconfiguration.StepSetup.Files");
+        return marshal(stepconfigurationstepsetupfiles.getClass(), stepconfigurationstepsetupfiles);
     }
 
-    @GetMapping("/com.genologics.ri.userdefined.Field")
-    ResponseEntity<String> getUserdefinedField() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.userdefined.Field");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.userdefined.Field.class, new com.genologics.ri.userdefined.Field()));
+    @PostMapping("/xml/userdefinedfield")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.userdefined.Field userdefinedfield){
+        logger.info("hit /marshal/com.genologics.ri.userdefined.Field");
+        return marshal(userdefinedfield.getClass(), userdefinedfield);
     }
 
-    @GetMapping("/com.genologics.ri.userdefined.Type")
-    ResponseEntity<String> getUserdefinedType() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.userdefined.Type");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.userdefined.Type.class, new com.genologics.ri.userdefined.Type()));
+    @PostMapping("/xml/userdefinedtype")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.userdefined.Type userdefinedtype){
+        logger.info("hit /marshal/com.genologics.ri.userdefined.Type");
+        return marshal(userdefinedtype.getClass(), userdefinedtype);
     }
 
-    @GetMapping("/com.genologics.ri.version.Version")
-    ResponseEntity<String> getVersionVersion() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.version.Version");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.version.Version.class, new com.genologics.ri.version.Version()));
+    @PostMapping("/xml/versionversion")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.version.Version versionversion){
+        logger.info("hit /marshal/com.genologics.ri.version.Version");
+        return marshal(versionversion.getClass(), versionversion);
     }
 
-    @GetMapping("/com.genologics.ri.version.Versions")
-    ResponseEntity<String> getVersionVersions() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.version.Versions");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.version.Versions.class, new com.genologics.ri.version.Versions()));
+    @PostMapping("/xml/versionversions")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.version.Versions versionversions){
+        logger.info("hit /marshal/com.genologics.ri.version.Versions");
+        return marshal(versionversions.getClass(), versionversions);
     }
 
-    @GetMapping("/com.genologics.ri.workflowconfiguration.ProtocolLink")
-    ResponseEntity<String> getWorkflowconfigurationProtocolLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.workflowconfiguration.ProtocolLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.workflowconfiguration.ProtocolLink.class, new com.genologics.ri.workflowconfiguration.ProtocolLink()));
+    @PostMapping("/xml/workflowconfigurationprotocollink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.workflowconfiguration.ProtocolLink workflowconfigurationprotocollink){
+        logger.info("hit /marshal/com.genologics.ri.workflowconfiguration.ProtocolLink");
+        return marshal(workflowconfigurationprotocollink.getClass(), workflowconfigurationprotocollink);
     }
 
-    @GetMapping("/com.genologics.ri.workflowconfiguration.StageLink")
-    ResponseEntity<String> getWorkflowconfigurationStageLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.workflowconfiguration.StageLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.workflowconfiguration.StageLink.class, new com.genologics.ri.workflowconfiguration.StageLink()));
+    @PostMapping("/xml/workflowconfigurationstagelink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.workflowconfiguration.StageLink workflowconfigurationstagelink){
+        logger.info("hit /marshal/com.genologics.ri.workflowconfiguration.StageLink");
+        return marshal(workflowconfigurationstagelink.getClass(), workflowconfigurationstagelink);
     }
 
-    @GetMapping("/com.genologics.ri.workflowconfiguration.Workflow")
-    ResponseEntity<String> getWorkflowconfigurationWorkflow() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.workflowconfiguration.Workflow");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.workflowconfiguration.Workflow.class, new com.genologics.ri.workflowconfiguration.Workflow()));
+    @PostMapping("/xml/workflowconfigurationworkflow")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.workflowconfiguration.Workflow workflowconfigurationworkflow){
+        logger.info("hit /marshal/com.genologics.ri.workflowconfiguration.Workflow");
+        return marshal(workflowconfigurationworkflow.getClass(), workflowconfigurationworkflow);
     }
 
-    @GetMapping("/com.genologics.ri.workflowconfiguration.Workflow.Protocols")
-    ResponseEntity<String> getWorkflowconfigurationWorkflowProtocols() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.workflowconfiguration.Workflow.Protocols");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.workflowconfiguration.Workflow.Protocols.class, new com.genologics.ri.workflowconfiguration.Workflow.Protocols()));
+    @PostMapping("/xml/workflowconfigurationworkflowprotocols")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.workflowconfiguration.Workflow.Protocols workflowconfigurationworkflowprotocols){
+        logger.info("hit /marshal/com.genologics.ri.workflowconfiguration.Workflow.Protocols");
+        return marshal(workflowconfigurationworkflowprotocols.getClass(), workflowconfigurationworkflowprotocols);
     }
 
-    @GetMapping("/com.genologics.ri.workflowconfiguration.Workflow.Stages")
-    ResponseEntity<String> getWorkflowconfigurationWorkflowStages() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.workflowconfiguration.Workflow.Stages");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.workflowconfiguration.Workflow.Stages.class, new com.genologics.ri.workflowconfiguration.Workflow.Stages()));
+    @PostMapping("/xml/workflowconfigurationworkflowstages")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.workflowconfiguration.Workflow.Stages workflowconfigurationworkflowstages){
+        logger.info("hit /marshal/com.genologics.ri.workflowconfiguration.Workflow.Stages");
+        return marshal(workflowconfigurationworkflowstages.getClass(), workflowconfigurationworkflowstages);
     }
 
-    @GetMapping("/com.genologics.ri.workflowconfiguration.WorkflowLink")
-    ResponseEntity<String> getWorkflowconfigurationWorkflowLink() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.workflowconfiguration.WorkflowLink");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.workflowconfiguration.WorkflowLink.class, new com.genologics.ri.workflowconfiguration.WorkflowLink()));
+    @PostMapping("/xml/workflowconfigurationworkflowlink")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.workflowconfiguration.WorkflowLink workflowconfigurationworkflowlink){
+        logger.info("hit /marshal/com.genologics.ri.workflowconfiguration.WorkflowLink");
+        return marshal(workflowconfigurationworkflowlink.getClass(), workflowconfigurationworkflowlink);
     }
 
-    @GetMapping("/com.genologics.ri.workflowconfiguration.Workflows")
-    ResponseEntity<String> getWorkflowconfigurationWorkflows() throws JAXBException, ClassNotFoundException {
-        logger.info("hit /xml/com.genologics.ri.workflowconfiguration.Workflows");
-        return ResponseEntity.ok(marshallingService.marshal(com.genologics.ri.workflowconfiguration.Workflows.class, new com.genologics.ri.workflowconfiguration.Workflows()));
+    @PostMapping("/xml/workflowconfigurationworkflows")
+    ResponseEntity<String> xmlToJsonSample(@RequestBody com.genologics.ri.workflowconfiguration.Workflows workflowconfigurationworkflows){
+        logger.info("hit /marshal/com.genologics.ri.workflowconfiguration.Workflows");
+        return marshal(workflowconfigurationworkflows.getClass(), workflowconfigurationworkflows);
     }
+
+    private ResponseEntity<String> marshal(Class<?> payloadClass, Object payload){
+
+        try {
+
+            String response = marshallingService.marshal(payloadClass, payload);
+            return ResponseEntity.ok().body(response);
+
+        } catch (JAXBException e) {
 
+            logger.error("Something broke real bad...", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
+
+        } catch (ClassNotFoundException e) {
+
+            String msg = "ClassNotFoundException...was this a Clarity datatype?: " + payloadClass;
+
+            logger.error(msg, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(msg);
+
+        }
+
+    }
 }
