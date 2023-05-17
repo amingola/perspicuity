@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.0.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.perspicuity</groupId>
 	<artifactId>perspicuity</artifactId>
@@ -91,9 +91,6 @@
 							<includes>
 								<include>com/perspicuity/ControllerGenerator.java</include>
 							</includes>
-							<!--<excludes>
-								<exclude>other/source/files/*.java</exclude>
-							</excludes>-->
 						</configuration>
 					</execution>
 				</executions>
@@ -114,16 +111,6 @@
 					<clearOutputDir>false</clearOutputDir>
 				</configuration>
 			</plugin>
-<!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-compiler-plugin</artifactId>-->
-<!--				<version>3.8.0</version>-->
-<!--				<configuration>-->
-<!--					<source>1.8</source>-->
-<!--					<target>1.8</target>-->
-<!--				</configuration>-->
-
-<!--			</plugin>-->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -134,12 +121,6 @@
 						<goals>
 							<goal>java</goal>
 						</goals>
-<!--					Available lifecycle phases are:
-						validate, initialize, generate-sources, process-sources,
-						generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources,
-						generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package,
-						package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy, pre-clean, clean,
-						post-clean, pre-site, site, post-site, site-deploy-->
 						<phase>generate-sources</phase>
 						<configuration>
 							<mainClass>com.perspicuity.ControllerGenerator</mainClass>
