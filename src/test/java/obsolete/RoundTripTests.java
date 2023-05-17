@@ -60,6 +60,7 @@ import javax.xml.bind.JAXBException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
+ * @author Andrew Mingola
  * These tests create a POJO, and then "round-trip" it into XML #1 -> JSON -> XML #2, and compare for equality.
  * The POJOs are crudely filled with (primitives, Strings, and Lists). Useful for development purposes.
  */

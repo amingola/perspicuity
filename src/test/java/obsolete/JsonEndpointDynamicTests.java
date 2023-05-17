@@ -10,6 +10,7 @@ import org.junit.jupiter.api.TestFactory;
 import java.util.stream.Stream;
 
 /**
+ * @author Andrew Mingola
  * Useful for development but not an effective means of creating payloads intended for the Clarity API
  */
 @Deprecated

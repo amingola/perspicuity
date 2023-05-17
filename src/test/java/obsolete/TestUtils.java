@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author Andrew Mingola
+ * This class provides <code>fillAllFields(Object)</code> to (crudely) pack a POJO with primitive/String data via reflection
+ */
 public class TestUtils {
 
     static Object fillAllFields(Object obj){
