@@ -1,6 +1,6 @@
 # perspicuity
 
-This project is meant to jumping-off point into working with [Illumina's ClarityLIMS](https://support-docs.illumina.com/SW/ClarityLIMS/ClarityAPI/Content/SW/ClarityLIMS/API/Menu/Overview_swCL.htm) when using Spring Boot (or Java in general). It provides a means to convert all of the ClarityLIMS API's datatypes to Java objects to be manipulated, then back to XML payloads to hit API endpoints.
+This project is meant to jumping-off point into working with [Illumina's ClarityLIMS](https://support-docs.illumina.com/SW/ClarityLIMS/ClarityAPI/Content/SW/ClarityLIMS/API/Menu/Overview_swCL.htm) when using Spring Boot (or Java in general). It provides <ins>a means to convert all of the ClarityLIMS API's datatypes to Java objects</ins> to be manipulated, then back to XML payloads to hit API endpoints.
 
 This project is compatible up to Java 8. This is mostly due to [JAXB's compatibility issues past Java 8](https://www.jesperdj.com/2018/09/30/jaxb-on-java-9-10-11-and-beyond/). I may update the project to raise the highest Java version to a more recent version in the future.
 
