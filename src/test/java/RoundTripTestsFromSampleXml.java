@@ -19,12 +19,18 @@ public class RoundTripTestsFromSampleXml {
 
     private static final String examplePayloadsDir = "src/main/resources/example_payloads/";
     private static MarshallingService marshallingService;
+    private static UnmarshallingService unmarshallingService;
 
     @BeforeAll
     static void init(){
-        NamespaceMapper namespaceMapper = new NamespaceMapper("com.genologics");
-        marshallingService =
-                new MarshallingService("com.genologics", "http://genologics.com", namespaceMapper);
+        String clarityPackage = "com.genologics.ri";
+        String clarityPackageRoot = "com.genologics";
+        String clarityUri = "http://genologics.com";
+        String schemaDirectory = "src/main/xsd";
+
+        NamespaceMapper namespaceMapper = new NamespaceMapper(clarityPackage, clarityPackageRoot, clarityUri, schemaDirectory);
+        marshallingService = new MarshallingService(clarityPackage, clarityPackageRoot, clarityUri, namespaceMapper);
+        unmarshallingService = new UnmarshallingService(clarityPackage, clarityUri);
     }
 
     @Test
@@ -33,11 +39,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.artifact.Artifact.class;
 
         String xml = getExampleXmlFromFile("art_artifact.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -54,11 +60,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.artifact.Artifacts.class;
 
         String xml = getExampleXmlFromFile("art_artifacts.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -75,11 +81,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.artifact.Details.class;
 
         String xml = getExampleXmlFromFile("art_details.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -96,11 +102,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.artifactgroup.Artifactgroup.class;
 
         String xml = getExampleXmlFromFile("artgr_artifactgroup.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -117,11 +123,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.artifactgroup.Artifactgroups.class;
 
         String xml = getExampleXmlFromFile("artgr_artifactgroups.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -138,11 +144,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.configuration.Field.class;
 
         String xml = getExampleXmlFromFile("cnf_field.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -159,11 +165,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.configuration.Type.class;
 
         String xml = getExampleXmlFromFile("cnf_type.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -180,11 +186,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.configuration.UdfconfigLink.class;
 
         String xml = getExampleXmlFromFile("cnf_udfconfig-link.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -201,11 +207,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.configuration.Udfs.class;
 
         String xml = getExampleXmlFromFile("cnf_udfs.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -222,11 +228,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.configuration.UdtconfigLink.class;
 
         String xml = getExampleXmlFromFile("cnf_udtconfig-link.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -243,11 +249,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.configuration.Udts.class;
 
         String xml = getExampleXmlFromFile("cnf_udts.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -264,11 +270,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.container.Container.class;
 
         String xml = getExampleXmlFromFile("con_container.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -285,11 +291,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.container.Containers.class;
 
         String xml = getExampleXmlFromFile("con_containers.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -306,11 +312,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.container.Details.class;
 
         String xml = getExampleXmlFromFile("con_details.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -327,11 +333,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.containertype.ContainerType.class;
 
         String xml = getExampleXmlFromFile("ctp_container-type.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -348,11 +354,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.containertype.ContainerTypes.class;
 
         String xml = getExampleXmlFromFile("ctp_container-types.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -369,11 +375,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.controltype.ControlType.class;
 
         String xml = getExampleXmlFromFile("ctrltp_control-type.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -390,11 +396,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.controltype.ControlTypes.class;
 
         String xml = getExampleXmlFromFile("ctrltp_control-types.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -411,11 +417,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.exception.Exception.class;
 
         String xml = getExampleXmlFromFile("exc_exception.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -432,11 +438,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.file.Details.class;
 
         String xml = getExampleXmlFromFile("file_details.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -453,11 +459,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.file.File.class;
 
         String xml = getExampleXmlFromFile("file_file.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -474,11 +480,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.file.Files.class;
 
         String xml = getExampleXmlFromFile("file_files.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -495,11 +501,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.instrument.Instrument.class;
 
         String xml = getExampleXmlFromFile("inst_instrument.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -516,11 +522,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.instrument.Instruments.class;
 
         String xml = getExampleXmlFromFile("inst_instruments.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -537,11 +543,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.instrumenttype.InstrumentType.class;
 
         String xml = getExampleXmlFromFile("itp_instrument-type.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -558,11 +564,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.instrumenttype.InstrumentTypes.class;
 
         String xml = getExampleXmlFromFile("itp_instrument-types.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -579,11 +585,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.reagentkit.ReagentKit.class;
 
         String xml = getExampleXmlFromFile("kit_reagent-kit.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -600,11 +606,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.reagentkit.ReagentKits.class;
 
         String xml = getExampleXmlFromFile("kit_reagent-kits.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -621,11 +627,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.lab.Lab.class;
 
         String xml = getExampleXmlFromFile("lab_lab.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -642,11 +648,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.lab.Labs.class;
 
         String xml = getExampleXmlFromFile("lab_labs.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -663,11 +669,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.reagentlot.ReagentLot.class;
 
         String xml = getExampleXmlFromFile("lot_reagent-lot.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -684,11 +690,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.reagentlot.ReagentLots.class;
 
         String xml = getExampleXmlFromFile("lot_reagent-lots.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -705,11 +711,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.permission.Permission.class;
 
         String xml = getExampleXmlFromFile("perm_permission.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -726,11 +732,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.permission.Permissions.class;
 
         String xml = getExampleXmlFromFile("perm_permissions.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -747,11 +753,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.process.Process.class;
 
         String xml = getExampleXmlFromFile("prc_process.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -768,11 +774,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.process.Processes.class;
 
         String xml = getExampleXmlFromFile("prc_processes.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -789,11 +795,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.project.Project.class;
 
         String xml = getExampleXmlFromFile("prj_project.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -810,11 +816,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.project.Projects.class;
 
         String xml = getExampleXmlFromFile("prj_projects.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -831,11 +837,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.protocolconfiguration.Protocol.class;
 
         String xml = getExampleXmlFromFile("protcnf_protocol.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -852,11 +858,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.protocolconfiguration.Protocols.class;
 
         String xml = getExampleXmlFromFile("protcnf_protocols.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -873,11 +879,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.stepconfiguration.Step.class;
 
         String xml = getExampleXmlFromFile("protstepcnf_step.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -894,11 +900,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.processexecution.Process.class;
 
         String xml = getExampleXmlFromFile("prx_process.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -915,11 +921,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.processtemplate.ProcessTemplate.class;
 
         String xml = getExampleXmlFromFile("ptm_process-template.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -936,11 +942,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.processtemplate.ProcessTemplates.class;
 
         String xml = getExampleXmlFromFile("ptm_process-templates.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -957,11 +963,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.processtype.ProcessType.class;
 
         String xml = getExampleXmlFromFile("ptp_process-type.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -978,11 +984,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.processtype.ProcessTypes.class;
 
         String xml = getExampleXmlFromFile("ptp_process-types.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -999,11 +1005,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.queue.Queue.class;
 
         String xml = getExampleXmlFromFile("que_queue.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1020,11 +1026,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.researcher.Researcher.class;
 
         String xml = getExampleXmlFromFile("res_researcher.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1041,11 +1047,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.researcher.Researchers.class;
 
         String xml = getExampleXmlFromFile("res_researchers.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1062,11 +1068,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.Index.class;
 
         String xml = getExampleXmlFromFile("ri_index.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1083,11 +1089,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.Links.class;
 
         String xml = getExampleXmlFromFile("ri_links.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1104,11 +1110,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.role.Role.class;
 
         String xml = getExampleXmlFromFile("role_role.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1125,11 +1131,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.role.Roles.class;
 
         String xml = getExampleXmlFromFile("role_roles.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1146,11 +1152,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.routing.Routing.class;
 
         String xml = getExampleXmlFromFile("rt_routing.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1167,11 +1173,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.reagenttype.ReagentType.class;
 
         String xml = getExampleXmlFromFile("rtp_reagent-type.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1188,11 +1194,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.reagenttype.ReagentTypes.class;
 
         String xml = getExampleXmlFromFile("rtp_reagent-types.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1209,11 +1215,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.sample.Details.class;
 
         String xml = getExampleXmlFromFile("smp_details.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1230,11 +1236,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.sample.Sample.class;
 
         String xml = getExampleXmlFromFile("smp_sample.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1251,11 +1257,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.sample.Samples.class;
 
         String xml = getExampleXmlFromFile("smp_samples.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1272,11 +1278,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.sample.Samplecreation.class;
 
         String xml = getExampleXmlFromFile("smp_samplecreation.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1293,11 +1299,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.stage.Stage.class;
 
         String xml = getExampleXmlFromFile("stg_stage.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1314,11 +1320,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.step.Actions.class;
 
         String xml = getExampleXmlFromFile("stp_actions.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1335,11 +1341,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.step.Details.class;
 
         String xml = getExampleXmlFromFile("stp_details.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1356,11 +1362,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.step.Placements.class;
 
         String xml = getExampleXmlFromFile("stp_placements.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1377,11 +1383,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.step.Pools.class;
 
         String xml = getExampleXmlFromFile("stp_pools.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1398,11 +1404,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.step.ProgramStatus.class;
 
         String xml = getExampleXmlFromFile("stp_program-status.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1419,11 +1425,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.step.Reagents.class;
 
         String xml = getExampleXmlFromFile("stp_reagents.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1440,11 +1446,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.step.Lots.class;
 
         String xml = getExampleXmlFromFile("stp_reagents-lots.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1461,10 +1467,10 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.step.Setup.class;
 
         String xml = getExampleXmlFromFile("stp_setup.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1481,10 +1487,10 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.step.Step.class;
 
         String xml = getExampleXmlFromFile("stp_step.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1501,10 +1507,10 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.step.StepCreation.class;
 
         String xml = getExampleXmlFromFile("stp_step-creation.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1521,10 +1527,10 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.version.Version.class;
 
         String xml = getExampleXmlFromFile("ver_version.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1541,10 +1547,10 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.version.Versions.class;
 
         String xml = getExampleXmlFromFile("ver_versions.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1561,10 +1567,10 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.workflowconfiguration.Workflow.class;
 
         String xml = getExampleXmlFromFile("wkfcnf_workflow.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1581,10 +1587,10 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.workflowconfiguration.Workflows.class;
 
         String xml = getExampleXmlFromFile("wkfcnf_workflows.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();
@@ -1601,11 +1607,11 @@ public class RoundTripTestsFromSampleXml {
         Class<?> clazz = com.genologics.ri.processtype.ProcessTypes.class;
 
         String xml = getExampleXmlFromFile("ptp_process-types.xml");
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, xml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, xml);
 
         String xml2 = marshallingService.marshal(clazz, unmarshalledPojo.getValue());
         System.out.println(xml + "\n\n" + xml2);
-        JAXBElement<?> unmarshalledPojo2 = UnmarshallingService.unmarshal(clazz, xml2);
+        JAXBElement<?> unmarshalledPojo2 = unmarshallingService.unmarshal(clazz, xml2);
 
         //Compare json strings, as the generated POJOs lack a proper equals()
         ObjectMapper objectMapper = new ObjectMapper();

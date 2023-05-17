@@ -20,11 +20,17 @@ public class NamespaceMapper extends NamespacePrefixMapper{
     private static final Logger logger = LoggerFactory.getLogger(NamespacePrefixMapper.class);
     private static final HashMap<String, Class<?>> classes = new HashMap<>();
 
+    private final String clarityPackage;
     private final String clarityPackageRoot;
+    private final String clarityUri;
+    private final String schemaDirectory;
     private final HashMap<String, String> namespaces = new HashMap<>();
 
-    public NamespaceMapper(String clarityPackageRoot){
+    public NamespaceMapper(String clarityPackage, String clarityPackageRoot, String clarityUri, String schemaDirectory){
+        this.clarityPackage = clarityPackage;
         this.clarityPackageRoot = clarityPackageRoot;
+        this.clarityUri = clarityUri;
+        this.schemaDirectory = schemaDirectory;
         initNamespaceMapFromSchemaDirectory();
         findAllClassesUsingClassLoader(clarityPackageRoot);
     }
@@ -64,10 +70,9 @@ public class NamespaceMapper extends NamespacePrefixMapper{
     private void initNamespaceMapFromSchemaDirectory() {
 
         //Read all the .xsds
-        File schemaFolder = new File("src/main/xsd"); //TODO replace with property
+        File schemaFolder = new File(schemaDirectory);
         StringBuilder sb = new StringBuilder();
 
-        //TODO error-handling
         Arrays.stream(schemaFolder.listFiles()).forEach(file -> {
             try {
                 String text = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
@@ -77,19 +82,17 @@ public class NamespaceMapper extends NamespacePrefixMapper{
             }
         });
 
-        //TODO replace with property
-        //Pattern grabs everything following a "xlmns" (namespace) tag involving the package root
-        String rootNamespace = "http://genologics.com";
-        Pattern p = Pattern.compile("xmlns:[a-z]+=\"http://genologics.com/ri(/)*[a-z]*\"");
+        //Pattern grabs everything following a "xmlns" (namespace) tag involving the package root
+        Pattern p = Pattern.compile("xmlns:[a-z]+=\"" + clarityUri + "(/)*[a-z]*\"");
         Matcher m = p.matcher(sb);
 
         while(m.find()){
 
             String match = m.group();
             String prefix = match.substring(match.indexOf("xmlns:") + 6, match.indexOf("="));
-            String namespaceSuffix = match.substring(match.lastIndexOf(rootNamespace) + rootNamespace.length(), match.length() - 1);
+            String namespaceSuffix = match.substring(match.lastIndexOf(clarityUri) + clarityUri.length(), match.length() - 1);
 
-            namespaces.put(rootNamespace + namespaceSuffix, prefix);
+            namespaces.put(clarityUri + namespaceSuffix, prefix);
 
         }
 

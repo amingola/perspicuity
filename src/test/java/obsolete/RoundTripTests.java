@@ -1,3 +1,5 @@
+package obsolete;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.genologics.ri.Links;
@@ -60,12 +62,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RoundTripTests {
 
     private static MarshallingService marshallingService;
+    private static UnmarshallingService unmarshallingService;
 
     @BeforeAll
     static void init(){
-        NamespaceMapper namespaceMapper = new NamespaceMapper("com.genologics");
-        marshallingService =
-                new MarshallingService("com.genologics", "http://genologics.com", namespaceMapper);
+        String clarityPackage = "com.genologics.ri";
+        String clarityPackageRoot = "com.genologics";
+        String clarityUri = "http://genologics.com";
+        String schemaDirectory = "src/main/xsd";
+
+        NamespaceMapper namespaceMapper = new NamespaceMapper(clarityPackage, clarityPackageRoot, clarityUri, schemaDirectory);
+        marshallingService = new MarshallingService(clarityPackage, clarityPackageRoot, clarityUri, namespaceMapper);
+        unmarshallingService = new UnmarshallingService(clarityPackage, clarityUri);
 
     }
 
@@ -81,7 +89,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -105,7 +113,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -129,7 +137,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -153,7 +161,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -177,7 +185,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -201,7 +209,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -225,7 +233,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -249,7 +257,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -273,7 +281,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -297,7 +305,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -321,7 +329,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -345,7 +353,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -369,7 +377,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -393,7 +401,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -417,7 +425,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -441,7 +449,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -465,7 +473,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -489,7 +497,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -513,7 +521,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -537,7 +545,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -561,7 +569,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -585,7 +593,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -609,7 +617,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -633,7 +641,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -657,7 +665,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -681,7 +689,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -705,7 +713,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -729,7 +737,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -753,7 +761,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -777,7 +785,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -801,7 +809,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -825,7 +833,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -849,7 +857,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -873,7 +881,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -897,7 +905,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -921,7 +929,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -945,7 +953,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -969,7 +977,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -993,7 +1001,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1017,7 +1025,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1041,7 +1049,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1065,7 +1073,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1089,7 +1097,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1113,7 +1121,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1137,7 +1145,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1161,7 +1169,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1185,7 +1193,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1209,7 +1217,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1233,7 +1241,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1257,7 +1265,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1281,7 +1289,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1305,7 +1313,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1329,7 +1337,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1353,7 +1361,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1377,7 +1385,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1401,7 +1409,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1425,7 +1433,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1449,7 +1457,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1473,7 +1481,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1497,7 +1505,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1521,7 +1529,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);
@@ -1545,7 +1553,7 @@ public class RoundTripTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledPojo = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledPojo = unmarshallingService.unmarshal(clazz, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledPojo);
         System.out.println(jsonStr);

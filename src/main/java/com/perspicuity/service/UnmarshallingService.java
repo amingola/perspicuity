@@ -1,9 +1,9 @@
 package com.perspicuity.service;
 
 import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
-import com.sun.xml.bind.v2.util.QNameMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +24,15 @@ import java.util.regex.Pattern;
 @Service
 public class UnmarshallingService{
 
+    private final String clarityPackage;
+    private final String clarityUri;
+
+    public UnmarshallingService(@Value("${clarityPackage}") String clarityPackage, @Value("$clarityUri") String clarityUri){
+        this.clarityPackage = clarityPackage;
+        this.clarityUri = clarityUri;
+    }
+
+
     private static final Logger logger = LoggerFactory.getLogger(UnmarshallingService.class);
 
     /**
@@ -36,7 +45,7 @@ public class UnmarshallingService{
      * @throws JAXBException if anything goes wrong with the unmarshalling
      * @throws ClassNotFoundException if the class can not be found
      */
-    public static JAXBElement<?> unmarshal(@NonNull Class<?> payloadType, String payload)
+    public JAXBElement<?> unmarshal(@NonNull Class<?> payloadType, String payload)
             throws JAXBException, ClassNotFoundException{
 
         //Get the ObjectFactory class that corresponds to the payload's type - this implementation should always work
@@ -77,10 +86,10 @@ public class UnmarshallingService{
 
     }
 
-    private static String getObjectFactoryMissingFromJAXBContext(Object payload, IllegalAnnotationsException e) throws ClassNotFoundException {
+    private String getObjectFactoryMissingFromJAXBContext(Object payload, IllegalAnnotationsException e) throws ClassNotFoundException {
 
         //Pull any mention of a Clarity datatype from the exception message
-        Pattern p = Pattern.compile("(?!http://genologics.com)[a-z]*(?=})"); //TODO replace with property
+        Pattern p = Pattern.compile("(?!" + clarityUri + ")[a-z]*(?=})");
         Matcher m = p.matcher(e.toString());
 
         if(!m.find()) {
@@ -92,7 +101,7 @@ public class UnmarshallingService{
 
         }
 
-        return "com.genologics.ri." + m.group() + ".ObjectFactory"; //TODO replace with property
+        return clarityPackage + "." + m.group() + ".ObjectFactory";
 
     }
 

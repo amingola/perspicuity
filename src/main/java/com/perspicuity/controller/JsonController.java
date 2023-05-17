@@ -20,9 +20,11 @@ public class JsonController {
     private static final Logger logger = LoggerFactory.getLogger(JsonController.class);
 
     final MarshallingService marshallingService;
+    final UnmarshallingService unmarshallingService;
 
-    public JsonController(MarshallingService marshallingService) {
+    public JsonController(MarshallingService marshallingService, UnmarshallingService unmarshallingService) {
         this.marshallingService = marshallingService;
+        this.unmarshallingService = unmarshallingService;
     }
 
     @PostMapping("/com.genologics.ri.Address")
@@ -2016,7 +2018,7 @@ public class JsonController {
         logger.info("\n" + xmlPayload);
 
         try {
-            return UnmarshallingService.unmarshal(payloadClass, xmlPayload).getValue();
+            return unmarshallingService.unmarshal(payloadClass, xmlPayload).getValue();
         } catch (JAXBException | ClassNotFoundException e) {
             logger.error("xmlToJson didn't work for payload: " + xmlPayload, e);
         }

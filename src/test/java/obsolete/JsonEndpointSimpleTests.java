@@ -1,3 +1,5 @@
+package obsolete;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.genologics.ri.Links;
@@ -63,6 +65,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class JsonEndpointSimpleTests {
 
     private static MarshallingService marshallingService;
+    private static UnmarshallingService unmarshallingService;
     private static NamespaceMapper namespaceMapper;
 
     /*public JsonEndpointTests(MarshallingService marshallingService){
@@ -71,9 +74,14 @@ public class JsonEndpointSimpleTests {
 
     @BeforeAll
     static void init(){
-        namespaceMapper = new NamespaceMapper("com.genologics");
-        marshallingService =
-                new MarshallingService("com.genologics", "http://genologics.com", namespaceMapper);
+        String clarityPackage = "com.genologics.ri";
+        String clarityPackageRoot = "com.genologics";
+        String clarityUri = "http://genologics.com";
+        String schemaDirectory = "src/main/xsd";
+
+        NamespaceMapper namespaceMapper = new NamespaceMapper(clarityPackage, clarityPackageRoot, clarityUri, schemaDirectory);
+        marshallingService = new MarshallingService(clarityPackage, clarityPackageRoot, clarityUri, namespaceMapper);
+        unmarshallingService = new UnmarshallingService(clarityPackage, clarityUri);
     }
 
     /*@Test
@@ -120,7 +128,7 @@ public class JsonEndpointSimpleTests {
     void test2() throws JAXBException, ClassNotFoundException {
 
         Sample sample = new Sample();
-        TestUtils.fillAllFields(sample);
+        obsolete.TestUtils.fillAllFields(sample);
 
         System.out.println(sample);
         String sampleXml = marshallingService.marshal(Sample.class, sample);
@@ -133,14 +141,14 @@ public class JsonEndpointSimpleTests {
     void test3() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Links links = new Links();
-        TestUtils.fillAllFields(links);
+        obsolete.TestUtils.fillAllFields(links);
 
         System.out.println(links);
         String sampleXml = marshallingService.marshal(Links.class, links);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Links.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Links.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -157,14 +165,14 @@ public class JsonEndpointSimpleTests {
 //    void _artifactgroups() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 //
 //        Artifactgroup artifactGroup = new Artifactgroup();
-//        TestUtils.fillAllFields(artifactGroup);
+//        obsolete.TestUtils.fillAllFields(artifactGroup);
 //
 //        System.out.println(artifactGroup);
 //        String sampleXml = marshallingService.marshal(Artifactgroup.class, artifactGroup);
 //
 //        System.out.println("Resulting XML:\n" + sampleXml);
 //
-//        Object obj = UnmarshallingService.unmarshal(Artifactgroup.class, sampleXml);
+//        Object obj = unmarshallingService.unmarshal(Artifactgroup.class, sampleXml);
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        String str = objectMapper.writeValueAsString(obj);
 //
@@ -181,14 +189,14 @@ public class JsonEndpointSimpleTests {
 //    void _artifacts() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 //
 //        Artifact artifact = new Artifact();
-//        TestUtils.fillAllFields(artifact);
+//        obsolete.TestUtils.fillAllFields(artifact);
 //
 //        System.out.println(artifact);
 //        String sampleXml = marshallingService.marshal(Artifact.class, artifact);
 //
 //        System.out.println("Resulting XML:\n" + sampleXml);
 //
-//        Object obj = UnmarshallingService.unmarshal(Artifact.class, sampleXml);
+//        Object obj = unmarshallingService.unmarshal(Artifact.class, sampleXml);
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        String str = objectMapper.writeValueAsString(obj);
 //
@@ -200,14 +208,14 @@ public class JsonEndpointSimpleTests {
 //    void _links() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 //
 //        Artifact artifact = new Artifact();
-//        TestUtils.fillAllFields(artifact);
+//        obsolete.TestUtils.fillAllFields(artifact);
 //
 //        System.out.println(artifact);
 //        String sampleXml = marshallingService.marshal(Artifact.class, artifact);
 //
 //        System.out.println("Resulting XML:\n" + sampleXml);
 //
-//        Object obj = UnmarshallingService.unmarshal(Artifact.class, sampleXml);
+//        Object obj = unmarshallingService.unmarshal(Artifact.class, sampleXml);
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        String str = objectMapper.writeValueAsString(obj);
 //
@@ -219,14 +227,14 @@ public class JsonEndpointSimpleTests {
 //    void _details() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 //
 //        Artifact artifact = new Artifact();
-//        TestUtils.fillAllFields(artifact);
+//        obsolete.TestUtils.fillAllFields(artifact);
 //
 //        System.out.println(artifact);
 //        String sampleXml = marshallingService.marshal(Artifact.class, artifact);
 //
 //        System.out.println("Resulting XML:\n" + sampleXml);
 //
-//        Object obj = UnmarshallingService.unmarshal(Artifact.class, sampleXml);
+//        Object obj = unmarshallingService.unmarshal(Artifact.class, sampleXml);
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        String str = objectMapper.writeValueAsString(obj);
 //
@@ -253,7 +261,7 @@ public class JsonEndpointSimpleTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledArtifacts = UnmarshallingService.unmarshal(Artifacts.class, sampleXml);
+        JAXBElement<?> unmarshalledArtifacts = unmarshallingService.unmarshal(Artifacts.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledArtifacts);
         System.out.println(jsonStr);
@@ -277,7 +285,7 @@ public class JsonEndpointSimpleTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        JAXBElement<?> unmarshalledArtifact = UnmarshallingService.unmarshal(artifact.getClass(), sampleXml);
+        JAXBElement<?> unmarshalledArtifact = unmarshallingService.unmarshal(artifact.getClass(), sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(unmarshalledArtifact);
         System.out.println(jsonStr);
@@ -310,7 +318,7 @@ public class JsonEndpointSimpleTests {
         System.out.println("Resulting com.genologics.ri.Links XML:\n" + sampleXml);
 
         //Verify the XML payload was valid by unmarshalling it
-        JAXBElement<?> unmarshalledLinks = UnmarshallingService.unmarshal(links.getClass(), sampleXml);
+        JAXBElement<?> unmarshalledLinks = unmarshallingService.unmarshal(links.getClass(), sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         System.out.println(objectMapper.writeValueAsString(unmarshalledLinks));
 
@@ -330,7 +338,7 @@ public class JsonEndpointSimpleTests {
         System.out.println("Resulting com.genologics.ri.artifact.Details XML:\n" + sampleXml3);
 
         //Verify the XML payload was valid by unmarshalling it
-        JAXBElement<?> unmarshalledDetails = UnmarshallingService.unmarshal(details.getClass(), sampleXml3);
+        JAXBElement<?> unmarshalledDetails = unmarshallingService.unmarshal(details.getClass(), sampleXml3);
         System.out.println(objectMapper.writeValueAsString(unmarshalledDetails));
 
         //Complete the "round-trip" and assert equality
@@ -347,7 +355,7 @@ public class JsonEndpointSimpleTests {
 
         //Create a mock POJO
         com.genologics.ri.artifact.Details details = new com.genologics.ri.artifact.Details();
-        TestUtils.fillAllFields(details);
+        obsolete.TestUtils.fillAllFields(details);
         System.out.println("com.genologics.ri.artifact.Details json object: " + details);
 
         //Create the XML payload for the "POST"
@@ -356,7 +364,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        Object obj = UnmarshallingService.unmarshal(details.getClass(), sampleXml);
+        Object obj = unmarshallingService.unmarshal(details.getClass(), sampleXml);
         System.out.println(objectMapper.writeValueAsString(obj));
 
         //Complete the "round-trip" and assert equality
@@ -381,7 +389,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledProtocols = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledProtocols = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledProtocols));
 
         //Complete the "round-trip" and assert equality
@@ -406,7 +414,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledProtocol = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledProtocol = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledProtocol));
 
         //Complete the "round-trip" and assert equality
@@ -432,7 +440,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledStep = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledStep = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledStep));
 
         //Complete the "round-trip" and assert equality
@@ -458,7 +466,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledUdfs = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledUdfs = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledUdfs));
 
         //Complete the "round-trip" and assert equality
@@ -484,7 +492,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledStep = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledStep = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledStep));
 
         //Complete the "round-trip" and assert equality
@@ -510,7 +518,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledUdts = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledUdts = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledUdts));
 
         //Complete the "round-trip" and assert equality
@@ -536,7 +544,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledType = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledType = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledType));
 
         //Complete the "round-trip" and assert equality
@@ -562,7 +570,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledWorkflows = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledWorkflows = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledWorkflows));
 
         //Complete the "round-trip" and assert equality
@@ -588,7 +596,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledWorkflow = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledWorkflow = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledWorkflow));
 
         //Complete the "round-trip" and assert equality
@@ -614,7 +622,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledStage = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledStage = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledStage));
 
         //Complete the "round-trip" and assert equality
@@ -641,7 +649,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledContainers = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledContainers = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledContainers));
 
         //Complete the "round-trip" and assert equality
@@ -660,7 +668,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledContainer = UnmarshallingService.unmarshal(clazz, sampleXml3);
+        JAXBElement<?> unmarshalledContainer = unmarshallingService.unmarshal(clazz, sampleXml3);
         System.out.println(objectMapper.writeValueAsString(unmarshalledContainer));
 
         //Complete the "round-trip" and assert equality
@@ -689,7 +697,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         ObjectMapper objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledDetails = UnmarshallingService.unmarshal(clazz, sampleXml);
+        JAXBElement<?> unmarshalledDetails = unmarshallingService.unmarshal(clazz, sampleXml);
         System.out.println(objectMapper.writeValueAsString(unmarshalledDetails));
 
         //Complete the "round-trip" and assert equality
@@ -708,7 +716,7 @@ public class JsonEndpointSimpleTests {
 
         //Verify the XML payload was valid by unmarshalling it
         objectMapper = new ObjectMapper();
-        JAXBElement<?> unmarshalledLinks = UnmarshallingService.unmarshal(clazz, sampleXml3);
+        JAXBElement<?> unmarshalledLinks = unmarshallingService.unmarshal(clazz, sampleXml3);
         System.out.println(objectMapper.writeValueAsString(unmarshalledLinks));
 
         //Complete the "round-trip" and assert equality
@@ -727,14 +735,14 @@ public class JsonEndpointSimpleTests {
     void _details() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Details details = new Details();
-        TestUtils.fillAllFields(details);
+        obsolete.TestUtils.fillAllFields(details);
 
         System.out.println(details);
         String sampleXml = marshallingService.marshal(Details.class, details);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Details.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Details.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -746,14 +754,14 @@ public class JsonEndpointSimpleTests {
     void _protocols() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Workflow.Protocols protocols = new Workflow.Protocols();
-        TestUtils.fillAllFields(protocols);
+        obsolete.TestUtils.fillAllFields(protocols);
 
         System.out.println(protocols);
         String sampleXml = marshallingService.marshal(Workflow.Protocols.class, protocols);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Workflow.Protocols.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Workflow.Protocols.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -765,14 +773,14 @@ public class JsonEndpointSimpleTests {
     void _protocol() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Protocol protocol = new Protocol();
-        TestUtils.fillAllFields(protocol);
+        obsolete.TestUtils.fillAllFields(protocol);
 
         System.out.println(protocol);
         String sampleXml = marshallingService.marshal(Protocol.class, protocol);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Protocol.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Protocol.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -784,14 +792,14 @@ public class JsonEndpointSimpleTests {
     void _step() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Step step = new Step();
-        TestUtils.fillAllFields(step);
+        obsolete.TestUtils.fillAllFields(step);
 
         System.out.println(step);
         String sampleXml = marshallingService.marshal(Step.class, step);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Step.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Step.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -803,14 +811,14 @@ public class JsonEndpointSimpleTests {
     void _stepcreation() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         StepCreation stepcreation = new StepCreation();
-        TestUtils.fillAllFields(stepcreation);
+        obsolete.TestUtils.fillAllFields(stepcreation);
 
         System.out.println(stepcreation);
         String sampleXml = marshallingService.marshal(StepCreation.class, stepcreation);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(StepCreation.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(StepCreation.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -822,14 +830,14 @@ public class JsonEndpointSimpleTests {
     void _workflows() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Workflows workflows = new Workflows();
-        TestUtils.fillAllFields(workflows);
+        obsolete.TestUtils.fillAllFields(workflows);
 
         System.out.println(workflows);
         String sampleXml = marshallingService.marshal(Workflows.class, workflows);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Workflows.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Workflows.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -841,14 +849,14 @@ public class JsonEndpointSimpleTests {
     void _workflow() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Workflow workflow = new Workflow();
-        TestUtils.fillAllFields(workflow);
+        obsolete.TestUtils.fillAllFields(workflow);
 
         System.out.println(workflow);
         String sampleXml = marshallingService.marshal(Workflow.class, workflow);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Workflow.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Workflow.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -860,14 +868,14 @@ public class JsonEndpointSimpleTests {
     void _stage() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Stage stage = new Stage();
-        TestUtils.fillAllFields(stage);
+        obsolete.TestUtils.fillAllFields(stage);
 
         System.out.println(stage);
         String sampleXml = marshallingService.marshal(Stage.class, stage);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Stage.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Stage.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -879,14 +887,14 @@ public class JsonEndpointSimpleTests {
     void _container() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Container container = new Container();
-        TestUtils.fillAllFields(container);
+        obsolete.TestUtils.fillAllFields(container);
 
         System.out.println(container);
         String sampleXml = marshallingService.marshal(Container.class, container);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Container.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Container.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -898,14 +906,14 @@ public class JsonEndpointSimpleTests {
     void _file() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         File file = new File();
-        TestUtils.fillAllFields(file);
+        obsolete.TestUtils.fillAllFields(file);
 
         System.out.println(file);
         String sampleXml = marshallingService.marshal(File.class, file);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(File.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(File.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -917,14 +925,14 @@ public class JsonEndpointSimpleTests {
     void _files() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Files files = new Files();
-        TestUtils.fillAllFields(files);
+        obsolete.TestUtils.fillAllFields(files);
 
         System.out.println(files);
         String sampleXml = marshallingService.marshal(Files.class, files);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Files.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Files.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -936,14 +944,14 @@ public class JsonEndpointSimpleTests {
     void _instruments() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Instruments instruments = new Instruments();
-        TestUtils.fillAllFields(instruments);
+        obsolete.TestUtils.fillAllFields(instruments);
 
         System.out.println(instruments);
         String sampleXml = marshallingService.marshal(Instruments.class, instruments);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Instruments.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Instruments.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -955,14 +963,14 @@ public class JsonEndpointSimpleTests {
     void _instrument() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Instrument instrument = new Instrument();
-        TestUtils.fillAllFields(instrument);
+        obsolete.TestUtils.fillAllFields(instrument);
 
         System.out.println(instrument);
         String sampleXml = marshallingService.marshal(Instrument.class, instrument);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Instrument.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Instrument.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -974,14 +982,14 @@ public class JsonEndpointSimpleTests {
     void _labs() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Labs labs = new Labs();
-        TestUtils.fillAllFields(labs);
+        obsolete.TestUtils.fillAllFields(labs);
 
         System.out.println(labs);
         String sampleXml = marshallingService.marshal(Labs.class, labs);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Labs.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Labs.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -993,14 +1001,14 @@ public class JsonEndpointSimpleTests {
     void _lab() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Lab lab = new Lab();
-        TestUtils.fillAllFields(lab);
+        obsolete.TestUtils.fillAllFields(lab);
 
         System.out.println(lab);
         String sampleXml = marshallingService.marshal(Lab.class, lab);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Lab.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Lab.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1012,14 +1020,14 @@ public class JsonEndpointSimpleTests {
     void _permissions() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Permissions permissions = new Permissions();
-        TestUtils.fillAllFields(permissions);
+        obsolete.TestUtils.fillAllFields(permissions);
 
         System.out.println(permissions);
         String sampleXml = marshallingService.marshal(Permissions.class, permissions);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Permissions.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Permissions.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1031,14 +1039,14 @@ public class JsonEndpointSimpleTests {
     void _permission() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Permission permission = new Permission();
-        TestUtils.fillAllFields(permission);
+        obsolete.TestUtils.fillAllFields(permission);
 
         System.out.println(permission);
         String sampleXml = marshallingService.marshal(Permission.class, permission);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Permission.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Permission.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1050,14 +1058,14 @@ public class JsonEndpointSimpleTests {
     void _processes() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Processes processes = new Processes();
-        TestUtils.fillAllFields(processes);
+        obsolete.TestUtils.fillAllFields(processes);
 
         System.out.println(processes);
         String sampleXml = marshallingService.marshal(Processes.class, processes);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Processes.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Processes.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1069,14 +1077,14 @@ public class JsonEndpointSimpleTests {
     void _process() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         com.genologics.ri.process.Process process = new com.genologics.ri.process.Process();
-        TestUtils.fillAllFields(process);
+        obsolete.TestUtils.fillAllFields(process);
 
         System.out.println(process);
         String sampleXml = marshallingService.marshal(Process.class, process);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Process.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Process.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1088,14 +1096,14 @@ public class JsonEndpointSimpleTests {
     void _processtemplate() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         ProcessTemplate processtemplate = new ProcessTemplate();
-        TestUtils.fillAllFields(processtemplate);
+        obsolete.TestUtils.fillAllFields(processtemplate);
 
         System.out.println(processtemplate);
         String sampleXml = marshallingService.marshal(ProcessTemplate.class, processtemplate);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ProcessTemplate.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ProcessTemplate.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1107,14 +1115,14 @@ public class JsonEndpointSimpleTests {
     void _processtemplates() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         ProcessTemplates processtemplates = new ProcessTemplates();
-        TestUtils.fillAllFields(processtemplates);
+        obsolete.TestUtils.fillAllFields(processtemplates);
 
         System.out.println(processtemplates);
         String sampleXml = marshallingService.marshal(ProcessTemplates.class, processtemplates);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ProcessTemplates.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ProcessTemplates.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1126,14 +1134,14 @@ public class JsonEndpointSimpleTests {
     void _processtypes() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         ProcessTypes processtypes = new ProcessTypes();
-        TestUtils.fillAllFields(processtypes);
+        obsolete.TestUtils.fillAllFields(processtypes);
 
         System.out.println(processtypes);
         String sampleXml = marshallingService.marshal(ProcessTypes.class, processtypes);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ProcessTypes.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ProcessTypes.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1145,7 +1153,7 @@ public class JsonEndpointSimpleTests {
     void _processtype() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         com.genologics.ri.process.ProcessType processtype = new com.genologics.ri.process.ProcessType();
-        TestUtils.fillAllFields(processtype);
+        obsolete.TestUtils.fillAllFields(processtype);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(processtype);
@@ -1155,7 +1163,7 @@ public class JsonEndpointSimpleTests {
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(com.genologics.ri.process.ProcessType.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(com.genologics.ri.process.ProcessType.class, sampleXml);
         str = objectMapper.writeValueAsString(obj);
 
         System.out.println(str);
@@ -1166,14 +1174,14 @@ public class JsonEndpointSimpleTests {
     void _processtype2() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         com.genologics.ri.processtype.ProcessType processtype = new com.genologics.ri.processtype.ProcessType();
-        TestUtils.fillAllFields(processtype);
+        obsolete.TestUtils.fillAllFields(processtype);
 
         System.out.println(processtype);
         String sampleXml = marshallingService.marshal(com.genologics.ri.processtype.ProcessType.class, processtype);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(com.genologics.ri.processtype.ProcessType.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(com.genologics.ri.processtype.ProcessType.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1185,14 +1193,14 @@ public class JsonEndpointSimpleTests {
     void _processtype3() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         com.genologics.ri.processtemplate.ProcessType processtype = new com.genologics.ri.processtemplate.ProcessType();
-        TestUtils.fillAllFields(processtype);
+        obsolete.TestUtils.fillAllFields(processtype);
 
         System.out.println(processtype);
         String sampleXml = marshallingService.marshal(com.genologics.ri.processtemplate.ProcessType.class, processtype);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(com.genologics.ri.processtemplate.ProcessType.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(com.genologics.ri.processtemplate.ProcessType.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1204,14 +1212,14 @@ public class JsonEndpointSimpleTests {
     void _processtype4() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         com.genologics.ri.automation.ProcessType processtype = new com.genologics.ri.automation.ProcessType();
-        TestUtils.fillAllFields(processtype);
+        obsolete.TestUtils.fillAllFields(processtype);
 
         System.out.println(processtype);
         String sampleXml = marshallingService.marshal(com.genologics.ri.automation.ProcessType.class, processtype);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(com.genologics.ri.automation.ProcessType.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(com.genologics.ri.automation.ProcessType.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1223,14 +1231,14 @@ public class JsonEndpointSimpleTests {
     void _processtype5() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         com.genologics.ri.stepconfiguration.ProcessType processtype = new com.genologics.ri.stepconfiguration.ProcessType();
-        TestUtils.fillAllFields(processtype);
+        obsolete.TestUtils.fillAllFields(processtype);
 
         System.out.println(processtype);
         String sampleXml = marshallingService.marshal(com.genologics.ri.stepconfiguration.ProcessType.class, processtype);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(com.genologics.ri.stepconfiguration.ProcessType.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(com.genologics.ri.stepconfiguration.ProcessType.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1242,14 +1250,14 @@ public class JsonEndpointSimpleTests {
     void _project() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Project project = new Project();
-        TestUtils.fillAllFields(project);
+        obsolete.TestUtils.fillAllFields(project);
 
         System.out.println(project);
         String sampleXml = marshallingService.marshal(Project.class, project);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Project.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Project.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1261,14 +1269,14 @@ public class JsonEndpointSimpleTests {
     void _projects() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Projects projects = new Projects();
-        TestUtils.fillAllFields(projects);
+        obsolete.TestUtils.fillAllFields(projects);
 
         System.out.println(projects);
         String sampleXml = marshallingService.marshal(Projects.class, projects);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Projects.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Projects.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1280,14 +1288,14 @@ public class JsonEndpointSimpleTests {
     void _queue() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Queue queue = new Queue();
-        TestUtils.fillAllFields(queue);
+        obsolete.TestUtils.fillAllFields(queue);
 
         System.out.println(queue);
         String sampleXml = marshallingService.marshal(Queue.class, queue);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Queue.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Queue.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1299,14 +1307,14 @@ public class JsonEndpointSimpleTests {
     void _reagentkits() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         ReagentKits reagentkits = new ReagentKits();
-        TestUtils.fillAllFields(reagentkits);
+        obsolete.TestUtils.fillAllFields(reagentkits);
 
         System.out.println(reagentkits);
         String sampleXml = marshallingService.marshal(ReagentKits.class, reagentkits);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ReagentKits.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ReagentKits.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1318,14 +1326,14 @@ public class JsonEndpointSimpleTests {
     void _reagentkit() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         ReagentKit reagentkit = new ReagentKit();
-        TestUtils.fillAllFields(reagentkit);
+        obsolete.TestUtils.fillAllFields(reagentkit);
 
         System.out.println(reagentkit);
         String sampleXml = marshallingService.marshal(ReagentKit.class, reagentkit);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ReagentKit.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ReagentKit.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1337,14 +1345,14 @@ public class JsonEndpointSimpleTests {
     void _reagentlot() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         ReagentLot reagentlot = new ReagentLot();
-        TestUtils.fillAllFields(reagentlot);
+        obsolete.TestUtils.fillAllFields(reagentlot);
 
         System.out.println(reagentlot);
         String sampleXml = marshallingService.marshal(ReagentLot.class, reagentlot);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ReagentLot.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ReagentLot.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1356,14 +1364,14 @@ public class JsonEndpointSimpleTests {
     void _reagentlots() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         ReagentLots reagentlots = new ReagentLots();
-        TestUtils.fillAllFields(reagentlots);
+        obsolete.TestUtils.fillAllFields(reagentlots);
 
         System.out.println(reagentlots);
         String sampleXml = marshallingService.marshal(ReagentLots.class, reagentlots);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ReagentLots.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ReagentLots.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1375,14 +1383,14 @@ public class JsonEndpointSimpleTests {
     void _reagenttypes() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         ReagentTypes reagenttypes = new ReagentTypes();
-        TestUtils.fillAllFields(reagenttypes);
+        obsolete.TestUtils.fillAllFields(reagenttypes);
 
         System.out.println(reagenttypes);
         String sampleXml = marshallingService.marshal(ReagentTypes.class, reagenttypes);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ReagentTypes.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ReagentTypes.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1393,14 +1401,14 @@ public class JsonEndpointSimpleTests {
     @Test
     void _reagenttype() throws JAXBException, ClassNotFoundException, JsonProcessingException {
         ReagentType reagenttype = new ReagentType();
-        TestUtils.fillAllFields(reagenttype);
+        obsolete.TestUtils.fillAllFields(reagenttype);
 
         System.out.println(reagenttype);
         String sampleXml = marshallingService.marshal(ReagentType.class, reagenttype);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ReagentType.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ReagentType.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1412,14 +1420,14 @@ public class JsonEndpointSimpleTests {
     void _researcher() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Researcher researcher = new Researcher();
-        TestUtils.fillAllFields(researcher);
+        obsolete.TestUtils.fillAllFields(researcher);
 
         System.out.println(researcher);
         String sampleXml = marshallingService.marshal(Researcher.class, researcher);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Researcher.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Researcher.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1431,14 +1439,14 @@ public class JsonEndpointSimpleTests {
     void _roles() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Roles roles = new Roles();
-        TestUtils.fillAllFields(roles);
+        obsolete.TestUtils.fillAllFields(roles);
 
         System.out.println(roles);
         String sampleXml = marshallingService.marshal(Roles.class, roles);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Roles.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Roles.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1450,14 +1458,14 @@ public class JsonEndpointSimpleTests {
     void _role() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Role role = new Role();
-        TestUtils.fillAllFields(role);
+        obsolete.TestUtils.fillAllFields(role);
 
         System.out.println(role);
         String sampleXml = marshallingService.marshal(Role.class, role);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Role.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Role.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1469,14 +1477,14 @@ public class JsonEndpointSimpleTests {
     void _routing() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Routing routing = new Routing();
-        TestUtils.fillAllFields(routing);
+        obsolete.TestUtils.fillAllFields(routing);
 
         System.out.println(routing);
         String sampleXml = marshallingService.marshal(Routing.class, routing);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Routing.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Routing.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1488,14 +1496,14 @@ public class JsonEndpointSimpleTests {
     void _samples() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Samples samples = new Samples();
-        TestUtils.fillAllFields(samples);
+        obsolete.TestUtils.fillAllFields(samples);
 
         System.out.println(samples);
         String sampleXml = marshallingService.marshal(Samples.class, samples);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Samples.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Samples.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1507,14 +1515,14 @@ public class JsonEndpointSimpleTests {
     void _sample() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Sample sample = new Sample();
-        TestUtils.fillAllFields(sample);
+        obsolete.TestUtils.fillAllFields(sample);
 
         System.out.println(sample);
         String sampleXml = marshallingService.marshal(Sample.class, sample);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Sample.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Sample.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1526,14 +1534,14 @@ public class JsonEndpointSimpleTests {
     void _samplecreation() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Samplecreation samplecreation = new Samplecreation();
-        TestUtils.fillAllFields(samplecreation);
+        obsolete.TestUtils.fillAllFields(samplecreation);
 
         System.out.println(samplecreation);
         String sampleXml = marshallingService.marshal(Samplecreation.class, samplecreation);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Samplecreation.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Samplecreation.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1545,14 +1553,14 @@ public class JsonEndpointSimpleTests {
     void _actions() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Actions actions = new Actions();
-        TestUtils.fillAllFields(actions);
+        obsolete.TestUtils.fillAllFields(actions);
 
         System.out.println(actions);
         String sampleXml = marshallingService.marshal(Actions.class, actions);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Actions.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Actions.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1564,14 +1572,14 @@ public class JsonEndpointSimpleTests {
     void _placements() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Placements placements = new Placements();
-        TestUtils.fillAllFields(placements);
+        obsolete.TestUtils.fillAllFields(placements);
 
         System.out.println(placements);
         String sampleXml = marshallingService.marshal(Placements.class, placements);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Placements.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Placements.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1583,14 +1591,14 @@ public class JsonEndpointSimpleTests {
     void _pools() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Pools pools = new Pools();
-        TestUtils.fillAllFields(pools);
+        obsolete.TestUtils.fillAllFields(pools);
 
         System.out.println(pools);
         String sampleXml = marshallingService.marshal(Pools.class, pools);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Pools.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Pools.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1602,14 +1610,14 @@ public class JsonEndpointSimpleTests {
     void _programstatus() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         ProgramStatus programstatus = new ProgramStatus();
-        TestUtils.fillAllFields(programstatus);
+        obsolete.TestUtils.fillAllFields(programstatus);
 
         System.out.println(programstatus);
         String sampleXml = marshallingService.marshal(ProgramStatus.class, programstatus);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ProgramStatus.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ProgramStatus.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1621,14 +1629,14 @@ public class JsonEndpointSimpleTests {
     void _lots() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         ReagentLots lots = new ReagentLots();
-        TestUtils.fillAllFields(lots);
+        obsolete.TestUtils.fillAllFields(lots);
 
         System.out.println(lots);
         String sampleXml = marshallingService.marshal(ReagentLots.class, lots);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(ReagentLots.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(ReagentLots.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1640,14 +1648,14 @@ public class JsonEndpointSimpleTests {
     void _reagents() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Reagents reagents = new Reagents();
-        TestUtils.fillAllFields(reagents);
+        obsolete.TestUtils.fillAllFields(reagents);
 
         System.out.println(reagents);
         String sampleXml = marshallingService.marshal(Reagents.class, reagents);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Reagents.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Reagents.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 
@@ -1659,14 +1667,14 @@ public class JsonEndpointSimpleTests {
     void _setup() throws JAXBException, ClassNotFoundException, JsonProcessingException {
 
         Setup setup = new Setup();
-        TestUtils.fillAllFields(setup);
+        obsolete.TestUtils.fillAllFields(setup);
 
         System.out.println(setup);
         String sampleXml = marshallingService.marshal(Setup.class, setup);
 
         System.out.println("Resulting XML:\n" + sampleXml);
 
-        Object obj = UnmarshallingService.unmarshal(Setup.class, sampleXml);
+        Object obj = unmarshallingService.unmarshal(Setup.class, sampleXml);
         ObjectMapper objectMapper = new ObjectMapper();
         String str = objectMapper.writeValueAsString(obj);
 

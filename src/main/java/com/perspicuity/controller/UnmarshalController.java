@@ -70,7 +70,7 @@ public class UnmarshalController {
         logger.info("\n" + xmlPayload);
 
         try {
-            return UnmarshallingService.unmarshal(payloadClass, xmlPayload).getValue();
+            return unmarshallingService.unmarshal(payloadClass, xmlPayload).getValue();
         } catch (JAXBException | ClassNotFoundException e) {
             logger.error("xmlToJson didn't work for payload: " + xmlPayload, e);
         }

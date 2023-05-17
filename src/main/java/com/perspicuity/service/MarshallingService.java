@@ -37,16 +37,19 @@ public class MarshallingService{
     private static final String PAYLOAD_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
     private static final Logger logger = LoggerFactory.getLogger(NamespacePrefixMapper.class);
 
+    private final String clarityPackage;
     private final String clarityPackageRoot;
-    private final String clarityUriRoot;
+    private final String clarityUri;
 
     final NamespaceMapper namespaceMapper;
 
-    public MarshallingService(@Value("$clarityPackageRoot") String clarityPackageRoot,
-                              @Value("$clarityUri") String clarityUri,
+    public MarshallingService(@Value("${clarityPackage}") String clarityPackage,
+                              @Value("${clarityPackageRoot}") String clarityPackageRoot,
+                              @Value("${clarityUri}") String clarityUri,
                               NamespaceMapper namespaceMapper){
+        this.clarityPackage = clarityPackage;
         this.clarityPackageRoot = clarityPackageRoot;
-        this.clarityUriRoot = clarityUri;
+        this.clarityUri = clarityUri;
         this.namespaceMapper = namespaceMapper;
     }
 
@@ -115,7 +118,7 @@ public class MarshallingService{
     private String getClassMissingFromJAXBContext(Object payload, MarshalException e) throws ClassNotFoundException {
 
         //Pull any mention of a Clarity datatype from the exception message
-        Pattern p = Pattern.compile("(com.genologics.ri)(([a-z.$]+)\\w+)"); //TODO replace with property
+        Pattern p = Pattern.compile("(" + clarityPackage + ")(([a-z.$]+)\\w+)");
         Matcher m = p.matcher(e.toString());
 
         if(!m.find()) {
@@ -134,7 +137,7 @@ public class MarshallingService{
     private String getObjectFactoryMissingFromJAXBContext(Object payload, IllegalAnnotationsException e) throws ClassNotFoundException {
 
         //Pull any mention of a Clarity datatype from the exception message
-        Pattern p = Pattern.compile("(?!http://genologics.com)[a-z]*(?=})"); //TODO replace with property
+        Pattern p = Pattern.compile("(?!" + clarityUri + ")[a-z]*(?=})");
         Matcher m = p.matcher(e.toString());
 
         if(!m.find()) {
@@ -146,18 +149,22 @@ public class MarshallingService{
 
         }
 
-        return "com.genologics.ri." + m.group() + ".ObjectFactory"; //TODO replace with property
+        return clarityPackage + "." + m.group() + ".ObjectFactory";
 
     }
 
     private void addClassFromNameToArray(String missingClass, Set<Class<?>> classesForJAXBContext) throws ClassNotFoundException {
+
         Class<?> classNeeded = Class.forName(missingClass);
+
         if(classesForJAXBContext.contains(classNeeded)){
             String msg = "The class " + missingClass + " is already in the JAXBContext and it didn't fix the problem." +
                     " Throwing this exception to avoid an infinite loop. Game over.";
             throw new RuntimeException(msg);
         }
+
         classesForJAXBContext.add(classNeeded);
+
     }
 
     /**
@@ -167,7 +174,7 @@ public class MarshallingService{
 
         String packageName = payloadClass.getPackage().getName()
                 .replace(clarityPackageRoot, "").replaceAll("\\.", "/");
-        String namespaceUri =  clarityUriRoot + packageName;
+        String namespaceUri =  clarityUri + packageName;
 
         //String localPart = payloadClass.getSimpleName().toLowerCase();
         //More reflection, which could have been avoided if the localpart of the QName was consistently the name of the
@@ -189,8 +196,8 @@ public class MarshallingService{
 
         /*There is a known bug involving JAXB writing a duplicated:
         "<?xml version="1.0" encoding="UTF-8" standalone="yes"?>"
-        line to any type of Writer under certain circumstances when calling Marshaller#marshal(), so use this prop to
-        skip its automatic inclusion and just have it written whenever calling Marshaller#marshal()*/
+        line to any type of Writer under certain circumstances when calling Marshaller#marshal(), so use this property
+        to skip its automatic inclusion and just have it written whenever calling Marshaller#marshal()*/
         marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
 
         return marshaller;
