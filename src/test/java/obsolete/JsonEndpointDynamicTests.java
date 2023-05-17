@@ -9,6 +9,10 @@ import org.junit.jupiter.api.TestFactory;
 
 import java.util.stream.Stream;
 
+/**
+ * Useful for development but not an effective means of creating payloads intended for the Clarity API
+ */
+@Deprecated
 public class JsonEndpointDynamicTests {
 
     private static MarshallingService marshallingService;
@@ -22,12 +26,12 @@ public class JsonEndpointDynamicTests {
         String clarityUri = "http://genologics.com";
         String schemaDirectory = "src/main/xsd";
 
-        NamespaceMapper namespaceMapper = new NamespaceMapper(clarityPackageRoot, clarityUri, schemaDirectory);
+        namespaceMapper = new NamespaceMapper(clarityPackageRoot, clarityUri, schemaDirectory);
         marshallingService = new MarshallingService(clarityPackage, clarityPackageRoot, clarityUri, namespaceMapper);
         unmarshallingService = new UnmarshallingService(clarityPackage, clarityUri);
     }
 
-    /*@TestFactory
+    @TestFactory
     Stream<DynamicTest> marshalEveryType() {
         return namespaceMapper.getClarityClasses().values().stream()
                 .map(c -> DynamicTest.dynamicTest("Marshalling: " + c, () -> {
@@ -41,9 +45,9 @@ public class JsonEndpointDynamicTests {
                     System.out.println("Marshalled object: " + xml);
 
                 }));
-    }*/
+    }
 
-    /*@TestFactory
+    @TestFactory
     Stream<DynamicTest> marshalAndUnmarshalEveryType() {
         return namespaceMapper.getClarityClasses().values().stream()
                 .map(c -> DynamicTest.dynamicTest("Marshalling: " + c, () -> {
@@ -56,11 +60,11 @@ public class JsonEndpointDynamicTests {
                     String xml = marshallingService.marshal(obj.getClass(), obj);
                     System.out.println("Marshalled object: " + xml);
 
-                    Object pojo = UnmarshallingService.unmarshal(c, xml).getDeclaredType().newInstance();
+                    Object pojo = unmarshallingService.unmarshal(c, xml).getDeclaredType().newInstance();
                     System.out.println("Unmarshalled object: " + pojo);
 
                 }));
-    }*/
+    }
 
     @TestFactory
     Stream<DynamicTest> marshalAndUnmarshalEndpointTypes() {

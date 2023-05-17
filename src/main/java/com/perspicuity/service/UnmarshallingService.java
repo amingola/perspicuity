@@ -38,8 +38,8 @@ public class UnmarshallingService{
     private static final Logger logger = LoggerFactory.getLogger(UnmarshallingService.class);
 
     /**
-     * This method takes a Class and a String representing the well-formed XML to be unmarshalled and returns
-     * JAXBElement of that class' type, but anonymized (JAXBElement&lt;?&gt;)
+     * This method takes a Class and a String representing the well-formed XML to be unmarshalled and returns a
+     * JAXBElement of that class' type, represented by the wildcard (JAXBElement&lt;?&gt;)
      * @param payloadType The Class you want the resulting object to be
      * @param payload String representing the well-formed XML payload
      * @return a JAXBElement&lt;?&gt; object, whose underlying <code>value</code> (of the type specified in payloadType)

@@ -65,7 +65,6 @@ public class MarshallingService{
      */
     public String marshal(Class<?> payloadClass, Object payload) throws JAXBException, ClassNotFoundException {
 
-//        Class<?>[] classesForJAXBContext = new Class[0];
         Set<Class<?>> classesForJAXBContext = new HashSet<>();
         StringWriter sw = new StringWriter();
         sw.write(PAYLOAD_HEADER);
